@@ -14,9 +14,22 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    image: {
-      type: String,
+    images: {
+      type: [String], // Array of image URLs
       required: true,
+      default: [],
+    },
+    colors: {
+      type: [String], // Array of color codes (e.g., hex values)
+      required: false,
+      default: [],
+    },
+    rating: {
+      type: Number,
+      required: false,
+      default: 0,
+      min: 0,
+      max: 5,
     },
     category: {
       type: String,

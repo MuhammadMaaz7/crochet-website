@@ -12,7 +12,10 @@ export default function ProductForm({ product, onClose = () => {} }) {
     description: '',
     price: '',
     category: '',
-    image: '',
+    images: [],
+    colors: [],
+    rating: 0,
+    stock: 0,
   });
 
   useEffect(() => {
@@ -26,6 +29,16 @@ export default function ProductForm({ product, onClose = () => {} }) {
     setFormData(prevState => ({
       ...prevState,
       [name]: value
+    }));
+  };
+
+  const handleArrayChange = (e, field) => {
+    const { value } = e.target;
+    const newArray = value.split(',').map(item => item.trim());
+    console.log(newArray); // Debugging: Check the array
+    setFormData(prevState => ({
+      ...prevState,
+      [field]: newArray,
     }));
   };
 
@@ -69,6 +82,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
           </button>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
             <input
@@ -81,6 +95,8 @@ export default function ProductForm({ product, onClose = () => {} }) {
               required
             />
           </div>
+
+          {/* Description */}
           <div>
             <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
             <textarea
@@ -93,6 +109,8 @@ export default function ProductForm({ product, onClose = () => {} }) {
               required
             ></textarea>
           </div>
+
+          {/* Price */}
           <div>
             <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
             <input
@@ -105,6 +123,8 @@ export default function ProductForm({ product, onClose = () => {} }) {
               required
             />
           </div>
+
+          {/* Category */}
           <div>
             <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
             <select
@@ -122,17 +142,66 @@ export default function ProductForm({ product, onClose = () => {} }) {
               <option value="home">Home Decor</option>
             </select>
           </div>
+
+          {/* Images */}
           <div>
-            <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image URL</label>
+            <label htmlFor="images" className="block text-sm font-medium text-gray-700">Image URLs (comma-separated)</label>
             <input
-              type="url"
-              id="image"
-              name="image"
-              value={formData.image}
+              type="text"
+              id="images"
+              name="images"
+              value={formData.images.join(', ')} // Convert array to comma-separated string
+              onChange={(e) => handleArrayChange(e, 'images')}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              placeholder="e.g., /image1.jpg, /image2.jpg"
+            />
+          </div>
+
+          {/* Colors */}
+          <div>
+            <label htmlFor="colors" className="block text-sm font-medium text-gray-700">Colors (comma-separated hex codes)</label>
+            <input
+              type="text"
+              id="colors"
+              name="colors"
+              value={formData.colors.join(', ')} // Convert array to comma-separated string
+              onChange={(e) => handleArrayChange(e, 'colors')}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              placeholder="e.g., #FFD1DC, #A2D9CE"
+            />
+          </div>
+
+          {/* Rating */}
+          <div>
+            <label htmlFor="rating" className="block text-sm font-medium text-gray-700">Rating</label>
+            <input
+              type="number"
+              id="rating"
+              name="rating"
+              value={formData.rating}
               onChange={handleChange}
+              min="0"
+              max="5"
+              step="0.1"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
             />
           </div>
+
+          {/* Stock */}
+          <div>
+            <label htmlFor="stock" className="block text-sm font-medium text-gray-700">Stock</label>
+            <input
+              type="number"
+              id="stock"
+              name="stock"
+              value={formData.stock}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              required
+            />
+          </div>
+
+          {/* Buttons */}
           <div className="flex justify-end space-x-3">
             <motion.button
               whileHover={{ scale: 1.05 }}

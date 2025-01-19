@@ -5,13 +5,15 @@ import Product from '../models/Product.js';
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, description, price, image, category, stock } = req.body;
+  const { name, description, price, images, colors, rating, category, stock } = req.body;
 
   const product = await Product.create({
     name,
     description,
     price,
-    image,
+    images,
+    colors,
+    rating,
     category,
     stock,
   });
@@ -28,7 +30,7 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, description, price, image, category, stock } = req.body;
+  const { name, description, price, images, colors, rating, category, stock } = req.body;
 
   const product = await Product.findById(req.params.id);
 
@@ -36,7 +38,9 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.name = name || product.name;
     product.description = description || product.description;
     product.price = price || product.price;
-    product.image = image || product.image;
+    product.images = images || product.images;
+    product.colors = colors || product.colors;
+    product.rating = rating || product.rating;
     product.category = category || product.category;
     product.stock = stock || product.stock;
 

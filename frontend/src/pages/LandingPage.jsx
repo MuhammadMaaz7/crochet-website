@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Landing/Navbar';
 import Hero from '../components/Landing/Hero';
-import ProductCard from '../components/Landing/ProductCard';
+import ProductCard from '../components/Products/ProductCard';
 import Footer from '../components/Landing/Footer';
 import { getProducts } from '../services/productService';
 import { RibbonIcon as Yarn, Scissors, Gift, Home } from 'lucide-react';
