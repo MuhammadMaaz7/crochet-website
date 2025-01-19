@@ -2,21 +2,26 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function ProtectedRoute({ children, adminOnly = false }) {
+const ProtectedRoute = ({ children, role }) => {
   const { user, loading } = useAuth();
 
+  // If still loading, show a loading indicator or nothing
   if (loading) {
-    return <div>Loading...</div>;
+    return null; // Or return a loading spinner
   }
 
+  // If user is not logged in, redirect to home page
   if (!user) {
-    return <Navigate to="/admin/login" />;
-  }
-
-  if (adminOnly && user.role !== 'admin') {
     return <Navigate to="/" />;
   }
 
-  return children;
-}
+  // If role is specified and user does not have the required role, redirect to home page
+  if (role && user.role !== role) {
+    return <Navigate to="/" />;
+  }
 
+  // If user is authenticated and has the required role, render the children
+  return children;
+};
+
+export default ProtectedRoute;

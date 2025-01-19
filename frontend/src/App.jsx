@@ -1,31 +1,33 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import AdminLoginForm from './components/AdminLoginForm';
+import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import LandingPage from './pages/LandingPage';
+import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-import Home from './pages/Home';
-import AdminDashboard from './pages/AdminDashboard';       
 
-function App() {
+const App = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin/login" element={<AdminLoginForm />} />
-          <Route
-            path="/admin/*"
-            element={
-              <ProtectedRoute adminOnly>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </AuthProvider>
+    <div>
+      <Routes>
+        {/* Public route */}
+        <Route path="/" element={<LandingPage />} />
+
+        {/* Protected route for admin */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+
+      {/* Toast notifications */}
+      <ToastContainer />
+    </div>
   );
-}
+};
 
 export default App;
-

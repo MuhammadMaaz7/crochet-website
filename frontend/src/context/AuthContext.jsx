@@ -1,68 +1,75 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { authService } from '../services/api';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import { login as authLogin, register as authRegister, logout as authLogout } from '../services/authService';
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Add loading state
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+  // Check token expiry
+  const isTokenExpired = (token) => {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])); // Decode the token payload
+      const isExpired = payload.exp * 1000 < Date.now();
+      console.log('Token expiry check:', { isExpired, expiryTime: new Date(payload.exp * 1000) });
+      return isExpired;
+    } catch (error) {
+      console.error('Token decoding error:', error);
+      return true; // Invalid token
     }
-    setLoading(false);
+  };
+
+  // Restore user data on page reload
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    console.log('Stored User:', storedUser); // Debugging
+    if (storedUser && storedUser.token && !isTokenExpired(storedUser.token)) {
+      setUser(storedUser);
+    } else {
+      localStorage.removeItem('user'); // Clear expired or invalid token
+      setUser(null);
+    }
+    setLoading(false); // Set loading to false after restoring user state
   }, []);
 
-  const loginOrRegister = async (userData) => {
+  // Login function
+  const login = async (credentials) => {
     try {
-      const data = await authService.loginOrRegister(userData);
-      localStorage.setItem('user', JSON.stringify(data));
-      setUser(data);
-      return data;
+      const userData = await authLogin(credentials);
+      console.log('User Data after login:', userData); // Debugging
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
+      return userData;
     } catch (error) {
-      throw error.response?.data?.message || 'An error occurred';
+      throw error;
     }
   };
 
-  const adminLogin = async (credentials) => {
+  // Register function
+  const register = async (userData) => {
     try {
-      const data = await authService.adminLogin(credentials);
-      localStorage.setItem('user', JSON.stringify(data));
-      setUser(data);
-      return data;
+      const newUser = await authRegister(userData);
+      return newUser;
     } catch (error) {
-      throw error.response?.data?.message || 'An error occurred';
+      throw error;
     }
   };
 
-  const logout = () => {
-    authService.logout();
+  // Logout function
+  const logout = async () => {
+    await authLogout();
+    localStorage.removeItem('user');
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider 
-      value={{ 
-        user, 
-        loginOrRegister, 
-        adminLogin, 
-        logout, 
-        loading,
-        isAdmin: user?.role === 'admin'
-      }}
-    >
+    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+  return useContext(AuthContext);
 };
-
