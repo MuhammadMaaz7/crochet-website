@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useProduct } from '../../context/ProductContext';
-import { useAuth } from '../../context/AuthContext'; // Import useAuth
+import { useAuth } from '../../context/AuthContext';
 import { X } from 'lucide-react';
+import { ChromePicker } from 'react-color'; // For color picker
 
 export default function ProductForm({ product, onClose = () => {} }) {
   const { addProduct, editProduct } = useProduct();
-  const { user } = useAuth(); // Get the authenticated user
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -17,6 +18,8 @@ export default function ProductForm({ product, onClose = () => {} }) {
     rating: 0,
     stock: 0,
   });
+  const [errors, setErrors] = useState({}); // For validation errors
+  const [showColorPicker, setShowColorPicker] = useState(false); // For color picker
 
   useEffect(() => {
     if (product) {
@@ -28,18 +31,63 @@ export default function ProductForm({ product, onClose = () => {} }) {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
+    // Clear errors when the user starts typing
+    setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
   };
 
   const handleArrayChange = (e, field) => {
     const { value } = e.target;
     const newArray = value.split(',').map(item => item.trim());
-    console.log(newArray); // Debugging: Check the array
     setFormData(prevState => ({
       ...prevState,
       [field]: newArray,
     }));
+  };
+
+  const handleColorChange = (color) => {
+    setFormData(prevState => ({
+      ...prevState,
+      colors: [...prevState.colors, color.hex],
+    }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    // Description validation
+    if (!formData.description.trim()) {
+      newErrors.description = 'Description is required';
+    }
+
+    // Price validation
+    if (formData.price <= 0) {
+      newErrors.price = 'Price must be greater than 0';
+    }
+
+    // Stock validation
+    if (formData.stock < 0) {
+      newErrors.stock = 'Stock cannot be negative';
+    }
+
+    // Rating validation
+    if (formData.rating < 0 || formData.rating > 5) {
+      newErrors.rating = 'Rating must be between 0 and 5';
+    }
+
+    // Images validation
+    if (formData.images.length === 0) {
+      newErrors.images = 'At least one image URL is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Return true if no errors
   };
 
   const handleSubmit = async (e) => {
@@ -49,15 +97,20 @@ export default function ProductForm({ product, onClose = () => {} }) {
       return;
     }
 
+    if (!validateForm()) {
+      return; // Stop submission if there are validation errors
+    }
+
     try {
       if (product) {
-        await editProduct(product._id, formData, user.token); // Pass the token
+        await editProduct(product._id, formData, user.token);
       } else {
-        await addProduct(formData, user.token); // Pass the token
+        await addProduct(formData, user.token);
       }
-      onClose(); // Call onClose after successful submission
+      onClose(); // Close the form after successful submission
     } catch (error) {
       console.error('Error submitting product:', error);
+      setErrors({ submit: 'Failed to submit product. Please try again.' });
     }
   };
 
@@ -92,8 +145,10 @@ export default function ProductForm({ product, onClose = () => {} }) {
               value={formData.name}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              placeholder="Enter product name"
               required
             />
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
           </div>
 
           {/* Description */}
@@ -106,8 +161,10 @@ export default function ProductForm({ product, onClose = () => {} }) {
               onChange={handleChange}
               rows="3"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              placeholder="Enter product description"
               required
             ></textarea>
+            {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
           </div>
 
           {/* Price */}
@@ -120,8 +177,10 @@ export default function ProductForm({ product, onClose = () => {} }) {
               value={formData.price}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              placeholder="Enter product price"
               required
             />
+            {errors.price && <p className="text-red-500 text-sm mt-1">{errors.price}</p>}
           </div>
 
           {/* Category */}
@@ -150,25 +209,48 @@ export default function ProductForm({ product, onClose = () => {} }) {
               type="text"
               id="images"
               name="images"
-              value={formData.images.join(', ')} // Convert array to comma-separated string
+              value={formData.images.join(', ')}
               onChange={(e) => handleArrayChange(e, 'images')}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               placeholder="e.g., /image1.jpg, /image2.jpg"
             />
+            {errors.images && <p className="text-red-500 text-sm mt-1">{errors.images}</p>}
+            {formData.images[0] && (
+              <div className="mt-2">
+                <img
+                  src={formData.images[0]}
+                  alt="Preview"
+                  className="w-20 h-20 object-cover rounded-md"
+                />
+              </div>
+            )}
           </div>
 
           {/* Colors */}
           <div>
-            <label htmlFor="colors" className="block text-sm font-medium text-gray-700">Colors (comma-separated hex codes)</label>
-            <input
-              type="text"
-              id="colors"
-              name="colors"
-              value={formData.colors.join(', ')} // Convert array to comma-separated string
-              onChange={(e) => handleArrayChange(e, 'colors')}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
-              placeholder="e.g., #FFD1DC, #A2D9CE"
-            />
+            <label htmlFor="colors" className="block text-sm font-medium text-gray-700">Colors</label>
+            <div className="flex items-center space-x-2">
+              {formData.colors.map((color, index) => (
+                <div
+                  key={index}
+                  className="w-6 h-6 rounded-full border-2 border-white shadow-md"
+                  style={{ backgroundColor: color }}
+                />
+              ))}
+              <button
+                type="button"
+                onClick={() => setShowColorPicker(!showColorPicker)}
+                className="px-2 py-1 bg-pink-500 text-white rounded-md"
+              >
+                Add Color
+              </button>
+            </div>
+            {showColorPicker && (
+              <ChromePicker
+                color="#ffffff"
+                onChangeComplete={handleColorChange}
+              />
+            )}
           </div>
 
           {/* Rating */}
@@ -184,7 +266,9 @@ export default function ProductForm({ product, onClose = () => {} }) {
               max="5"
               step="0.1"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              placeholder="Enter product rating (0-5)"
             />
+            {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating}</p>}
           </div>
 
           {/* Stock */}
@@ -197,8 +281,10 @@ export default function ProductForm({ product, onClose = () => {} }) {
               value={formData.stock}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              placeholder="Enter product stock"
               required
             />
+            {errors.stock && <p className="text-red-500 text-sm mt-1">{errors.stock}</p>}
           </div>
 
           {/* Buttons */}

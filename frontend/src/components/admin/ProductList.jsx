@@ -67,7 +67,11 @@ export default function ProductList() {
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 w-10 h-10">
-                        <img className="w-full h-full rounded-full" src={product.image || "/placeholder.svg?height=40&width=40"} alt={product.name} />
+                        <img
+                          className="w-full h-full rounded-full"
+                          src={product.images?.[0] || "/placeholder.svg?height=40&width=40"} // Use the first image in the array
+                          alt={product.name}
+                        />
                       </div>
                       <div className="ml-3">
                         <p className="text-gray-900 whitespace-no-wrap">{product.name}</p>

@@ -14,7 +14,7 @@ export default function AdminDashboard() {
       case 'products':
         return <ProductList />;
       case 'add-product':
-        return <ProductForm />;
+        return <ProductForm onClose={() => setActiveComponent('products')} />; // Pass onClose
       case 'statistics':
         return <Statistics />;
       default:
@@ -43,4 +43,3 @@ export default function AdminDashboard() {
     </ProductProvider>
   );
 }
-
