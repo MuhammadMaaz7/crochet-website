@@ -51,6 +51,14 @@ export default function ProductForm({ product, onClose = () => {} }) {
       ...prevState,
       colors: [...prevState.colors, color.hex],
     }));
+    setShowColorPicker(false); // Hide the color picker after selecting a color
+  };
+
+  const handleRemoveColor = (colorToRemove) => {
+    setFormData(prevState => ({
+      ...prevState,
+      colors: prevState.colors.filter(color => color !== colorToRemove),
+    }));
   };
 
   const validateForm = () => {
@@ -144,7 +152,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              className="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               placeholder="Enter product name"
               required
             />
@@ -160,7 +168,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
               value={formData.description}
               onChange={handleChange}
               rows="3"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              className="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               placeholder="Enter product description"
               required
             ></textarea>
@@ -176,7 +184,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
               name="price"
               value={formData.price}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              className="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               placeholder="Enter product price"
               required
             />
@@ -191,7 +199,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              className="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               required
             >
               <option value="">Select a category</option>
@@ -211,7 +219,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
               name="images"
               value={formData.images.join(', ')}
               onChange={(e) => handleArrayChange(e, 'images')}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              className="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               placeholder="e.g., /image1.jpg, /image2.jpg"
             />
             {errors.images && <p className="text-red-500 text-sm mt-1">{errors.images}</p>}
@@ -229,13 +237,21 @@ export default function ProductForm({ product, onClose = () => {} }) {
           {/* Colors */}
           <div>
             <label htmlFor="colors" className="block text-sm font-medium text-gray-700">Colors</label>
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-wrap items-center gap-2">
               {formData.colors.map((color, index) => (
                 <div
                   key={index}
-                  className="w-6 h-6 rounded-full border-2 border-white shadow-md"
+                  className="relative w-6 h-6 rounded-full border-2 border-white shadow-md"
                   style={{ backgroundColor: color }}
-                />
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveColor(color)}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs"
+                  >
+                    ×
+                  </button>
+                </div>
               ))}
               <button
                 type="button"
@@ -246,10 +262,12 @@ export default function ProductForm({ product, onClose = () => {} }) {
               </button>
             </div>
             {showColorPicker && (
-              <ChromePicker
-                color="#ffffff"
-                onChangeComplete={handleColorChange}
-              />
+              <div className="mt-2">
+                <ChromePicker
+                  color="#ffffff"
+                  onChangeComplete={handleColorChange}
+                />
+              </div>
             )}
           </div>
 
@@ -265,7 +283,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
               min="0"
               max="5"
               step="0.1"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              className="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               placeholder="Enter product rating (0-5)"
             />
             {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating}</p>}
@@ -280,7 +298,7 @@ export default function ProductForm({ product, onClose = () => {} }) {
               name="stock"
               value={formData.stock}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+              className="mt-1 block w-full px-3 py-2 rounded-md border border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
               placeholder="Enter product stock"
               required
             />
