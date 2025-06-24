@@ -1,75 +1,144 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { login as authLogin, register as authRegister, logout as authLogout } from '../services/authService';
+"use client"
 
-const AuthContext = createContext();
+import { createContext, useState, useEffect, useContext } from "react"
+import { login as authLogin, register as authRegister, getCurrentUser, logout as authLogout } from "../services/authService"
+import { useNavigate } from "react-router-dom"
+
+const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
-  // Check token expiry
+  // Check if token is expired
   const isTokenExpired = (token) => {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1])); // Decode the token payload
-      const isExpired = payload.exp * 1000 < Date.now();
-      console.log('Token expiry check:', { isExpired, expiryTime: new Date(payload.exp * 1000) });
-      return isExpired;
+      const payload = JSON.parse(atob(token.split(".")[1]))
+      return payload.exp * 1000 < Date.now()
     } catch (error) {
-      console.error('Token decoding error:', error);
-      return true; // Invalid token
+      return true
     }
-  };
+  }
 
-  // Restore user data on page reload
+  // Initialize auth state
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    console.log('Stored User:', storedUser); // Debugging
-    if (storedUser && storedUser.token && !isTokenExpired(storedUser.token)) {
-      setUser(storedUser);
-    } else {
-      localStorage.removeItem('user'); // Clear expired or invalid token
-      setUser(null);
-    }
-    setLoading(false); // Set loading to false after restoring user state
-  }, []);
+    const initializeAuth = async () => {
+      try {
+        const storedUser = localStorage.getItem("user")
 
-  // Login function
+        if (storedUser) {
+          const userData = JSON.parse(storedUser)
+
+          if (userData.token && !isTokenExpired(userData.token)) {
+            // Set user from localStorage immediately
+            setUser(userData)
+
+            // Then verify with backend
+            try {
+              const response = await getCurrentUser()
+              const updatedUser = {
+                ...response.user,
+                token: userData.token,
+              }
+              setUser(updatedUser)
+
+              // Redirect admin to admin dashboard if not already there
+              if (updatedUser.role === "admin" && !window.location.pathname.startsWith("/admin")) {
+                navigate("/admin", { replace: true })
+              }
+            } catch (error) {
+              console.error("Token verification failed:", error)
+              await authLogout()
+              setUser(null)
+            }
+          } else {
+            await authLogout()
+            setUser(null)
+          }
+        }
+      } catch (error) {
+        console.error("Auth initialization error:", error)
+        await authLogout()
+        setUser(null)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    initializeAuth()
+  }, [navigate])
+
   const login = async (credentials) => {
     try {
-      const userData = await authLogin(credentials);
-      console.log('User Data after login:', userData); // Debugging
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
-      return userData;
+      setError(null)
+      const userData = await authLogin(credentials)
+      const storedUser = JSON.parse(localStorage.getItem("user"))
+      setUser(storedUser)
+      
+      // Return the user data for redirection logic
+      return storedUser
     } catch (error) {
-      throw error;
+      setError(error.message)
+      throw error
     }
-  };
+  }
+  
 
-  // Register function
   const register = async (userData) => {
     try {
-      const newUser = await authRegister(userData);
-      return newUser;
+      setError(null)
+      const response = await authRegister(userData)
+      return response
     } catch (error) {
-      throw error;
+      setError(error.message)
+      throw error
     }
-  };
+  }
 
-  // Logout function
   const logout = async () => {
-    await authLogout();
-    localStorage.removeItem('user');
-    setUser(null);
-  };
+    try {
+      await authLogout()
+      setUser(null)
+      setError(null)
+      navigate("/")
+    } catch (error) {
+      console.error("Logout error:", error)
+    }
+  }
 
-  return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  const clearError = () => {
+    setError(null)
+  }
+
+  const isAdmin = () => {
+    return user && user.role === "admin"
+  }
+
+  const isAuthenticated = () => {
+    return user && user.token && !isTokenExpired(user.token)
+  }
+
+  const value = {
+    user,
+    loading,
+    error,
+    login,
+    register,
+    logout,
+    clearError,
+    isAdmin,
+    isAuthenticated,
+  }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
 
 export const useAuth = () => {
-  return useContext(AuthContext);
-};
+  const context = useContext(AuthContext)
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider")
+  }
+  return context
+}

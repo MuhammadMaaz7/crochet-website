@@ -1,27 +1,30 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+"use client"
+import { Navigate, useLocation } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
+import Spinner from "./Spinner"
 
-const ProtectedRoute = ({ children, role }) => {
-  const { user, loading } = useAuth();
+const ProtectedRoute = ({ children, adminOnly = false }) => {
+  const { user, loading, isAuthenticated, isAdmin } = useAuth()
+  const location = useLocation()
 
-  // If still loading, show a loading indicator or nothing
   if (loading) {
-    return null; // Or return a loading spinner
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-50 via-purple-50 to-pink-50">
+        <Spinner size="large" />
+      </div>
+    )
   }
 
-  // If user is not logged in, redirect to home page
-  if (!user) {
-    return <Navigate to="/" />;
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" state={{ from: location }} replace />
   }
 
-  // If role is specified and user does not have the required role, redirect to home page
-  if (role && user.role !== role) {
-    return <Navigate to="/" />;
+  // Strict admin check
+  if (adminOnly && !isAdmin()) {
+    return <Navigate to="/" replace />
   }
 
-  // If user is authenticated and has the required role, render the children
-  return children;
-};
+  return children
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute

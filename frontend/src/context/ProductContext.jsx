@@ -1,78 +1,124 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+"use client"
+
+import { createContext, useState, useEffect, useContext } from "react"
 import {
   getProducts,
+  getFeaturedProducts,
   createProduct,
   updateProduct,
   deleteProduct,
-} from '../services/productService';
+} from "../services/productService"
 
-const ProductContext = createContext();
+const ProductContext = createContext()
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
+  const [featuredProducts, setFeaturedProducts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   // Fetch all products
-  const fetchProducts = async () => {
-    const data = await getProducts();
-    setProducts(data);
-  };
+  const fetchProducts = async (params = {}) => {
+    try {
+      setLoading(true)
+      setError(null)
+      const data = await getProducts(params)
+      setProducts(data.products || [])
+      return data
+    } catch (error) {
+      setError(error.message)
+      console.error("Error fetching products:", error)
+      throw error
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Fetch featured products
+  const fetchFeaturedProducts = async () => {
+    try {
+      const data = await getFeaturedProducts()
+      setFeaturedProducts(data.products || [])
+      return data
+    } catch (error) {
+      console.error("Error fetching featured products:", error)
+      throw error
+    }
+  }
 
   // Add a new product
-  const addProduct = async (productData, token) => {
+  const addProduct = async (productData) => {
     try {
-      const newProduct = await createProduct(productData, token);
-      setProducts([...products, newProduct]); // Update the state
+      setError(null)
+      const response = await createProduct(productData)
+      const newProduct = response.product
+      setProducts((prevProducts) => [...prevProducts, newProduct])
+      return newProduct
     } catch (error) {
-      console.error('Error adding product:', error);
-      throw error;
+      setError(error.message)
+      console.error("Error adding product:", error)
+      throw error
     }
-  };
+  }
 
   // Update a product
-  const editProduct = async (id, productData, token) => {
+  const editProduct = async (id, productData) => {
     try {
-      const updatedProduct = await updateProduct(id, productData, token);
-      setProducts(
-        products.map((product) =>
-          product._id === id ? updatedProduct : product
-        )
-      );
+      setError(null)
+      const response = await updateProduct(id, productData)
+      const updatedProduct = response.product
+      setProducts((prevProducts) => prevProducts.map((product) => (product._id === id ? updatedProduct : product)))
+      return updatedProduct
     } catch (error) {
-      console.error('Error updating product:', error);
-      throw error;
+      setError(error.message)
+      console.error("Error updating product:", error)
+      throw error
     }
-  };
+  }
 
   // Delete a product
-  const removeProduct = async (id, token) => {
+  const removeProduct = async (id) => {
     try {
-      await deleteProduct(id, token);
-      setProducts(products.filter((product) => product._id !== id));
+      setError(null)
+      await deleteProduct(id)
+      setProducts((prevProducts) => prevProducts.filter((product) => product._id !== id))
     } catch (error) {
-      console.error('Error deleting product:', error);
-      throw error;
+      setError(error.message)
+      console.error("Error deleting product:", error)
+      throw error
     }
-  };
+  }
 
+  // Clear error
+  const clearError = () => {
+    setError(null)
+  }
+
+  // Load initial data
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchFeaturedProducts()
+  }, [])
 
-  return (
-    <ProductContext.Provider
-      value={{
-        products,
-        fetchProducts,
-        addProduct,
-        editProduct,
-        removeProduct,
-      }}
-    >
-      {children}
-    </ProductContext.Provider>
-  );
-};
+  const value = {
+    products,
+    featuredProducts,
+    loading,
+    error,
+    fetchProducts,
+    fetchFeaturedProducts,
+    addProduct,
+    editProduct,
+    removeProduct,
+    clearError,
+  }
+
+  return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
+}
 
 export const useProduct = () => {
-  return useContext(ProductContext);
-};
+  const context = useContext(ProductContext)
+  if (!context) {
+    throw new Error("useProduct must be used within a ProductProvider")
+  }
+  return context
+}
