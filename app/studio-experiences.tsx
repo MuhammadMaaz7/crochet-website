@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import type { Product } from "../lib/catalog";
 import type { Colourway } from "../lib/customisation";
 export function Flower({ className = "" }: {
@@ -22,14 +21,14 @@ export function StudioHero({ products }: {
       <p className="hero-description">Crochet gifts & home pieces,<br className="desktop-break"/> made for you.</p>
     </div>
     <div className="hero-scrapbook">
-      <Link href={"/shop/" + main.id} className="hero-main-photo">
+      <a href={"/shop/" + main.id} className="hero-main-photo">
         <img src={main.image} alt={main.name} width="900" height="900" fetchPriority="high"/>
         <span>{main.name}<b aria-hidden="true">↗</b></span>
-      </Link>
-      {secondary && <Link href={"/shop/" + secondary.id} className="hero-mini-photo">
+      </a>
+      {secondary && <a href={"/shop/" + secondary.id} className="hero-mini-photo">
         <img src={secondary.image} alt={secondary.name} width="280" height="280"/>
         <span>{secondary.name} ↗</span>
-      </Link>}
+      </a>}
       <Flower className="hero-flower"/>
     </div>
     <div className="hero-actions"><a href="#collection" className="button">Explore the collection <span aria-hidden="true">↗</span></a><p>Handmade · Custom colours welcome</p></div>
@@ -52,7 +51,7 @@ export function GiftFinder({ products }: {
       {interests.map((x, i) => <button key={x.name} aria-pressed={interest === i} className={interest === i ? "active" : ""} onClick={() => setInterest(i)}>{x.name}</button>)}
     </div>
     <div className="finder-results" aria-live="polite">
-      {suggestions.map(p => <Link key={p.id} href={"/shop/" + p.id} className="gift-product"><img src={p.image} alt={p.name} width="350" height="350" loading="lazy"/><div><h3>{p.name}</h3><span>View product ↗</span></div></Link>)}
+      {suggestions.map(p => <a key={p.id} href={"/shop/" + p.id} className="gift-product"><img src={p.image} alt={p.name} width="350" height="350" loading="lazy"/><div><h3>{p.name}</h3><span>View product ↗</span></div></a>)}
     </div>
   </section>;
 }

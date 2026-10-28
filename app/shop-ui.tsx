@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import type { Product, Settings } from "../lib/catalog";
 import { StudioHero, GiftFinder, ProductCustomizer, ProductGallery, Flower } from "./studio-experiences";
 import { productColourways } from "../lib/customisation";
@@ -158,7 +157,7 @@ export default function Shop({ products, settings, initialProduct, initialCustom
         setMenu(false);
         menuRef.current?.focus();
     } }}>
-      <Link href="/" className="wordmark" onClick={() => setMenu(false)}><Mark /><span>PhotoCraftSquare<small>HANDMADE CROCHET</small></span></Link>
+      <a href="/" className="wordmark" onClick={() => setMenu(false)}><Mark /><span>PhotoCraftSquare<small>HANDMADE CROCHET</small></span></a>
       <nav className="desktop-nav" aria-label="Main navigation"><a href="/#collection">Shop</a><button onClick={() => plan("", "")}>Custom orders</button><a href="/#maker">Our story</a><a href="/#help">How to order</a></nav>
       <div className="header-actions"><button className="enquiry-button" onClick={() => { setMenu(false); if (sent) {
         setSent("");
@@ -169,7 +168,7 @@ export default function Shop({ products, settings, initialProduct, initialCustom
     </header>
     <main id="main">
     {product ? <section className="product-detail wrap">
-      <div className="breadcrumb"><Link href="/#collection">← All products</Link></div>
+      <div className="breadcrumb"><a href="/#collection">← All products</a></div>
       <div className="product-mobile-title"><p className="eyebrow">{product.category}</p><h1>{product.name}</h1><p>{money(product.price)}</p></div>
       <div className="detail-grid">
         <ProductGallery product={product} colourway={colourIndex > 0 ? colourways[colourIndex] : undefined} onClearColourway={() => setColourIndex(0)} colourways={colourways} selectedColour={colourIndex} onSelectColour={setColourIndex}/>
@@ -186,7 +185,7 @@ export default function Shop({ products, settings, initialProduct, initialCustom
         <div className="section-heading"><div><p className="eyebrow">THE COLLECTION</p><h2>Find your <em>little lovely.</em></h2></div></div>
         <div className="collection-controls"><div className="tabs" role="group" aria-label="Filter collection">{[{ value: "All pieces", label: "All" }, { value: "For the home", label: "Home" }, { value: "Little gifts", label: "Gifts" }, { value: "Bags & accessories", label: "Bags" }].map(x => <button key={x.value} aria-pressed={filter === x.value} className={filter === x.value ? "active" : ""} onClick={() => setFilter(x.value)}>{x.label}</button>)}</div><label className="search-box"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6" stroke="currentColor" strokeWidth="1.5"/><path d="m15 15 5 5" stroke="currentColor" strokeWidth="1.5"/></svg><input type="search" aria-label="Search products" placeholder="Search products" value={search} onChange={e => setSearch(e.target.value)}/></label></div>
         <p className="collection-count" aria-live="polite">{visible.length} {visible.length === 1 ? "product" : "products"}</p>
-        <div className="products">{visible.map(p => <article className="product-card" key={p.id}><Link href={"/shop/" + p.id} className="product-link"><div className="product-image"><img src={p.image} alt={p.name} loading="lazy" width="650" height="650"/></div><div className="product-meta"><h3>{p.name}</h3><p>{money(p.price)}</p><span className="view-product">View product <i aria-hidden="true">↗</i></span></div></Link></article>)}</div>
+        <div className="products">{visible.map(p => <article className="product-card" key={p.id}><a href={"/shop/" + p.id} className="product-link"><div className="product-image"><img src={p.image} alt={p.name} loading="lazy" width="650" height="650"/></div><div className="product-meta"><h3>{p.name}</h3><p>{money(p.price)}</p><span className="view-product">View product <i aria-hidden="true">↗</i></span></div></a></article>)}</div>
         {!visible.length && <p className="empty">No matching products. <button onClick={() => { setFilter("All pieces"); setSearch(""); }}>Clear search</button></p>}
       </section>
       <section className="custom-invite wrap"><Flower /><div><h2>A colour you love.<br /><em>A gift that’s them.</em></h2><p>Have something in mind? Let’s make it personal.</p><button className="button" onClick={() => plan("", "")}>Request a custom piece <span aria-hidden="true">↗</span></button></div></section>
@@ -194,7 +193,7 @@ export default function Shop({ products, settings, initialProduct, initialCustom
       <section className="maker wrap" id="maker"><div><p className="eyebrow">OUR LITTLE STUDIO</p><h2>Made by hand.<br /><em>From Islamabad.</em></h2></div><div><p>PhotoCraftSquare makes crochet gifts, bags and pieces for your home—one stitch at a time.</p><p>Choose a design you love, or tell us about something personal.</p><a className="text-button" href="https://www.instagram.com/photocraftsquare/" target="_blank" rel="noopener noreferrer">Visit our Instagram ↗</a></div></section>
     </>}
     <section className="help wrap" id="help"><div><h2>Good to know.</h2></div><div>{[["How do I order?", "Open a product and tap Request price, or send a custom request. We reply to agree the price, delivery and making time. No payment is taken on this website."], ["Can I choose my colours?", "Ask about the colours you have in mind. Yarn availability and the final design are confirmed with your quote."], ["Where do you deliver?", settings.shipping], ["What about changes or returns?", settings.returns], ["How is my request information used?", "Your name, contact and request details are stored so the studio can respond and manage your enquiry. We do not collect card details here. Please avoid including sensitive information. Contact the studio through Instagram for access or deletion requests."]].map(([q, a]) => <details key={q}><summary>{q}<span>＋</span></summary><p>{a}</p></details>)}</div></section>
-    </main><footer><div className="footer-main"><Link href="/" className="wordmark"><Mark /><span>PhotoCraftSquare<small>Handmade crochet · Islamabad</small></span></Link><div><a href="/#collection">The collection</a><button onClick={() => plan("", "")}>Custom requests</button><a href="/#help">Ordering & privacy</a></div><div><a href="https://www.instagram.com/photocraftsquare/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><Link href="/admin">The studio ↗</Link></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} PhotoCraftSquare</span><span>Islamabad, Pakistan · One stitch at a time.</span></div></footer>
+    </main><footer><div className="footer-main"><a href="/" className="wordmark"><Mark /><span>PhotoCraftSquare<small>Handmade crochet · Islamabad</small></span></a><div><a href="/#collection">The collection</a><button onClick={() => plan("", "")}>Custom requests</button><a href="/#help">Ordering & privacy</a></div><div><a href="https://www.instagram.com/photocraftsquare/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="/admin">The studio ↗</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} PhotoCraftSquare</span><span>Islamabad, Pakistan · One stitch at a time.</span></div></footer>
     {product && <div className="product-sticky"><span>{money(product.price)}</span>{colourways.length > 0 ? <button className="button" type="submit" form="product-customizer" disabled={!settings.accepting || product.availability === "Unavailable"}>Request this design ↗</button> : <button className="button" onClick={() => choose(product.id)} disabled={!settings.accepting || product.availability === "Unavailable"}>Request price ↗</button>}</div>}
     {(drawer || custom) && <div className="overlay" onClick={e => {
                 if (e.target === e.currentTarget) {

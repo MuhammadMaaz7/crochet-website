@@ -39,3 +39,6 @@ The dining set and floral tissue cover offer prepared photo colour concepts of t
 The public source mirror excludes all product/reference/colour-preview images, private research, customer records and runtime credentials. Image paths are defined in lib/catalog.ts and lib/customisation.ts; authorised private assets are required for a complete visual build.
 
 Validation: TypeScript, production build, safe catalogue paths, unique IDs, unpublished penguin and stale-preview guards. Browser QA reviewed three narrow iframe layouts without horizontal overflow, menu and product navigation, direct-tap/keyboard photo colour selection, gallery originals, sticky request action and multi-product requests. A request with separate dining-set and tissue-cover colour choices persisted to D1. Physical-phone/Safari-device and owner-authenticated admin browser checks remain outstanding.
+
+
+Production navigation uses ordinary anchors. The framework Link prefetch/router intercepted product clicks with production-only TypeErrors; native navigation avoids that dependency and retains normal Back/open-in-new-tab behaviour.
