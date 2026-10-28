@@ -27,11 +27,11 @@ const previews: Record<string, PreviewConfig> = {
         ]
     },
     "mocha-bow-tote": {
-    "baseImage": "/assets/mocha-bow-tote-styled.webp",
+    "baseImage": "/assets/mocha-bow-tote-product-v2.webp",
     "colourways": [
         {
             "name": "Mocha & cream",
-            "image": "/assets/mocha-bow-tote-styled.webp",
+            "image": "/assets/mocha-bow-tote-product-v2.webp",
             "swatches": [
                 "#97704e",
                 "#f3ead9"
@@ -40,7 +40,7 @@ const previews: Record<string, PreviewConfig> = {
         },
         {
             "name": "Sage & cream",
-            "image": "/assets/tote-sage-preview.webp",
+            "image": "/assets/tote-sage-product-v2.webp",
             "swatches": [
                 "#87967c",
                 "#f3ead9"

@@ -249,7 +249,7 @@ export const defaults: Product[] = [
     "name": "Bow shoulder tote",
     "category": "Bags & accessories",
     "description": "An airy crochet tote with integrated shoulder straps and an oversized cream bow. A statement piece for everyday outings, with the stitchwork left beautifully visible.",
-    "image": "/assets/mocha-bow-tote-styled.webp",
+    "image": "/assets/mocha-bow-tote-product-v2.webp",
     "details": "Finished dimensions, strap drop, lining, fastening and carrying capacity are confirmed with the maker. The open-stitch design is not claimed to secure loose valuables or protect a laptop."
 },
   {
@@ -313,9 +313,10 @@ export const defaults: Product[] = [
     "id": "personalised-bunting",
     "name": "Personalised crochet bunting",
     "category": "Occasion pieces",
-    "description": "Personalised crochet flags for birthdays and celebrations. Shown as a letter detail; we’ll agree your wording, colours and full banner length.",
-    "image": "/assets/bunting-styled.webp",
-    "details": "Photo shows a lettered-flag detail, not the complete finished banner. Quote depends on wording, flag count, flag size, hanging length and colours. These are agreed before making. Keep cords and hanging decor away from young children."
+    "description": "Personalised crochet flags for birthdays and celebrations. See the full birthday layout example, then choose your own wording, colours and banner length.",
+    "image": "/assets/bunting-full-layout.webp",
+    "gallery": [{"image":"/assets/bunting-styled.webp","label":"Stitch detail"}],
+    "details": "The full-banner image is a layout example based on the photographed flag design; the close-up shows stitch detail. Quote depends on wording, flag count, flag size, hanging length and colours. These are agreed before making. Keep cords and hanging decor away from young children."
 }
 ];
 export const settingsSchema = z.object({ whatsapp: z.string().regex(/^$|^[1-9][0-9]{7,14}$/), accepting: z.boolean(), notice: z.string().max(250), shipping: z.string().min(10).max(1500), returns: z.string().min(10).max(1500) });

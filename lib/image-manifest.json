@@ -496,32 +496,6 @@
       }
     ]
   },
-  "/assets/mocha-bow-tote-styled.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/pcs-6319e4eec7033d9f-160.webp",
-        "width": 160,
-        "bytes": 6758
-      },
-      {
-        "src": "/assets/pcs-5ebb6f89dbff0231-320.webp",
-        "width": 320,
-        "bytes": 20218
-      },
-      {
-        "src": "/assets/pcs-2cc525891d9d9c80-480.webp",
-        "width": 480,
-        "bytes": 39234
-      },
-      {
-        "src": "/assets/pcs-e46ad56f111259f7-768.webp",
-        "width": 768,
-        "bytes": 82466
-      }
-    ]
-  },
   "/assets/earth-tone-shoulder-styled.webp": {
     "width": 1086,
     "height": 1448,
@@ -734,32 +708,6 @@
       }
     ]
   },
-  "/assets/tote-sage-preview.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/pcs-4bb6bbdbdbe6b6bd-160.webp",
-        "width": 160,
-        "bytes": 6658
-      },
-      {
-        "src": "/assets/pcs-7945c8a21ae98fd7-320.webp",
-        "width": 320,
-        "bytes": 19572
-      },
-      {
-        "src": "/assets/pcs-f4baab5ed9c49b0d-480.webp",
-        "width": 480,
-        "bytes": 37526
-      },
-      {
-        "src": "/assets/pcs-30f597cb10b8eb83-768.webp",
-        "width": 768,
-        "bytes": 75102
-      }
-    ]
-  },
   "/assets/earth-pastel-preview.webp": {
     "width": 1086,
     "height": 1448,
@@ -907,6 +855,130 @@
         "src": "/assets/pcs-8a16bc9a74cb0318-1120.webp",
         "width": 1120,
         "bytes": 72262
+      }
+    ]
+  },
+  "/assets/mocha-bow-tote-product-v2.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-d00dfc584dc0eac4-160.webp",
+        "width": 160,
+        "bytes": 4024
+      },
+      {
+        "src": "/assets/pcs-4de5ccd569b3c591-320.webp",
+        "width": 320,
+        "bytes": 14408
+      },
+      {
+        "src": "/assets/pcs-d56b4474ce5ce278-480.webp",
+        "width": 480,
+        "bytes": 29898
+      },
+      {
+        "src": "/assets/pcs-2a7f761b3c834ca6-768.webp",
+        "width": 768,
+        "bytes": 67792
+      },
+      {
+        "src": "/assets/pcs-6a1160ff4fb7095b-1120.webp",
+        "width": 1120,
+        "bytes": 121958
+      }
+    ]
+  },
+  "/assets/tote-sage-product-v2.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-da39a04f73f803c4-160.webp",
+        "width": 160,
+        "bytes": 3798
+      },
+      {
+        "src": "/assets/pcs-aa824de01e6f4b6e-320.webp",
+        "width": 320,
+        "bytes": 13520
+      },
+      {
+        "src": "/assets/pcs-c3fccac5ff95b1b8-480.webp",
+        "width": 480,
+        "bytes": 27850
+      },
+      {
+        "src": "/assets/pcs-d49c213f06c3135c-768.webp",
+        "width": 768,
+        "bytes": 61614
+      },
+      {
+        "src": "/assets/pcs-8ae999ab19d6d234-1120.webp",
+        "width": 1120,
+        "bytes": 104614
+      }
+    ]
+  },
+  "/assets/fan-bag-hero-v2.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/pcs-3fcce2a92d5b3de2-160.webp",
+        "width": 160,
+        "bytes": 2736
+      },
+      {
+        "src": "/assets/pcs-edbbbb0a8aaef09a-320.webp",
+        "width": 320,
+        "bytes": 8786
+      },
+      {
+        "src": "/assets/pcs-f194877c72b5c4ed-480.webp",
+        "width": 480,
+        "bytes": 17022
+      },
+      {
+        "src": "/assets/pcs-45f940e7bd5903a3-768.webp",
+        "width": 768,
+        "bytes": 35954
+      },
+      {
+        "src": "/assets/pcs-cd65c05e2ec07a0a-1120.webp",
+        "width": 1120,
+        "bytes": 62046
+      }
+    ]
+  },
+  "/assets/bunting-full-layout.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/pcs-364467e19cd763cc-160.webp",
+        "width": 160,
+        "bytes": 2274
+      },
+      {
+        "src": "/assets/pcs-d90f967e539ec845-320.webp",
+        "width": 320,
+        "bytes": 7334
+      },
+      {
+        "src": "/assets/pcs-be2de8b0ae9b1d42-480.webp",
+        "width": 480,
+        "bytes": 15980
+      },
+      {
+        "src": "/assets/pcs-6c2022f7796ce983-768.webp",
+        "width": 768,
+        "bytes": 37200
+      },
+      {
+        "src": "/assets/pcs-f04d05ac4da3f9ca-1120.webp",
+        "width": 1120,
+        "bytes": 67454
       }
     ]
   }

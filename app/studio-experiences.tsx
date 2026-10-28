@@ -3,6 +3,8 @@ import ProductPhoto from "./product-photo";
 import { useState } from "react";
 import type { Product } from "../lib/catalog";
 import type { Colourway } from "../lib/customisation";
+import {heroSelection} from "../lib/hero-selection";
+import {presentationLabel} from "../lib/product-presentation";
 export function Flower({ className = "" }: {
     className?: string;
 }) {
@@ -11,8 +13,7 @@ export function Flower({ className = "" }: {
 export function StudioHero({ products }: {
     products: Product[];
 }) {
-    const main = products.find(p => p.id === "mocha-bow-tote") || products[0];
-    const secondary = products.find(p => p.id === "marigold-gajra");
+    const {main,secondary,mainImage}=heroSelection(products);
     if (!main)
         return null;
     return <section className="studio-hero">
@@ -23,10 +24,10 @@ export function StudioHero({ products }: {
     </div>
     <div className="hero-scrapbook">
       <a href={"/shop/" + main.id} className="hero-main-photo">
-        <ProductPhoto src={main.image} alt={main.name} width="900" height="900" sizes="(max-width: 699px) calc(100vw - 40px), 480px" fetchPriority="high"/>
+        <ProductPhoto src={mainImage||main.image} alt={main.name} width="900" height="900" sizes="(max-width: 699px) calc(100vw - 40px), 480px" fetchPriority="high"/>
         <span>{main.name}</span>
       </a>
-      {secondary && <a href={"/shop/" + secondary.id} className="hero-mini-photo">
+      {secondary && <a href={"/shop/" + secondary.id} className={"hero-mini-photo"+(secondary.id==="forever-bouquet"?" hero-bouquet":"")}>
         <ProductPhoto src={secondary.image} alt={secondary.name} width="280" height="280" sizes="160px" fetchPriority="low"/>
         <span>{secondary.name}</span>
       </a>}
@@ -122,11 +123,12 @@ export function ProductGallery({ product, colourway, onClearColourway, colourway
     selectedColour: number;
     onSelectColour: (index: number) => void;
 }) {
-    const images = [{image:product.image,label:"Product photo"},...(product.gallery||[]).filter(p=>!p.image.includes("-original")&&!/^original/i.test(p.label))];
+    const presentation=presentationLabel(product);
+    const images = [{image:product.image,label:presentation||"Product photo"},...(product.gallery||[]).filter(p=>!p.image.includes("-original")&&!/^original/i.test(p.label))];
     const [index, setIndex] = useState(0);
     const selected = colourway ? { image: colourway.image, label: colourway.name + " · colour preview" } : images[index] || images[0];
-    return <div className="product-gallery">
-    <div className="gallery-photo-wrap"><InspectPhoto key={selected.image} image={selected.image} alt={product.name + " — " + selected.label}/>{colourway && <span className="colour-preview-badge">Colour preview</span>}</div>
+    return <div className={"product-gallery"+(presentation&&selected.image===product.image?" layout-example":"")}>
+    <div className="gallery-photo-wrap"><InspectPhoto key={selected.image} image={selected.image} alt={product.name + " — " + selected.label}/>{(colourway||(presentation&&selected.image===product.image))&&<span className="colour-preview-badge">{colourway?"Colour preview":presentation}</span>}</div>
     {colourways.length > 0 && <div className="mobile-colour-picker"><ColourPicker colourways={colourways} selected={selectedColour} onSelect={onSelectColour}/></div>}
     {images.length>1&&<div className="gallery-thumbs" role="group" aria-label="Product photographs">
       {images.map((im, i) => <button key={im.image} onClick={() => { setIndex(i); onClearColourway(); }} className={!colourway && index === i ? "active" : ""} aria-pressed={!colourway && index === i}><ProductPhoto src={im.image} alt="" width="75" height="75" sizes="75px" loading="lazy"/><span>{im.label}</span></button>)}

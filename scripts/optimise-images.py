@@ -6,7 +6,7 @@ from pathlib import Path
 from PIL import Image, ImageOps
 import hashlib, json
 root=Path(__file__).resolve().parent.parent
-names=['green-cover-styled', 'dining-set-styled', 'fan-bag-styled', 'bouquet-styled', 'tulip-cream', 'tulip-pink', 'bookmark-styled', 'owl-styled', 'tissue-styled', 'whale-styled', 'tooth-styled', 'table-rose-preview', 'table-coastal-preview', 'cover-lilac-preview', 'cover-oat-preview', 'phone-crossbody-styled', 'bow-keyring-styled', 'mocha-bow-tote-styled', 'earth-tone-shoulder-styled', 'cactus-crossbody-styled', 'bunting-styled', 'marigold-gajra-styled', 'rose-gajra-styled', 'two-flower-tissue-v2', 'phone-sage-preview', 'tote-sage-preview', 'earth-pastel-preview', 'cactus-teal-preview', 'marigold-blush-preview', 'rose-lilac-preview', 'two-flower-oat-preview']
+names=['green-cover-styled', 'dining-set-styled', 'fan-bag-styled', 'bouquet-styled', 'tulip-cream', 'tulip-pink', 'bookmark-styled', 'owl-styled', 'tissue-styled', 'whale-styled', 'tooth-styled', 'table-rose-preview', 'table-coastal-preview', 'cover-lilac-preview', 'cover-oat-preview', 'phone-crossbody-styled', 'bow-keyring-styled', 'earth-tone-shoulder-styled', 'cactus-crossbody-styled', 'bunting-styled', 'marigold-gajra-styled', 'rose-gajra-styled', 'two-flower-tissue-v2', 'phone-sage-preview', 'earth-pastel-preview', 'cactus-teal-preview', 'marigold-blush-preview', 'rose-lilac-preview', 'two-flower-oat-preview', 'mocha-bow-tote-product-v2', 'tote-sage-product-v2', 'fan-bag-hero-v2', 'bunting-full-layout']
 manifest={}
 for name in names:
     src=root/'public/assets'/f'{name}.webp'

@@ -49,3 +49,16 @@ assert.equal(fitQuestion(defaults.find(p=>p.id==='personalised-bunting')).requir
 assert.match(fitQuestion(defaults.find(p=>p.id==='marigold-gajra')).label,/Wrist/);
 for(const id of ['phone-crossbody','mocha-bow-tote','marigold-gajra','rose-gajra','two-flower-tissue'])assert.ok(productColourways(defaults.find(p=>p.id===id)).some(c=>c.approximate),id);
 console.log('Occasion catalogue: six photographed additions, required bunting wording, wrist sizing and product-specific colour packs passed.');
+
+const {heroSelection}=await import('../lib/hero-selection.ts');
+const {presentationLabel}=await import('../lib/product-presentation.ts');
+const hero=heroSelection(defaults);
+assert.equal(hero.main.id,'golden-fan-bag');assert.equal(hero.secondary.id,'forever-bouquet');
+assert.equal(heroSelection([]).main,undefined);
+assert.notEqual(heroSelection(defaults.map(p=>p.id==='golden-fan-bag'?{...p,published:false}:p)).main?.id,'golden-fan-bag');
+assert.notEqual(heroSelection(defaults.map(p=>p.id==='golden-fan-bag'?{...p,availability:'Unavailable'}:p)).main?.id,'golden-fan-bag');
+assert.equal(heroSelection(defaults.map(p=>p.id==='golden-fan-bag'?{...p,image:'/media/new-photo'}:p)).mainImage,'/media/new-photo');
+const bunting=defaults.find(p=>p.id==='personalised-bunting');
+assert.equal(presentationLabel(bunting),'Example layout');assert.equal(presentationLabel({...bunting,image:'/media/new-photo'}),null);
+if(verifyAssets)assert.ok(existsSync(new URL('../public'+hero.mainImage,import.meta.url)));
+console.log('Editorial hero fallback and bunting layout disclosure passed.');
