@@ -195,13 +195,17 @@ export const defaults: Product[] = [
     "price": null,
     "availability": "Enquire",
     "leadTime": "Confirmed with your quote",
-    "details": "Share your tissue-box dimensions so we can confirm fit. Flower colours and yarn are agreed with your quote. Original image is the studio’s reel cover.",
+    "details": "Share your tissue-box dimensions so we can confirm fit. Flower colours and yarn are agreed with your quote.",
     "published": true,
     "styled": true
   }
 ];
 export const settingsSchema = z.object({ whatsapp: z.string().regex(/^$|^[1-9][0-9]{7,14}$/), accepting: z.boolean(), notice: z.string().max(250), shipping: z.string().min(10).max(1500), returns: z.string().min(10).max(1500) });
 export type Settings = z.infer<typeof settingsSchema>;
-export const defaultSettings: Settings = { whatsapp: "", accepting: true, notice: "Studio preview · Ask us for prices", shipping: "Based in Islamabad. Pakistan delivery is quoted before acceptance. International enquiries are welcome; serviceability and charges are confirmed for your destination. Making time and courier transit are separate.", returns: "Before an order is accepted, we confirm its scope, price, delivery and applicable cancellation or return terms. Please contact us if an item arrives damaged or differs from the agreed order." };
+export const defaultSettings: Settings = { whatsapp: "", accepting: true, notice: "Website preview · Ask us for prices", shipping: "Based in Islamabad. Pakistan delivery is quoted before acceptance. International delivery can be discussed; serviceability and charges are confirmed for your destination. Making time and courier transit are separate.", returns: "Before an order is accepted, we confirm its scope, price, delivery and applicable cancellation or return terms. Please contact us if an item arrives damaged or differs from the agreed order." };
 export const statuses = ["new", "quoted", "accepted", "making", "shipped", "completed", "declined", "cancelled"] as const;
-export const enquirySchema = z.object({ token: z.string().uuid(), name: z.string().trim().min(2).max(80), contact: z.string().trim().min(5).max(150), city: z.string().trim().min(2).max(100), country: z.string().trim().min(2).max(80), idea: z.string().trim().min(10).max(2000), colours: z.string().max(150), budget: z.string().max(80), deadline: z.string().max(20), items: z.array(z.object({ id: z.string().max(60), quantity: z.number().int().min(1).max(50) })).max(12), consent: z.literal(true), website: z.string().max(0) });
+export const enquirySchema = z.object({ token: z.string().uuid(), name: z.string().trim().min(2).max(80), contact: z.string().trim().min(5).max(150), city: z.string().trim().min(2).max(100), country: z.string().trim().min(2).max(80), idea: z.string().trim().min(10).max(2000), colours: z.string().max(150), budget: z.string().max(80), deadline: z.string().max(20), items: z.array(z.object({ id: z.string().max(60), quantity: z.number().int().min(1).max(50) })).max(12), kind:z.enum(["product","custom"]).optional(),contactMethod:z.enum(["whatsapp","email"]).optional(),consent: z.literal(true), website: z.string().max(0) }).superRefine((value,ctx)=>{
+  if(value.kind==="product"&&!value.items.length)ctx.addIssue({code:z.ZodIssueCode.custom,path:["items"],message:"Choose a product"});
+  if(value.contactMethod==="email"&&!z.string().email().safeParse(value.contact).success)ctx.addIssue({code:z.ZodIssueCode.custom,path:["contact"],message:"Enter a valid email"});
+  if(value.contactMethod==="whatsapp"&&(!/^\+?[\d\s()\-]{7,30}$/.test(value.contact)||value.contact.replace(/\D/g,"").length<7||value.contact.replace(/\D/g,"").length>15))ctx.addIssue({code:z.ZodIssueCode.custom,path:["contact"],message:"Enter a valid phone number"});
+});

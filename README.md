@@ -42,3 +42,12 @@ Validation: TypeScript, production build, safe catalogue paths, unique IDs, unpu
 
 
 Production navigation uses ordinary anchors. The framework Link prefetch/router intercepted product clicks with production-only TypeErrors; native navigation avoids that dependency and retains normal Back/open-in-new-tab behaviour.
+
+
+## Guided order requests
+
+The plain enquiry drawer is replaced by separate three-step existing-product and custom-piece flows. Product selections, colour choices and quantities persist while browsing. Custom requests collect a visual starting point, brief, occasion and colour preferences independently of selected products. Contact details survive Back/Continue within the flow and are not written to browser storage. Requests are saved to D1 with product/custom kind and email/WhatsApp reply preference; the owner workspace displays those fields.
+
+The public admin link, original-photo comparisons and photo-process notes are removed. The admin page and API still require the configured owner. Anonymous and forged-identity API checks returned 403. WhatsApp chat remains optional after saving; email is a recorded reply preference, not an automatic notification integration.
+
+Validation: TypeScript, business-rule/contact validation, production build, mobile guided flows, Back/Continue data retention, quantity retention, selected colour photos and separate product/custom D1 records. Full owner-session and physical Safari-device QA remain outstanding. Product images, private research, customer records and runtime credentials remain excluded from this public source mirror. Legacy development is unchanged.

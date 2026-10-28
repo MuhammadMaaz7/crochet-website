@@ -65,7 +65,7 @@ function ColourPicker({ colourways, selected, onSelect }: {
     <div className="colour-options">{colourways.map((c, i) => <button type="button" key={c.name} className={selected === i ? "selected" : ""} aria-pressed={selected === i} onClick={() => onSelect(i)}>
       <span className="yarn-swatches" aria-hidden="true">{c.swatches.map(colour => <i key={colour} style={{ backgroundColor: colour }}/>)}</span><span>{c.name}</span><b aria-hidden="true">{selected === i ? "✓" : ""}</b>
     </button>)}</div>
-    <p className="preview-note" role="status">{current.approximate ? "Photo colour preview · approximate yarn colours" : "Original colour combination"}</p>
+    <p className="preview-note" role="status">{current.approximate ? "Photo colour preview · approximate yarn colours" : "Colour as pictured"}</p>
   </fieldset>;
 }
 export function ProductCustomizer({ product, colourways, selected, onSelect, onRequest, accepting }: {
@@ -98,7 +98,7 @@ export function ProductCustomizer({ product, colourways, selected, onSelect, onR
       <label className="check-label"><input type="checkbox" checked={runner} onChange={e => { setRunner(e.target.checked); setError(""); }}/> Include a table runner</label>
     </fieldset>}
     {error && <p className="error" role="alert">{error}</p>}
-    <button className="button inline-product-request" disabled={!accepting}>Request this design <span aria-hidden="true">↗</span></button>
+    <button className="button inline-product-request" disabled={!accepting}>Order this piece <span aria-hidden="true">↗</span></button>
     <p className="preview-note">We confirm the yarn and final price with you.</p>
   </form>;
 }
@@ -120,15 +120,15 @@ export function ProductGallery({ product, colourway, onClearColourway, colourway
     selectedColour: number;
     onSelectColour: (index: number) => void;
 }) {
-    const images = [{ image: product.image, label: product.styled ? "Styled photo" : "Studio photo" }, ...(product.reference ? [{ image: product.reference, label: "Original photo" }] : []), ...(product.gallery || [])];
+    const images = [{image:product.image,label:"Product photo"},...(product.gallery||[]).filter(p=>!p.image.includes("-original")&&!/^original/i.test(p.label))];
     const [index, setIndex] = useState(0);
     const selected = colourway ? { image: colourway.image, label: colourway.name + " · colour preview" } : images[index] || images[0];
     return <div className="product-gallery">
     <div className="gallery-photo-wrap"><InspectPhoto key={selected.image} image={selected.image} alt={product.name + " — " + selected.label}/>{colourway && <span className="colour-preview-badge">Colour preview</span>}</div>
     {colourways.length > 0 && <div className="mobile-colour-picker"><ColourPicker colourways={colourways} selected={selectedColour} onSelect={onSelectColour}/></div>}
-    <div className="gallery-thumbs" role="group" aria-label="Product photographs">
+    {images.length>1&&<div className="gallery-thumbs" role="group" aria-label="Product photographs">
       {images.map((im, i) => <button key={im.image} onClick={() => { setIndex(i); onClearColourway(); }} className={!colourway && index === i ? "active" : ""} aria-pressed={!colourway && index === i}><img src={im.image} alt="" width="75" height="75"/><span>{im.label}</span></button>)}
-    </div>
-    {colourway ? <p className="preview-note" aria-live="polite">{colourway.name} · AI-assisted colour concept. Final yarn may vary.</p> : product.styled && <details className="photo-info"><summary>About these photos</summary><p>Styled photos use AI-assisted lighting and backgrounds. Original studio photos are included for comparison.</p></details>}
+    </div>}
+    {colourway&&<p className="preview-note" aria-live="polite">{colourway.name} · Final yarn shades may vary.</p>}
   </div>;
 }
