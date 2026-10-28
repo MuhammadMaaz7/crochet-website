@@ -1,53 +1,33 @@
-# PhotoCraftSquare shop
-A focused crochet catalogue, custom-request workflow and private studio workspace.
-## Run
-Use Node 22.13+ and the included package manager lockfile. Install with the Sites dependency helper, generate the schema with `npm run db:generate`, build and apply local D1 migrations as described in the starter docs. Use the supported Sites preview command for this environment.
-## Architecture
-- Vinext server-rendered pages, React interactions and plain CSS.
-- D1 stores product overrides, settings, enquiries and rate-limit counters.
-- R2 stores administrator-uploaded product images.
-- ChatGPT sign-in supplies identity; an explicit owner allowlist authorizes the studio server-side.
-- SITE_ORIGIN is the canonical origin accepted by mutation endpoints.
-- No raw card data, gateway integration, courier booking or automated payment confirmation.
-## Configuration
-Set ADMIN_USER_ID to the verified Site owner identity, or ADMIN_OWNER_EMAIL to the verified owner email resolved from the platform access policy, through runtime configuration. It is not the GitHub username or Instagram username. Never put credentials in source. Missing admin identity denies studio access. Configure SITE_ORIGIN to the exact deployed origin. Add the optional WhatsApp number through studio settings, digits in international format.
-## Content
-Four catalogue candidates use images from PhotoCraftSquare's Instagram and AI-assisted styling concepts. Reference images are available on product pages. The maker must verify the images, current availability, specifications, prices and policies before customer launch. No historical prices are used as current prices.
-## Safety and scope
-Request receipt is distinct from order acceptance. Product prices are looked up on the server; quotes and payment verification are administrator-only. No public customer lookup. Mutation origins, server validation, size limits, anti-spam fields and bounded request rates are enforced. Admin photos are limited to raster images and served with an allowlisted content type and nosniff. Public reference-image uploads are not enabled.
-This is an owner-private review deployment. Before public launch: verify image fidelity and ownership, complete product specs, confirm contact/payment/delivery/returns/privacy procedures, test owner access, backups and operational follow-up, and review platform audience/access. Keep this explicit admin allowlist when changing audience.
+# PhotoCraftSquare
+
+A mobile-first crochet storefront with guided product/custom requests and an owner-only workspace. Existing legacy development remains on its original branch. This feature branch is the current storefront implementation; the draft PR is not merged.
+
+## Runtime and publishing
+Vinext / React on Sites' Cloudflare Workers runtime, D1 for catalogue overrides and order requests, R2 for owner-uploaded photos. The existing public review site is https://photocraftsquare-studio.wellsugar256.chatgpt.site . Source updates are built, versioned and published through the Sites workflow. This is not a Vercel deployment. Moving to Vercel would require adapting the Worker/D1/R2 and authentication integrations.
+
+## Ordering
+Product cards open detail pages. The dining set has a set-content planner; it is one product. Dining-set and floral-cover colourways use prepared approximate photo concepts, not AR or arbitrary live recolouring. Replacing a product's base photo disables its old preview pack.
+
+Both product and custom requests use three steps. Custom requests are independent of selected products. Product selections, colours and quantities can persist locally; contact fields are not stored in browser storage. Saved requests are quotes awaiting owner confirmation, not paid or confirmed orders. Custom starting-point suggestions include archived designs and require feasibility/availability confirmation.
+
+## Owner access and integrations
+Set `ADMIN_USER_ID` or `ADMIN_OWNER_EMAIL` from the verified platform owner identity, and `SITE_ORIGIN` to the exact deployed origin. Never put secrets in source. `/admin`, `/api/admin` and uploads enforce owner authorisation server-side. No public admin links. An anonymous visitor or forged identity header cannot grant owner access.
+
+Requests save to D1 without email or WhatsApp. Email is a reply preference, not an automatic notification. A real business WhatsApp number can be configured in owner settings to offer a voluntary handoff after saving. Automated email, payment processing and courier integration are not connected.
+
+## Photos and performance
+`ProductPhoto` uses responsive WebP derivatives for known photos, appropriate `sizes`, asynchronous decoding, lazy loading below the fold and high priority for the main hero/product photo. Original photo files are never overwritten. Derivative filenames contain a content hash; `/assets/pcs-*` has a one-year immutable browser-cache policy in `public/_headers`. Verify the effective production header after publication; a platform response may override static header rules. Cloudflare static-asset caching is managed by the host. Customer data and admin responses are never covered by this image-cache rule.
+
+Run `python scripts/optimise-images.py` (Pillow required) after changing approved source photos. Commit the regenerated manifest and image derivatives together to the hosted repository. New owner uploads fall back to their original URL until reviewed and optimised; arbitrary external images are not fetched. Product photos/derivatives, private research, customer data and credentials are excluded from the public GitHub source mirror. The mirror needs approved image assets restored for a complete visual build.
+
+The public collection currently has eleven designs; berry and penguin are unpublished until suitable photos are available. Best home pieces, the golden bag and bouquet lead. Original-photo comparisons and process notes are absent from customer galleries. Approximate colour previews retain a short shade-variation label.
+
 ## Checks
-`node --experimental-strip-types scripts/check-business-rules.mjs`
-`node node_modules/typescript/bin/tsc --noEmit`
-Use the maintained build helper to create deployment output. Browser QA covers collection filtering, product views, source-image comparison, enquiry saving and private admin access. Local test customer data is synthetic and stays out of source.
-## 3D
-Photo tilt is a presentation effect, labelled as such. True product rotation requires a real multi-angle shoot or verified model. A single edited front image must not be sold as a verified 360-degree view.
-## Git
-Legacy code remains on the original repository's development branch. The new shop belongs on its own feature branch; do not overwrite development. Site runtime identity is kept in the hosting manifest; private research and customer data do not belong in the public repository.
+- `node node_modules/typescript/bin/tsc --noEmit`
+- `node --experimental-strip-types scripts/check-business-rules.mjs`
+- `node scripts/check-image-delivery.mjs`
+- Build using the supported Sites build helper.
 
+Browser QA covers product navigation, colour previews, custom requests, validation, preference persistence and narrow layouts. Owner-authenticated admin browser testing, real phone/slow-network performance and operational fulfilment testing remain launch tasks. Motion honours reduced-motion preferences. No unsupported reviews, prices, stock or product safety claims are invented.
 
-## Image assets omitted from public source
-The seven product/reference image assets are intentionally excluded from this public branch pending explicit permission to publish them on GitHub. They are present in the owner-private Site deployment. To run with your own assets, place properly licensed photos at the paths listed in lib/catalog.ts or replace those paths and descriptions. The source branch does not include private research reports, customer records, runtime secrets or account information.
-
-
-## Mobile storefront and product colour previews
-
-The published collection contains twelve designs; the penguin is an unpublished draft. Every product card opens its product page, with decorative numbering and quick-add controls removed. Phones use a compact header and menu, shorter image-led hero, two-column collection, photo-adjacent colour swatches and a persistent request button. The dining-set configurator lives only on its product page.
-
-The dining set and floral tissue cover offer prepared photo colour concepts of their actual designs. These are labelled approximate AI-assisted visualisations, not manufactured colour stock, arbitrary live recolouring or camera AR. Original studio photographs remain available. Product-specific choices survive browsing and carry into one saved enquiry. Replacement primary photos disable stale preview packs.
-
-The public source mirror excludes all product/reference/colour-preview images, private research, customer records and runtime credentials. Image paths are defined in lib/catalog.ts and lib/customisation.ts; authorised private assets are required for a complete visual build.
-
-Validation: TypeScript, production build, safe catalogue paths, unique IDs, unpublished penguin and stale-preview guards. Browser QA reviewed three narrow iframe layouts without horizontal overflow, menu and product navigation, direct-tap/keyboard photo colour selection, gallery originals, sticky request action and multi-product requests. A request with separate dining-set and tissue-cover colour choices persisted to D1. Physical-phone/Safari-device and owner-authenticated admin browser checks remain outstanding.
-
-
-Production navigation uses ordinary anchors. The framework Link prefetch/router intercepted product clicks with production-only TypeErrors; native navigation avoids that dependency and retains normal Back/open-in-new-tab behaviour.
-
-
-## Guided order requests
-
-The plain enquiry drawer is replaced by separate three-step existing-product and custom-piece flows. Product selections, colour choices and quantities persist while browsing. Custom requests collect a visual starting point, brief, occasion and colour preferences independently of selected products. Contact details survive Back/Continue within the flow and are not written to browser storage. Requests are saved to D1 with product/custom kind and email/WhatsApp reply preference; the owner workspace displays those fields.
-
-The public admin link, original-photo comparisons and photo-process notes are removed. The admin page and API still require the configured owner. Anonymous and forged-identity API checks returned 403. WhatsApp chat remains optional after saving; email is a recorded reply preference, not an automatic notification integration.
-
-Validation: TypeScript, business-rule/contact validation, production build, mobile guided flows, Back/Continue data retention, quantity retention, selected colour photos and separate product/custom D1 records. Full owner-session and physical Safari-device QA remain outstanding. Product images, private research, customer records and runtime credentials remain excluded from this public source mirror. Legacy development is unchanged.
+See `docs/launch-plan.md` for catalogue, hosting, domain, analytics and advertising decisions.

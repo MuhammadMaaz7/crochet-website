@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";import {productColourways} from "../lib/customisation.ts";import {existsSync} from "node:fs";import {defaults,enquirySchema,productSchema,settingsSchema} from "../lib/catalog.ts";
-const verifyAssets=existsSync(new URL("../public/assets",import.meta.url));\nfor(const p of defaults){assert.equal(productSchema.safeParse(p).success,true,p.id);if(verifyAssets)for(const image of [p.image,p.reference,...(p.gallery||[]).map(g=>g.image)].filter(Boolean))assert.ok(existsSync(new URL("../public"+image,import.meta.url)),"Missing catalogue image: "+image);}
+const verifyAssets=existsSync(new URL("../public/assets",import.meta.url));
+for(const p of defaults){assert.equal(productSchema.safeParse(p).success,true,p.id);for(const image of [p.image,p.reference,...(p.gallery||[]).map(g=>g.image)].filter(Boolean))if(verifyAssets)assert.ok(existsSync(new URL("../public"+image,import.meta.url)),"Missing catalogue image: "+image);}
 assert.equal(new Set(defaults.map(p=>p.id)).size,defaults.length);
 assert.equal(productSchema.safeParse({...defaults[0],gallery:[{image:"https://external.invalid/photo",label:"Bad path"}]}).success,false);
 assert.equal(productSchema.safeParse({...defaults[0],price:-1}).success,false);
@@ -25,3 +26,5 @@ assert.equal(enquirySchema.safeParse({...request,contactMethod:"email",contact:"
 assert.equal(enquirySchema.safeParse({...request,contactMethod:"whatsapp",contact:"+92 300 1234567"}).success,true);
 assert.equal(enquirySchema.safeParse({...request,contactMethod:"whatsapp",contact:"wrong number"}).success,false);
 console.log("Order requests: product selection, custom briefs, reply-method and contact validation passed.");
+
+assert.equal(defaults.find(p=>p.id==="berry-keyring").published,false);

@@ -142,7 +142,7 @@ export const defaults: Product[] = [
     "price": null,
     "availability": "Enquire",
     "leadTime": "Confirmed with your quote",
-    "published": true,
+    "published": false,
     "styled": false,
     "id": "berry-keyring",
     "name": "Berry keyring",

@@ -1,4 +1,5 @@
 "use client";
+import ProductPhoto from "./product-photo";
 import { useState } from "react";
 import type { Product } from "../lib/catalog";
 import type { Colourway } from "../lib/customisation";
@@ -16,22 +17,22 @@ export function StudioHero({ products }: {
         return null;
     return <section className="studio-hero">
     <div className="hero-writing">
-      <p className="eyebrow">HANDMADE IN ISLAMABAD</p>
+      <p className="eyebrow">A LITTLE HANDMADE HAPPINESS</p>
       <h1>Little things.<br /><em>Made personal.</em></h1>
       <p className="hero-description">Crochet gifts & home pieces,<br className="desktop-break"/> made for you.</p>
     </div>
     <div className="hero-scrapbook">
       <a href={"/shop/" + main.id} className="hero-main-photo">
-        <img src={main.image} alt={main.name} width="900" height="900" fetchPriority="high"/>
-        <span>{main.name}<b aria-hidden="true">↗</b></span>
+        <ProductPhoto src={main.image} alt={main.name} width="900" height="900" sizes="(max-width: 699px) calc(100vw - 40px), 480px" fetchPriority="high"/>
+        <span>{main.name}</span>
       </a>
       {secondary && <a href={"/shop/" + secondary.id} className="hero-mini-photo">
-        <img src={secondary.image} alt={secondary.name} width="280" height="280"/>
-        <span>{secondary.name} ↗</span>
+        <ProductPhoto src={secondary.image} alt={secondary.name} width="280" height="280" sizes="160px" fetchPriority="low"/>
+        <span>{secondary.name}</span>
       </a>}
       <Flower className="hero-flower"/>
     </div>
-    <div className="hero-actions"><a href="#collection" className="button">Explore the collection <span aria-hidden="true">↗</span></a><p>Handmade · Custom colours welcome</p></div>
+    <div className="hero-actions"><a href="#collection" className="button">Explore the collection </a><p>Handmade · Custom colours welcome</p></div>
   </section>;
 }
 const interests = [
@@ -50,8 +51,8 @@ export function GiftFinder({ products }: {
     <div className="interest-tabs" role="group" aria-label="Find gifts by interest">
       {interests.map((x, i) => <button key={x.name} aria-pressed={interest === i} className={interest === i ? "active" : ""} onClick={() => setInterest(i)}>{x.name}</button>)}
     </div>
-    <div className="finder-results" aria-live="polite">
-      {suggestions.map(p => <a key={p.id} href={"/shop/" + p.id} className="gift-product"><img src={p.image} alt={p.name} width="350" height="350" loading="lazy"/><div><h3>{p.name}</h3><span>View product ↗</span></div></a>)}
+    <div className="finder-results" key={interest} aria-live="polite">
+      {suggestions.map(p => <a key={p.id} href={"/shop/" + p.id} className="gift-product"><ProductPhoto src={p.image} alt={p.name} width="350" height="350" sizes="(max-width: 699px) 60vw, 380px" loading="lazy"/><div><h3>{p.name}</h3><span>View product</span></div></a>)}
     </div>
   </section>;
 }
@@ -98,7 +99,7 @@ export function ProductCustomizer({ product, colourways, selected, onSelect, onR
       <label className="check-label"><input type="checkbox" checked={runner} onChange={e => { setRunner(e.target.checked); setError(""); }}/> Include a table runner</label>
     </fieldset>}
     {error && <p className="error" role="alert">{error}</p>}
-    <button className="button inline-product-request" disabled={!accepting}>Order this piece <span aria-hidden="true">↗</span></button>
+    <button className="button inline-product-request" disabled={!accepting}>Order this piece </button>
     <p className="preview-note">We confirm the yarn and final price with you.</p>
   </form>;
 }
@@ -108,7 +109,7 @@ function InspectPhoto({ image, alt }: {
 }) {
     const [zoom, setZoom] = useState(false);
     return <button className={"gallery-image " + (zoom ? "zoomed" : "")} onClick={() => setZoom(!zoom)} aria-label={zoom ? "Zoom out of product photo" : "Zoom in to inspect stitches"} aria-pressed={zoom}>
-    <img src={image} alt={alt} width="1254" height="1254"/>
+    <ProductPhoto src={image} alt={alt} width="1254" height="1254" sizes="(max-width: 699px) calc(100vw - 40px), 600px" fetchPriority="high"/>
     <span aria-hidden="true">{zoom ? "− Zoom out" : "＋ Zoom"}</span>
   </button>;
 }
@@ -127,7 +128,7 @@ export function ProductGallery({ product, colourway, onClearColourway, colourway
     <div className="gallery-photo-wrap"><InspectPhoto key={selected.image} image={selected.image} alt={product.name + " — " + selected.label}/>{colourway && <span className="colour-preview-badge">Colour preview</span>}</div>
     {colourways.length > 0 && <div className="mobile-colour-picker"><ColourPicker colourways={colourways} selected={selectedColour} onSelect={onSelectColour}/></div>}
     {images.length>1&&<div className="gallery-thumbs" role="group" aria-label="Product photographs">
-      {images.map((im, i) => <button key={im.image} onClick={() => { setIndex(i); onClearColourway(); }} className={!colourway && index === i ? "active" : ""} aria-pressed={!colourway && index === i}><img src={im.image} alt="" width="75" height="75"/><span>{im.label}</span></button>)}
+      {images.map((im, i) => <button key={im.image} onClick={() => { setIndex(i); onClearColourway(); }} className={!colourway && index === i ? "active" : ""} aria-pressed={!colourway && index === i}><ProductPhoto src={im.image} alt="" width="75" height="75" sizes="75px" loading="lazy"/><span>{im.label}</span></button>)}
     </div>}
     {colourway&&<p className="preview-note" aria-live="polite">{colourway.name} · Final yarn shades may vary.</p>}
   </div>;
