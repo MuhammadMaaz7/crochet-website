@@ -441,3 +441,22 @@ textarea{resize:vertical}
 @media(hover:hover){.product-link:hover{transform:translateY(-4px)}.custom-kind-grid>button:hover,.order-palettes button:hover{transform:translateY(-2px)}}
 @media(min-width:700px){.custom-invite{padding:42px;border-radius:40px}.order-studio{border-radius:26px}.hero-mini-photo{border-radius:18px}}
 @media(prefers-reduced-motion:reduce){[data-reveal="waiting"]{opacity:1;transform:none}.button:hover,.product-link:hover{transform:none}}
+
+/* Product-specific choices share the order summary and sticky mobile action. */
+.piece-options{margin:24px 0}
+.piece-options fieldset{border:0;padding:0;margin:0 0 18px;min-width:0}
+.piece-options legend{font-size:15px;font-weight:600;margin-bottom:12px}
+.piece-colour-choice{display:flex;gap:9px;margin-bottom:15px}
+.piece-colour-choice button{border:1px solid var(--line);border-radius:999px;min-height:44px;padding:10px 18px;font-size:13px;transition:background .2s}
+.piece-colour-choice button[aria-pressed=true]{background:var(--sage);border-color:var(--ink)}
+.piece-options label>small:last-child{display:block;line-height:1.6;margin-top:8px}
+.piece-extra{border-top:1px solid var(--line);margin-bottom:20px}
+.piece-extra summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;font-size:13px;cursor:pointer;list-style:none}
+.piece-extra summary:after{content:'＋';font-size:18px}
+.piece-extra[open] summary:after{content:'−'}
+.piece-extra label{padding-top:8px}
+.related-pieces{padding-block:35px;border-top:1px solid var(--line)}
+.related-pieces h2{font-size:32px}
+@media(min-width:700px){.related-pieces{padding-block:50px}.related-pieces h2{font-size:43px}}
+
+.order-piece-preferences{margin:8px 0 12px;font-size:11px;line-height:1.6;max-width:340px}.order-piece-preferences summary{cursor:pointer;min-height:32px;text-decoration:underline;text-underline-offset:3px}.order-piece-preferences p{margin:4px 0 10px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}

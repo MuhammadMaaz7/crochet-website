@@ -1,6 +1,6 @@
-import {env} from "cloudflare:workers";import {defaults,defaultSettings,Product,Settings} from "./catalog";import {getChatGPTUser} from "../app/chatgpt-auth";
+import {cache} from "react";import {env} from "cloudflare:workers";import {defaults,defaultSettings,Product,Settings} from "./catalog";import {getChatGPTUser} from "../app/chatgpt-auth";
 export function db(){if(!env.DB)throw new Error("Storage unavailable");return env.DB;}
-export async function catalog(all=false):Promise<Product[]>{const rows=await db().prepare("SELECT data FROM products").all<{data:string}>();const map=new Map(defaults.map(p=>[p.id,p]));for(const row of rows.results){const p=JSON.parse(row.data);map.set(p.id,p);}return [...map.values()].filter(p=>all||p.published);}
+export const catalog=cache(async(all=false):Promise<Product[]>=>{const rows=await db().prepare("SELECT data FROM products").all<{data:string}>();const map=new Map(defaults.map(p=>[p.id,p]));for(const row of rows.results){const p=JSON.parse(row.data);map.set(p.id,p);}return [...map.values()].filter(p=>all||p.published);});
 export async function shopSettings():Promise<Settings>{const r=await db().prepare("SELECT data FROM settings WHERE id='shop'").first<{data:string}>();return r?JSON.parse(r.data):defaultSettings;}
 export async function admin(){const u=await getChatGPTUser();return !!u&&((!!env.ADMIN_USER_ID&&u.userId===env.ADMIN_USER_ID)||(!!env.ADMIN_OWNER_EMAIL&&u.email.toLowerCase()===env.ADMIN_OWNER_EMAIL.toLowerCase()));}
 export function originOkay(r:Request){return r.headers.get("origin")===(env.SITE_ORIGIN||new URL(r.url).origin);}

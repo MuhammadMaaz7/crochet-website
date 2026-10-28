@@ -37,9 +37,9 @@ export function StudioHero({ products }: {
 }
 const interests = [
     { name: "Book lovers", ids: ["tulip-bookmark", "tulip-cream", "forever-bouquet"] },
-    { name: "Home lovers", ids: ["spring-tissue", "chai-table", "owl-wall"] },
-    { name: "Little surprises", ids: ["whale-keyring", "tooth-keepsake", "forever-bouquet"] },
-    { name: "Everyday bags", ids: ["golden-fan-bag", "tulip-cream", "tulip-pink"] }
+    { name: "Home lovers", ids: ["spring-tissue", "two-flower-tissue", "chai-table"] },
+    { name: "Little surprises", ids: ["bow-keyring", "whale-keyring", "tooth-keepsake"] },
+    { name: "Everyday bags", ids: ["phone-crossbody", "golden-fan-bag", "tulip-cream"] }
 ];
 export function GiftFinder({ products }: {
     products: Product[];

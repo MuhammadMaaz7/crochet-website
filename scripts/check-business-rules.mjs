@@ -1,4 +1,4 @@
-import assert from "node:assert/strict";import {productColourways} from "../lib/customisation.ts";import {existsSync} from "node:fs";import {defaults,enquirySchema,productSchema,settingsSchema} from "../lib/catalog.ts";
+import assert from "node:assert/strict";import {fitQuestion,pieceBrief,relatedPieces} from "../lib/product-guides.ts";import {productColourways} from "../lib/customisation.ts";import {existsSync} from "node:fs";import {defaults,enquirySchema,productSchema,settingsSchema} from "../lib/catalog.ts";
 const verifyAssets=existsSync(new URL("../public/assets",import.meta.url));
 for(const p of defaults){assert.equal(productSchema.safeParse(p).success,true,p.id);for(const image of [p.image,p.reference,...(p.gallery||[]).map(g=>g.image)].filter(Boolean))if(verifyAssets)assert.ok(existsSync(new URL("../public"+image,import.meta.url)),"Missing catalogue image: "+image);}
 assert.equal(new Set(defaults.map(p=>p.id)).size,defaults.length);
@@ -28,3 +28,17 @@ assert.equal(enquirySchema.safeParse({...request,contactMethod:"whatsapp",contac
 console.log("Order requests: product selection, custom briefs, reply-method and contact validation passed.");
 
 assert.equal(defaults.find(p=>p.id==="berry-keyring").published,false);
+
+const phone=defaults.find(p=>p.id==='phone-crossbody');
+assert.ok(phone&&phone.published&&phone.price===null);
+assert.match(fitQuestion(phone).label,/phone model/);
+assert.match(fitQuestion(defaults.find(p=>p.id==='two-flower-tissue')).label,/tissue-box/);
+assert.equal(fitQuestion(defaults.find(p=>p.id==='bow-keyring')),null);
+const brief=pieceBrief(phone,{colours:'Sage and cream',fit:'Phone including case: 16 × 8 cm',note:'Longer strap please'});
+for(const text of ['Purple phone crossbody','Sage and cream','16 × 8 cm','Longer strap'])assert.ok(brief.includes(text));
+assert.ok(brief.length<=500);
+const suggestions=relatedPieces(phone,defaults.filter(p=>p.published));
+assert.equal(suggestions[0].id,'bow-keyring');
+assert.ok(!suggestions.some(p=>p.id===phone.id||!p.published));
+assert.ok(!relatedPieces(phone,defaults.filter(p=>p.published).map(p=>({...p,availability:'Unavailable'}))).length);
+console.log('Catalogue extension: new product, fit guidance, preference brief and available related pieces passed.');

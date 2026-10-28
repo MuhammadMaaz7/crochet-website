@@ -198,7 +198,46 @@ export const defaults: Product[] = [
     "details": "Share your tissue-box dimensions so we can confirm fit. Flower colours and yarn are agreed with your quote.",
     "published": true,
     "styled": true
-  }
+  },
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "phone-crossbody",
+    "name": "Purple phone crossbody",
+    "category": "Bags & accessories",
+    "description": "A compact crochet phone bag in deep purple, lilac and white, with diagonal textured stitches, a button flap and a matching crochet strap. A little colour for your everyday essentials.",
+    "image": "/assets/phone-crossbody-styled.webp",
+    "details": "Share your phone model or dimensions including its case. Finished size, strap length, lining, yarn and colour options are agreed before making. Current availability and price are confirmed by quote."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "bow-keyring",
+    "name": "Blush bow keyring",
+    "category": "Little gifts",
+    "description": "A soft pink crochet bow with long, gently folded tails and silver-coloured keyring hardware. Flecks of colour in the yarn make each little bow its own.",
+    "image": "/assets/bow-keyring-styled.webp",
+    "details": "Confirm finished bow size, yarn and hardware with the maker. Ask about your preferred colours. An accessory for keys or a bag; not a toy for young children."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "two-flower-tissue",
+    "name": "Two-flower tissue cover",
+    "category": "For the home",
+    "description": "Cool grey crochet with an airy open stitch, finished with teal and navy flowers and mustard-yellow centres. A softer little detail for a desk or bedside table.",
+    "image": "/assets/two-flower-tissue-styled.webp",
+    "details": "Share your tissue-box length, width and height in centimetres. Fit, flower colours, yarn and making time are confirmed with your quote. Tissues and box contents are not assumed to be included."
+}
 ];
 export const settingsSchema = z.object({ whatsapp: z.string().regex(/^$|^[1-9][0-9]{7,14}$/), accepting: z.boolean(), notice: z.string().max(250), shipping: z.string().min(10).max(1500), returns: z.string().min(10).max(1500) });
 export type Settings = z.infer<typeof settingsSchema>;

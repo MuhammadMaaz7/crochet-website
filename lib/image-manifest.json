@@ -433,5 +433,98 @@
         "bytes": 53768
       }
     ]
+  },
+  "/assets/phone-crossbody-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-a51225b5d3d72734-160.webp",
+        "width": 160,
+        "bytes": 4796
+      },
+      {
+        "src": "/assets/pcs-043004ecd2c6478e-320.webp",
+        "width": 320,
+        "bytes": 18644
+      },
+      {
+        "src": "/assets/pcs-3ad5eb104a3c045a-480.webp",
+        "width": 480,
+        "bytes": 52986
+      },
+      {
+        "src": "/assets/pcs-e4679049dbc2a410-768.webp",
+        "width": 768,
+        "bytes": 144948
+      },
+      {
+        "src": "/assets/pcs-278b9786dbf3bcb9-1120.webp",
+        "width": 1120,
+        "bytes": 253748
+      }
+    ]
+  },
+  "/assets/bow-keyring-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-e114555cbf25a141-160.webp",
+        "width": 160,
+        "bytes": 2102
+      },
+      {
+        "src": "/assets/pcs-51103e201b928241-320.webp",
+        "width": 320,
+        "bytes": 6912
+      },
+      {
+        "src": "/assets/pcs-678bb6b094ebaca5-480.webp",
+        "width": 480,
+        "bytes": 13480
+      },
+      {
+        "src": "/assets/pcs-d143db1a78ceedb2-768.webp",
+        "width": 768,
+        "bytes": 28526
+      },
+      {
+        "src": "/assets/pcs-2ce311fc49f3b46d-1120.webp",
+        "width": 1120,
+        "bytes": 48342
+      }
+    ]
+  },
+  "/assets/two-flower-tissue-styled.webp": {
+    "width": 1144,
+    "height": 1375,
+    "variants": [
+      {
+        "src": "/assets/pcs-ab9a710632980cac-160.webp",
+        "width": 160,
+        "bytes": 5202
+      },
+      {
+        "src": "/assets/pcs-c644a002dc8521bd-320.webp",
+        "width": 320,
+        "bytes": 17250
+      },
+      {
+        "src": "/assets/pcs-94f08f5f15d1ca34-480.webp",
+        "width": 480,
+        "bytes": 34286
+      },
+      {
+        "src": "/assets/pcs-bd7152dbe75ea8f6-768.webp",
+        "width": 768,
+        "bytes": 71820
+      },
+      {
+        "src": "/assets/pcs-2cb832febd55bbd9-1120.webp",
+        "width": 1120,
+        "bytes": 115170
+      }
+    ]
   }
 }

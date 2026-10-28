@@ -5,16 +5,16 @@
 Warm cream, blush, sage and restrained lilac; dark green readable text and buttons. Rounded controls, photographic product cards, brief fades, tactile hover/press feedback and one-time section reveals. No autoplay video, continuous decorative animation, heavy 3D engine or full-screen loading animation. Reduced-motion users get the complete interface without movement. Islamabad is useful maker provenance and shipping context, not a limitation: keep it in the story and delivery details, rather than lead with geography.
 
 ## Catalogue
-Lead with floral tissue cover, coordinated dining set, golden fan bag, tulip bouquet, cream tulip pouch and bookmark. Keep the dining set as one configurable product. Berry keyring and penguin stay unpublished pending stronger photos. Eleven current designs remain visible.
+Lead with floral tissue cover, coordinated dining set, golden fan bag, tulip bouquet, cream tulip pouch and bookmark. Keep the dining set as one configurable product. Berry keyring and penguin stay unpublished pending stronger photos. Fourteen current designs remain visible, including the phone crossbody, bow keyring and two-flower tissue cover added in the catalogue expansion.
 
 Next archive-backed candidates, in priority order:
-1. Phone crossbody bag: clear practical use; verify phone fit, strap, lining, fastening and weight capacity.
+1. Phone crossbody bag: now listed by quote with a cleaned product photo and a phone-fit question; verify final strap, lining, fastening and load before acceptance.
 2. Initial keyring: simple personalised gift; verify supported letters, dimensions, hardware and colour range.
-3. Bow keyring: small gifting/add-on product; verify hardware, price and repeatable finish.
+3. Bow keyring: now listed by quote with a cleaned photo; verify hardware, price and repeatable finish.
 4. Crochet gajray: clear Mehndi/Mayun occasion; verify pair/single, fastening, fit, materials and deadline capacity.
 5. Cactus crossbody bag: distinctive custom design; verify capacity, strap, lining and production cost.
 
-These designs were identified in the prior PhotoCraftSquare-only Instagram audit. They are custom-request starting points, not confirmed stock listings. Do not turn archive/student/customer pieces into available products without maker approval. Obtain one clean hero photograph plus detail/scale views and current specifications for each before publishing a standalone listing. Do not manufacture catalogue breadth with invented products or unverified AI angles.
+These designs were identified in the prior PhotoCraftSquare-only Instagram audit. The phone bag and bow keyring now have photographed, quote-only listings; the remaining designs are custom-request starting points, not confirmed stock listings. Do not turn archive/student/customer pieces into available products without maker approval. Obtain one clean hero photograph plus detail/scale views and current specifications for each before publishing a standalone listing. Do not manufacture catalogue breadth with invented products or unverified AI angles.
 
 Colour priorities: sage/lilac/oat for floral covers; olive/mustard, rose/sage and teal/seafoam for dining. Existing previews are approximate concepts. For new products, show approved yarn swatches first and prepare product-specific images after the maker verifies the actual options. No arbitrary CSS tint or unsupported AR promise.
 

@@ -6,7 +6,7 @@ from pathlib import Path
 from PIL import Image, ImageOps
 import hashlib, json
 root=Path(__file__).resolve().parent.parent
-names=['green-cover-styled','dining-set-styled','fan-bag-styled','bouquet-styled','tulip-cream','tulip-pink','bookmark-styled','owl-styled','tissue-styled','whale-styled','tooth-styled','table-rose-preview','table-coastal-preview','cover-lilac-preview','cover-oat-preview']
+names=['green-cover-styled','dining-set-styled','fan-bag-styled','bouquet-styled','tulip-cream','tulip-pink','bookmark-styled','owl-styled','tissue-styled','whale-styled','tooth-styled','table-rose-preview','table-coastal-preview','cover-lilac-preview','cover-oat-preview','phone-crossbody-styled','bow-keyring-styled','two-flower-tissue-styled']
 manifest={}
 for name in names:
     src=root/'public/assets'/f'{name}.webp'
