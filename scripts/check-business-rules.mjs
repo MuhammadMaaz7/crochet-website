@@ -1,0 +1,13 @@
+import assert from "node:assert/strict";import {defaults,enquirySchema,productSchema,settingsSchema} from "../lib/catalog.ts";
+for(const p of defaults)assert.equal(productSchema.safeParse(p).success,true);
+assert.equal(productSchema.safeParse({...defaults[0],price:-1}).success,false);
+assert.equal(productSchema.safeParse({...defaults[0],image:"javascript:alert(1)"}).success,false);
+assert.equal(productSchema.safeParse({...defaults[0],image:"https://external.invalid/photo"}).success,false);
+assert.equal(settingsSchema.safeParse({whatsapp:"123",accepting:true,notice:"",shipping:"Shipping by quote",returns:"Terms confirmed before acceptance"}).success,false);
+const request={token:"12345678-1234-4234-8234-123456789012",name:"Test Buyer",contact:"test@example.invalid",city:"Islamabad",country:"Pakistan",idea:"Please quote a tulip pouch.",colours:"",budget:"",deadline:"",items:[{id:"tulip-cream",quantity:1}],consent:true,website:""};
+assert.equal(enquirySchema.safeParse(request).success,true);
+for(const quantity of [-1,0,51,1.2])assert.equal(enquirySchema.safeParse({...request,items:[{id:"tulip-cream",quantity}]}).success,false);
+assert.equal(enquirySchema.safeParse({...request,consent:false}).success,false);
+assert.equal(enquirySchema.safeParse({...request,website:"spam.invalid"}).success,false);
+assert.equal(enquirySchema.safeParse({...request,idea:"x".repeat(2001)}).success,false);
+console.log("Business-rule checks passed: products, media paths, price bounds, contact settings, quantities, consent, spam field and payload bounds.");
