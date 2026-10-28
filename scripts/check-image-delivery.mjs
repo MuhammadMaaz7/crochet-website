@@ -5,7 +5,7 @@ const manifest=JSON.parse(readFileSync(new URL('../lib/image-manifest.json',impo
 const withAssets=existsSync(new URL('../public/assets',import.meta.url));
 let total=0;
 for(const [original,photo] of Object.entries(manifest)){
-  assert.match(original,/^\/assets\/[a-z-]+\.webp$/);
+  assert.match(original,/^\/assets\/[a-z0-9-]+\.webp$/);
   let previous=0;
   for(const v of photo.variants){
     assert.ok(v.width>previous&&v.width<=photo.width);previous=v.width;

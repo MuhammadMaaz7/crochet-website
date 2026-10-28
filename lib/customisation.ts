@@ -25,7 +25,174 @@ const previews: Record<string, PreviewConfig> = {
             { name: "Lilac", image: "/assets/cover-lilac-preview.webp", swatches: ["#b3a0c4"], approximate: true },
             { name: "Oat", image: "/assets/cover-oat-preview.webp", swatches: ["#d9cba7"], approximate: true }
         ]
-    }
+    },
+    "mocha-bow-tote": {
+    "baseImage": "/assets/mocha-bow-tote-styled.webp",
+    "colourways": [
+        {
+            "name": "Mocha & cream",
+            "image": "/assets/mocha-bow-tote-styled.webp",
+            "swatches": [
+                "#97704e",
+                "#f3ead9"
+            ],
+            "approximate": false
+        },
+        {
+            "name": "Sage & cream",
+            "image": "/assets/tote-sage-preview.webp",
+            "swatches": [
+                "#87967c",
+                "#f3ead9"
+            ],
+            "approximate": true
+        }
+    ]
+},
+    "earth-tone-shoulder": {
+    "baseImage": "/assets/earth-tone-shoulder-styled.webp",
+    "colourways": [
+        {
+            "name": "Earthy mix",
+            "image": "/assets/earth-tone-shoulder-styled.webp",
+            "swatches": [
+                "#a58170",
+                "#aa3f35",
+                "#384b60"
+            ],
+            "approximate": false
+        },
+        {
+            "name": "Sage & lilac",
+            "image": "/assets/earth-pastel-preview.webp",
+            "swatches": [
+                "#87967c",
+                "#b599c1",
+                "#ead8c3"
+            ],
+            "approximate": true
+        }
+    ]
+},
+    "cactus-crossbody": {
+    "baseImage": "/assets/cactus-crossbody-styled.webp",
+    "colourways": [
+        {
+            "name": "Leaf green",
+            "image": "/assets/cactus-crossbody-styled.webp",
+            "swatches": [
+                "#688c38",
+                "#e4b449"
+            ],
+            "approximate": false
+        },
+        {
+            "name": "Soft teal",
+            "image": "/assets/cactus-teal-preview.webp",
+            "swatches": [
+                "#5c9791",
+                "#e4b449"
+            ],
+            "approximate": true
+        }
+    ]
+},
+    "marigold-gajra": {
+    "baseImage": "/assets/marigold-gajra-styled.webp",
+    "colourways": [
+        {
+            "name": "Marigold & white",
+            "image": "/assets/marigold-gajra-styled.webp",
+            "swatches": [
+                "#e7a137",
+                "#faf4e9"
+            ],
+            "approximate": false
+        },
+        {
+            "name": "Blush & white",
+            "image": "/assets/marigold-blush-preview.webp",
+            "swatches": [
+                "#ce8f9e",
+                "#faf4e9"
+            ],
+            "approximate": true
+        }
+    ]
+},
+    "rose-gajra": {
+    "baseImage": "/assets/rose-gajra-styled.webp",
+    "colourways": [
+        {
+            "name": "Red & ivory",
+            "image": "/assets/rose-gajra-styled.webp",
+            "swatches": [
+                "#9b2737",
+                "#f3ead9"
+            ],
+            "approximate": false
+        },
+        {
+            "name": "Lilac & ivory",
+            "image": "/assets/rose-lilac-preview.webp",
+            "swatches": [
+                "#ab91c0",
+                "#f3ead9"
+            ],
+            "approximate": true
+        }
+    ]
+},
+    "phone-crossbody": {
+    "baseImage": "/assets/phone-crossbody-styled.webp",
+    "colourways": [
+        {
+            "name": "Purple & lilac",
+            "image": "/assets/phone-crossbody-styled.webp",
+            "swatches": [
+                "#573879",
+                "#b4a0c8",
+                "#f5f0e5"
+            ],
+            "approximate": false
+        },
+        {
+            "name": "Sage & blush",
+            "image": "/assets/phone-sage-preview.webp",
+            "swatches": [
+                "#8a9b79",
+                "#d2a2b2",
+                "#f3ead9"
+            ],
+            "approximate": true
+        }
+    ]
+},
+    "two-flower-tissue": {
+    "baseImage": "/assets/two-flower-tissue-v2.webp",
+    "colourways": [
+        {
+            "name": "Grey & teal",
+            "image": "/assets/two-flower-tissue-v2.webp",
+            "swatches": [
+                "#bfc6c5",
+                "#258895",
+                "#283654"
+            ],
+            "approximate": false
+        },
+        {
+            "name": "Oat & rose",
+            "image": "/assets/two-flower-oat-preview.webp",
+            "swatches": [
+                "#d5c5a7",
+                "#c98fa2",
+                "#8b9b7a"
+            ],
+            "approximate": true
+        }
+    ]
+}
 };
 export function productColourways(product: Product): Colourway[] {
     const config = previews[product.id];

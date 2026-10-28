@@ -460,3 +460,22 @@ textarea{resize:vertical}
 @media(min-width:700px){.related-pieces{padding-block:50px}.related-pieces h2{font-size:43px}}
 
 .order-piece-preferences{margin:8px 0 12px;font-size:11px;line-height:1.6;max-width:340px}.order-piece-preferences summary{cursor:pointer;min-height:32px;text-decoration:underline;text-underline-offset:3px}.order-piece-preferences p{margin:4px 0 10px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* Photo palettes stay outside the product link so every control is accessible. */
+.tabs{flex-wrap:wrap}
+.product-card .product-link{height:auto}
+.product-image{position:relative}
+.card-preview-label{position:absolute;bottom:9px;left:9px;background:var(--oat);font-size:9px;padding:4px 8px;border-radius:20px}
+.card-colours{display:flex;align-items:center;gap:2px;margin-top:5px;flex-wrap:wrap;min-height:40px}
+.card-colours button{display:grid;place-items:center;width:36px;height:38px;border-radius:50%;padding:5px}
+.card-colours button>span{width:21px;height:21px;border-radius:50%;box-shadow:inset 0 0 0 1px #304b4222}
+.card-colours button[aria-pressed=true]>span{outline:1px solid var(--ink);outline-offset:3px}
+.card-colours>span{font-size:9px;color:var(--muted);margin-left:5px;line-height:1.4;max-width:85px}
+.gajra-quantity-picks{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.gajra-quantity-picks button{padding:9px 13px;min-height:42px;border:1px solid var(--line);border-radius:999px;font-size:12px}
+.gajra-quantity-picks button[aria-pressed=true]{background:var(--blush);border-color:var(--brick)}
+@media(min-width:700px){.card-colours>span{font-size:10px;max-width:110px}}
+
+.gajra-quantity{margin-bottom:22px}.gajra-quantity>label{margin-bottom:0}
+@media(max-width:699px){.tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.tabs button{grid-column:span 2;padding-inline:8px}.tabs button:nth-last-child(-n+2){grid-column:span 3}.card-colours>span{flex-basis:100%;margin:2px 0 0 5px;max-width:none}}
+@media(min-width:700px){.collection-controls{flex-wrap:wrap}.search-box{min-width:190px}}

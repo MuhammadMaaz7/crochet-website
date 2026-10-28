@@ -20,7 +20,7 @@ Requests save to D1 without email or WhatsApp. Email is a reply preference, not 
 
 Run `python scripts/optimise-images.py` (Pillow required) after changing approved source photos. Commit the regenerated manifest and image derivatives together to the hosted repository. New owner uploads fall back to their original URL until reviewed and optimised; arbitrary external images are not fetched. Product photos/derivatives, private research, customer data and credentials are excluded from the public GitHub source mirror. The mirror needs approved image assets restored for a complete visual build.
 
-The public collection currently has fourteen designs; berry and penguin are unpublished until suitable photos are available. Best home pieces, the golden bag and bouquet lead. Original-photo comparisons and process notes are absent from customer galleries. Approximate colour previews retain a short shade-variation label.
+The public collection currently has twenty designs; berry and penguin are unpublished until suitable photos are available. Best home pieces, the golden bag and bouquet lead. Original-photo comparisons and process notes are absent from customer galleries. Approximate colour previews retain a short shade-variation label.
 
 ## Checks
 - `node node_modules/typescript/bin/tsc --noEmit`
@@ -33,8 +33,17 @@ Browser QA covers product navigation, colour previews, custom requests, validati
 See `docs/launch-plan.md` for catalogue, hosting, domain, analytics and advertising decisions.
 
 ## Catalogue expansion
-Three photographed designs have been added: purple phone crossbody, blush bow keyring and grey two-flower tissue cover. Their source posts were reviewed within PhotoCraftSquare; backgrounds were edited with the built-in image tool and the outputs compared to the references. Photography remains subject to maker fidelity review. Source-photo comparisons stay internal. Eighteen known photos now have 84 responsive derivatives.
+Three photographed designs have been added: purple phone crossbody, blush bow keyring and grey two-flower tissue cover. Their source posts were reviewed within PhotoCraftSquare; backgrounds were edited with the built-in image tool and the outputs compared to the references. Photography remains subject to maker fidelity review. Source-photo comparisons stay internal. Thirty-one known photos now have 145 responsive derivatives.
 
 Product pages without prepared photo colourways have a colour-request choice, relevant fit question and optional maker note. The phone bag asks for model/dimensions including its case; tissue covers ask for box dimensions. These choices persist with selected-design notes and reach the stored request. A custom colour request does not digitally recolour that photo. Related products respect public catalogue data and unavailable status. Product routes have individual titles, descriptions and share-image metadata. Request-scoped catalogue memoisation avoids duplicate metadata/page reads.
 
 Requests support at most 12 distinct designs. Additional selection shows an explanation and the picker disables extra designs until a selected one is removed. Quantities remain separately editable. No current price, stock, material or dimensions are invented.
+
+## Occasion and larger-piece merchandising
+Six further quote-only listings: bow shoulder tote, colour-block shoulder bag, cactus crossbody, marigold gajra, rose/jasmine gajra and personalised bunting. The homepage leads with larger bags and celebration pieces; keyrings remain smaller gifts further down. An Occasion category is shared between the catalogue schema, storefront and owner editor.
+
+Nine designs have product-specific photo palette packs. Collection-card swatches change the actual photo, link to the selected palette and restore it on the detail page; share-image metadata also follows a recognised palette. Unknown palette query values fall back to the base product. Replacing a primary photo still disables its stale pack. Free-text colour requests do not claim live recolouring. Fit questions remain available on palette-enabled products.
+
+Gajra quantities count individual items (2 means one pair). Shortcut buttons offer 1, 2 or 6 and permit a quantity up to 50, subject to maker confirmation. Wrist size and colours enter per-product notes; the event date uses the existing request deadline. Bunting requires wording before opening an order request. Photos show actual observed design/detail, with approximate background/colour treatments requiring final maker review. See docs/catalogue-strategy.md for sourced commercial hypotheses and limits.
+
+Occasion orders show the event date directly on the details step. The date is retained across Back/Continue, appears in the contact review and optional handoff summary, and was verified in a saved local D1 request alongside two gajray, wrist measurement and the selected blush palette. Bunting empty wording was blocked in browser QA before adding it to a request. Mobile checks covered collection category layout, card swatches, palette-preserving navigation and sticky product form actions.

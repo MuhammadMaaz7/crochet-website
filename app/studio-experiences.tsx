@@ -11,15 +11,15 @@ export function Flower({ className = "" }: {
 export function StudioHero({ products }: {
     products: Product[];
 }) {
-    const main = products.find(p => p.id === "spring-tissue") || products[0];
-    const secondary = products.find(p => p.id === "golden-fan-bag");
+    const main = products.find(p => p.id === "mocha-bow-tote") || products[0];
+    const secondary = products.find(p => p.id === "marigold-gajra");
     if (!main)
         return null;
     return <section className="studio-hero">
     <div className="hero-writing">
       <p className="eyebrow">A LITTLE HANDMADE HAPPINESS</p>
-      <h1>Little things.<br /><em>Made personal.</em></h1>
-      <p className="hero-description">Crochet gifts & home pieces,<br className="desktop-break"/> made for you.</p>
+      <h1>Handmade joy.<br /><em>Made personal.</em></h1>
+      <p className="hero-description">Bags, celebrations & home pieces,<br className="desktop-break"/> made for you.</p>
     </div>
     <div className="hero-scrapbook">
       <a href={"/shop/" + main.id} className="hero-main-photo">
@@ -36,10 +36,11 @@ export function StudioHero({ products }: {
   </section>;
 }
 const interests = [
+    { name: "Celebrations", ids: ["marigold-gajra", "rose-gajra", "personalised-bunting"] },
     { name: "Book lovers", ids: ["tulip-bookmark", "tulip-cream", "forever-bouquet"] },
     { name: "Home lovers", ids: ["spring-tissue", "two-flower-tissue", "chai-table"] },
     { name: "Little surprises", ids: ["bow-keyring", "whale-keyring", "tooth-keepsake"] },
-    { name: "Everyday bags", ids: ["phone-crossbody", "golden-fan-bag", "tulip-cream"] }
+    { name: "Everyday bags", ids: ["mocha-bow-tote", "earth-tone-shoulder", "cactus-crossbody"] }
 ];
 export function GiftFinder({ products }: {
     products: Product[];
@@ -56,7 +57,7 @@ export function GiftFinder({ products }: {
     </div>
   </section>;
 }
-function ColourPicker({ colourways, selected, onSelect }: {
+export function ColourPicker({ colourways, selected, onSelect }: {
     colourways: Colourway[];
     selected: number;
     onSelect: (index: number) => void;
@@ -66,7 +67,7 @@ function ColourPicker({ colourways, selected, onSelect }: {
     <div className="colour-options">{colourways.map((c, i) => <button type="button" key={c.name} className={selected === i ? "selected" : ""} aria-pressed={selected === i} onClick={() => onSelect(i)}>
       <span className="yarn-swatches" aria-hidden="true">{c.swatches.map(colour => <i key={colour} style={{ backgroundColor: colour }}/>)}</span><span>{c.name}</span><b aria-hidden="true">{selected === i ? "✓" : ""}</b>
     </button>)}</div>
-    <p className="preview-note" role="status">{current.approximate ? "Photo colour preview · approximate yarn colours" : "Colour as pictured"}</p>
+    <p className="preview-note" role="status">{current.approximate ? "Colour concept · final yarn shades confirmed with you" : "Colour as pictured"}</p>
   </fieldset>;
 }
 export function ProductCustomizer({ product, colourways, selected, onSelect, onRequest, accepting }: {
@@ -130,6 +131,5 @@ export function ProductGallery({ product, colourway, onClearColourway, colourway
     {images.length>1&&<div className="gallery-thumbs" role="group" aria-label="Product photographs">
       {images.map((im, i) => <button key={im.image} onClick={() => { setIndex(i); onClearColourway(); }} className={!colourway && index === i ? "active" : ""} aria-pressed={!colourway && index === i}><ProductPhoto src={im.image} alt="" width="75" height="75" sizes="75px" loading="lazy"/><span>{im.label}</span></button>)}
     </div>}
-    {colourway&&<p className="preview-note" aria-live="polite">{colourway.name} · Final yarn shades may vary.</p>}
   </div>;
 }

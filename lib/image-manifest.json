@@ -496,34 +496,417 @@
       }
     ]
   },
-  "/assets/two-flower-tissue-styled.webp": {
-    "width": 1144,
-    "height": 1375,
+  "/assets/mocha-bow-tote-styled.webp": {
+    "width": 1024,
+    "height": 1536,
     "variants": [
       {
-        "src": "/assets/pcs-ab9a710632980cac-160.webp",
+        "src": "/assets/pcs-6319e4eec7033d9f-160.webp",
+        "width": 160,
+        "bytes": 6758
+      },
+      {
+        "src": "/assets/pcs-5ebb6f89dbff0231-320.webp",
+        "width": 320,
+        "bytes": 20218
+      },
+      {
+        "src": "/assets/pcs-2cc525891d9d9c80-480.webp",
+        "width": 480,
+        "bytes": 39234
+      },
+      {
+        "src": "/assets/pcs-e46ad56f111259f7-768.webp",
+        "width": 768,
+        "bytes": 82466
+      }
+    ]
+  },
+  "/assets/earth-tone-shoulder-styled.webp": {
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "src": "/assets/pcs-9752c575e381db1f-160.webp",
+        "width": 160,
+        "bytes": 4804
+      },
+      {
+        "src": "/assets/pcs-cdc53f8e93a1bd9c-320.webp",
+        "width": 320,
+        "bytes": 15236
+      },
+      {
+        "src": "/assets/pcs-d16c768e68604f2c-480.webp",
+        "width": 480,
+        "bytes": 29798
+      },
+      {
+        "src": "/assets/pcs-f7e23b1e98b1c424-768.webp",
+        "width": 768,
+        "bytes": 60456
+      }
+    ]
+  },
+  "/assets/cactus-crossbody-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-3e2b0cab50616271-160.webp",
+        "width": 160,
+        "bytes": 2062
+      },
+      {
+        "src": "/assets/pcs-b3974a0ff9637ceb-320.webp",
+        "width": 320,
+        "bytes": 7096
+      },
+      {
+        "src": "/assets/pcs-1c1b3a5e3f9217f7-480.webp",
+        "width": 480,
+        "bytes": 14206
+      },
+      {
+        "src": "/assets/pcs-58783f19877b3b2b-768.webp",
+        "width": 768,
+        "bytes": 32292
+      },
+      {
+        "src": "/assets/pcs-91947ad2fbc611f6-1120.webp",
+        "width": 1120,
+        "bytes": 62204
+      }
+    ]
+  },
+  "/assets/bunting-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-fc4ddd038fc77437-160.webp",
         "width": 160,
         "bytes": 5202
       },
       {
-        "src": "/assets/pcs-c644a002dc8521bd-320.webp",
+        "src": "/assets/pcs-1ffcaa324e4d0edd-320.webp",
         "width": 320,
-        "bytes": 17250
+        "bytes": 22198
       },
       {
-        "src": "/assets/pcs-94f08f5f15d1ca34-480.webp",
+        "src": "/assets/pcs-dc4b2ac3dcac3ed4-480.webp",
         "width": 480,
-        "bytes": 34286
+        "bytes": 53614
       },
       {
-        "src": "/assets/pcs-bd7152dbe75ea8f6-768.webp",
+        "src": "/assets/pcs-21c923a7554456c8-768.webp",
         "width": 768,
-        "bytes": 71820
+        "bytes": 117538
       },
       {
-        "src": "/assets/pcs-2cb832febd55bbd9-1120.webp",
+        "src": "/assets/pcs-71be527c4f7615e0-1120.webp",
         "width": 1120,
-        "bytes": 115170
+        "bytes": 191440
+      }
+    ]
+  },
+  "/assets/marigold-gajra-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-f6f775e6affa5f77-160.webp",
+        "width": 160,
+        "bytes": 2874
+      },
+      {
+        "src": "/assets/pcs-79858cf6212bd59a-320.webp",
+        "width": 320,
+        "bytes": 8732
+      },
+      {
+        "src": "/assets/pcs-74be2b131d967e5c-480.webp",
+        "width": 480,
+        "bytes": 17986
+      },
+      {
+        "src": "/assets/pcs-2b2fe97af6330c42-768.webp",
+        "width": 768,
+        "bytes": 39394
+      },
+      {
+        "src": "/assets/pcs-6e908d15efbb8c10-1120.webp",
+        "width": 1120,
+        "bytes": 70840
+      }
+    ]
+  },
+  "/assets/rose-gajra-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-4c7c49ec5eaac641-160.webp",
+        "width": 160,
+        "bytes": 3740
+      },
+      {
+        "src": "/assets/pcs-d353f3380003bd8e-320.webp",
+        "width": 320,
+        "bytes": 10670
+      },
+      {
+        "src": "/assets/pcs-096b7a332223e0dc-480.webp",
+        "width": 480,
+        "bytes": 19940
+      },
+      {
+        "src": "/assets/pcs-ab745d4564e8dba5-768.webp",
+        "width": 768,
+        "bytes": 42698
+      },
+      {
+        "src": "/assets/pcs-761e4ac2e17a7d9b-1120.webp",
+        "width": 1120,
+        "bytes": 75494
+      }
+    ]
+  },
+  "/assets/two-flower-tissue-v2.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-776cf9abc5b376eb-160.webp",
+        "width": 160,
+        "bytes": 3494
+      },
+      {
+        "src": "/assets/pcs-68c65bd4a90efc3f-320.webp",
+        "width": 320,
+        "bytes": 11424
+      },
+      {
+        "src": "/assets/pcs-0751ee6f9d4f8d74-480.webp",
+        "width": 480,
+        "bytes": 22284
+      },
+      {
+        "src": "/assets/pcs-7aceb65ce5ce1bd5-768.webp",
+        "width": 768,
+        "bytes": 47172
+      },
+      {
+        "src": "/assets/pcs-b8b87854209bd88d-1120.webp",
+        "width": 1120,
+        "bytes": 77226
+      }
+    ]
+  },
+  "/assets/phone-sage-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-b06252a473cd67d3-160.webp",
+        "width": 160,
+        "bytes": 4702
+      },
+      {
+        "src": "/assets/pcs-af5bdacc5b408d37-320.webp",
+        "width": 320,
+        "bytes": 18618
+      },
+      {
+        "src": "/assets/pcs-3d74e434f6cc7526-480.webp",
+        "width": 480,
+        "bytes": 47950
+      },
+      {
+        "src": "/assets/pcs-a01ae1ebb87c5b55-768.webp",
+        "width": 768,
+        "bytes": 128438
+      },
+      {
+        "src": "/assets/pcs-f59f058be15b5724-1120.webp",
+        "width": 1120,
+        "bytes": 222096
+      }
+    ]
+  },
+  "/assets/tote-sage-preview.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/pcs-4bb6bbdbdbe6b6bd-160.webp",
+        "width": 160,
+        "bytes": 6658
+      },
+      {
+        "src": "/assets/pcs-7945c8a21ae98fd7-320.webp",
+        "width": 320,
+        "bytes": 19572
+      },
+      {
+        "src": "/assets/pcs-f4baab5ed9c49b0d-480.webp",
+        "width": 480,
+        "bytes": 37526
+      },
+      {
+        "src": "/assets/pcs-30f597cb10b8eb83-768.webp",
+        "width": 768,
+        "bytes": 75102
+      }
+    ]
+  },
+  "/assets/earth-pastel-preview.webp": {
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "src": "/assets/pcs-18bf2debbd6573cf-160.webp",
+        "width": 160,
+        "bytes": 4544
+      },
+      {
+        "src": "/assets/pcs-d58b86bf5503ec0e-320.webp",
+        "width": 320,
+        "bytes": 14780
+      },
+      {
+        "src": "/assets/pcs-c191d366ad79ac98-480.webp",
+        "width": 480,
+        "bytes": 29038
+      },
+      {
+        "src": "/assets/pcs-faa638411e3ead5a-768.webp",
+        "width": 768,
+        "bytes": 57614
+      }
+    ]
+  },
+  "/assets/cactus-teal-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-e1bcf7557feb20e0-160.webp",
+        "width": 160,
+        "bytes": 1914
+      },
+      {
+        "src": "/assets/pcs-4ccdb2c7bd5c5e35-320.webp",
+        "width": 320,
+        "bytes": 6424
+      },
+      {
+        "src": "/assets/pcs-0b793b8a4f63dc40-480.webp",
+        "width": 480,
+        "bytes": 12412
+      },
+      {
+        "src": "/assets/pcs-d32816581005c5bf-768.webp",
+        "width": 768,
+        "bytes": 26532
+      },
+      {
+        "src": "/assets/pcs-8a9b8723c39a80b9-1120.webp",
+        "width": 1120,
+        "bytes": 45604
+      }
+    ]
+  },
+  "/assets/marigold-blush-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-8821a292e585074e-160.webp",
+        "width": 160,
+        "bytes": 3042
+      },
+      {
+        "src": "/assets/pcs-991828dc0c54045b-320.webp",
+        "width": 320,
+        "bytes": 9314
+      },
+      {
+        "src": "/assets/pcs-afee92d07c709810-480.webp",
+        "width": 480,
+        "bytes": 19084
+      },
+      {
+        "src": "/assets/pcs-b80688385be8d51a-768.webp",
+        "width": 768,
+        "bytes": 41620
+      },
+      {
+        "src": "/assets/pcs-47380075f92d0c0b-1120.webp",
+        "width": 1120,
+        "bytes": 70846
+      }
+    ]
+  },
+  "/assets/rose-lilac-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-10108f069e7c1047-160.webp",
+        "width": 160,
+        "bytes": 3788
+      },
+      {
+        "src": "/assets/pcs-d1a9434b97c63338-320.webp",
+        "width": 320,
+        "bytes": 11142
+      },
+      {
+        "src": "/assets/pcs-2560930f1375cfa0-480.webp",
+        "width": 480,
+        "bytes": 20800
+      },
+      {
+        "src": "/assets/pcs-071662e7363f3674-768.webp",
+        "width": 768,
+        "bytes": 42912
+      },
+      {
+        "src": "/assets/pcs-b225940279224740-1120.webp",
+        "width": 1120,
+        "bytes": 72330
+      }
+    ]
+  },
+  "/assets/two-flower-oat-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-ef5f48b9c497686d-160.webp",
+        "width": 160,
+        "bytes": 3322
+      },
+      {
+        "src": "/assets/pcs-eb80b1c08262ef2e-320.webp",
+        "width": 320,
+        "bytes": 11078
+      },
+      {
+        "src": "/assets/pcs-fec6fac78d90c6ec-480.webp",
+        "width": 480,
+        "bytes": 21758
+      },
+      {
+        "src": "/assets/pcs-c1269435e172d35a-768.webp",
+        "width": 768,
+        "bytes": 45058
+      },
+      {
+        "src": "/assets/pcs-8a16bc9a74cb0318-1120.webp",
+        "width": 1120,
+        "bytes": 72262
       }
     ]
   }

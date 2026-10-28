@@ -35,10 +35,17 @@ assert.match(fitQuestion(phone).label,/phone model/);
 assert.match(fitQuestion(defaults.find(p=>p.id==='two-flower-tissue')).label,/tissue-box/);
 assert.equal(fitQuestion(defaults.find(p=>p.id==='bow-keyring')),null);
 const brief=pieceBrief(phone,{colours:'Sage and cream',fit:'Phone including case: 16 × 8 cm',note:'Longer strap please'});
-for(const text of ['Purple phone crossbody','Sage and cream','16 × 8 cm','Longer strap'])assert.ok(brief.includes(text));
+for(const text of ['Granny-stitch phone bag','Sage and cream','16 × 8 cm','Longer strap'])assert.ok(brief.includes(text));
 assert.ok(brief.length<=500);
 const suggestions=relatedPieces(phone,defaults.filter(p=>p.published));
 assert.equal(suggestions[0].id,'bow-keyring');
 assert.ok(!suggestions.some(p=>p.id===phone.id||!p.published));
 assert.ok(!relatedPieces(phone,defaults.filter(p=>p.published).map(p=>({...p,availability:'Unavailable'}))).length);
 console.log('Catalogue extension: new product, fit guidance, preference brief and available related pieces passed.');
+
+for(const id of ['mocha-bow-tote','earth-tone-shoulder','cactus-crossbody','marigold-gajra','rose-gajra','personalised-bunting']){const p=defaults.find(p=>p.id===id);assert.ok(p?.published&&p.price===null,id);}
+assert.equal(defaults.filter(p=>p.published).length,20);
+assert.equal(fitQuestion(defaults.find(p=>p.id==='personalised-bunting')).required,true);
+assert.match(fitQuestion(defaults.find(p=>p.id==='marigold-gajra')).label,/Wrist/);
+for(const id of ['phone-crossbody','mocha-bow-tote','marigold-gajra','rose-gajra','two-flower-tissue'])assert.ok(productColourways(defaults.find(p=>p.id===id)).some(c=>c.approximate),id);
+console.log('Occasion catalogue: six photographed additions, required bunting wording, wrist sizing and product-specific colour packs passed.');

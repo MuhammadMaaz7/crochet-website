@@ -1,5 +1,6 @@
 import { z } from "zod";
-export const productSchema = z.object({ id: z.string().regex(/^[a-z0-9-]{1,60}$/), name: z.string().trim().min(2).max(100), category: z.enum(["Little gifts", "For the home", "Bags & accessories"]), description: z.string().trim().min(10).max(2000), image: z.string().regex(/^\/(assets\/[a-zA-Z0-9_.-]+|media\/[a-zA-Z0-9-]+)$/), reference: z.string().regex(/^\/assets\/[a-zA-Z0-9_.-]+$/).optional(), gallery: z.array(z.object({ image: z.string().regex(/^\/(assets\/[a-zA-Z0-9_.-]+|media\/[a-zA-Z0-9-]+)$/), label: z.string().max(80) })).max(8).optional(), price: z.number().int().min(1).max(1000000).nullable(), availability: z.enum(["Enquire", "Made to order", "Ready to ship", "Unavailable"]), leadTime: z.string().max(100), details: z.string().max(1000), published: z.boolean(), styled: z.boolean() });
+export const categories=["Little gifts","For the home","Bags & accessories","Occasion pieces"] as const;
+export const productSchema = z.object({ id: z.string().regex(/^[a-z0-9-]{1,60}$/), name: z.string().trim().min(2).max(100), category: z.enum(categories), description: z.string().trim().min(10).max(2000), image: z.string().regex(/^\/(assets\/[a-zA-Z0-9_.-]+|media\/[a-zA-Z0-9-]+)$/), reference: z.string().regex(/^\/assets\/[a-zA-Z0-9_.-]+$/).optional(), gallery: z.array(z.object({ image: z.string().regex(/^\/(assets\/[a-zA-Z0-9_.-]+|media\/[a-zA-Z0-9-]+)$/), label: z.string().max(80) })).max(8).optional(), price: z.number().int().min(1).max(1000000).nullable(), availability: z.enum(["Enquire", "Made to order", "Ready to ship", "Unavailable"]), leadTime: z.string().max(100), details: z.string().max(1000), published: z.boolean(), styled: z.boolean() });
 export type Product = z.infer<typeof productSchema>;
 export const defaults: Product[] = [
   {
@@ -109,7 +110,7 @@ export const defaults: Product[] = [
     "id": "chai-table",
     "name": "Crochet dining set",
     "category": "For the home",
-    "description": "A coordinated crochet runner, mats and coasters in olive, mustard and cream. Textured shell stitches turn everyday tea into a little occasion.",
+    "description": "A coordinated crochet runner, mats and coasters. Textured shell stitches turn everyday tea into a little occasion.",
     "image": "/assets/dining-set-styled.webp",
     "details": "Choose the pieces and quantities you need. Quote depends on size, yarn and set contents. Crockery, furniture and glassware are styling props.",
     "reference": "/assets/dining-set-original.webp",
@@ -189,7 +190,7 @@ export const defaults: Product[] = [
     "id": "spring-tissue",
     "name": "Floral tissue cover",
     "category": "For the home",
-    "description": "A sage-green crochet tissue-box cover with an open textured stitch and five bright flowers. A little handmade garden for a bedside table or a favourite corner.",
+    "description": "A crochet tissue-box cover with an open textured stitch and five bright flowers. A little handmade garden for a bedside table or a favourite corner.",
     "image": "/assets/green-cover-styled.webp",
     "reference": "/assets/green-cover-original.webp",
     "price": null,
@@ -206,9 +207,9 @@ export const defaults: Product[] = [
     "published": true,
     "styled": true,
     "id": "phone-crossbody",
-    "name": "Purple phone crossbody",
+    "name": "Granny-stitch phone bag",
     "category": "Bags & accessories",
-    "description": "A compact crochet phone bag in deep purple, lilac and white, with diagonal textured stitches, a button flap and a matching crochet strap. A little colour for your everyday essentials.",
+    "description": "A compact crochet phone bag with diagonal textured stitches, a button flap and a matching crochet strap. A little colour for your everyday essentials.",
     "image": "/assets/phone-crossbody-styled.webp",
     "details": "Share your phone model or dimensions including its case. Finished size, strap length, lining, yarn and colour options are agreed before making. Current availability and price are confirmed by quote."
 },
@@ -234,9 +235,87 @@ export const defaults: Product[] = [
     "id": "two-flower-tissue",
     "name": "Two-flower tissue cover",
     "category": "For the home",
-    "description": "Cool grey crochet with an airy open stitch, finished with teal and navy flowers and mustard-yellow centres. A softer little detail for a desk or bedside table.",
-    "image": "/assets/two-flower-tissue-styled.webp",
+    "description": "Airy open-stitch crochet, finished with two contrasting flowers and mustard-yellow centres. A softer little detail for a desk or bedside table.",
+    "image": "/assets/two-flower-tissue-v2.webp",
     "details": "Share your tissue-box length, width and height in centimetres. Fit, flower colours, yarn and making time are confirmed with your quote. Tissues and box contents are not assumed to be included."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "mocha-bow-tote",
+    "name": "Bow shoulder tote",
+    "category": "Bags & accessories",
+    "description": "An airy crochet tote with integrated shoulder straps and an oversized cream bow. A statement piece for everyday outings, with the stitchwork left beautifully visible.",
+    "image": "/assets/mocha-bow-tote-styled.webp",
+    "details": "Finished dimensions, strap drop, lining, fastening and carrying capacity are confirmed with the maker. The open-stitch design is not claimed to secure loose valuables or protect a laptop."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "earth-tone-shoulder",
+    "name": "Colour-block shoulder bag",
+    "category": "Bags & accessories",
+    "description": "Chunky crochet in layered colour bands, with an open textured shoulder strap. A colour-rich bag with an easy everyday feel.",
+    "image": "/assets/earth-tone-shoulder-styled.webp",
+    "details": "Confirm usable dimensions, lining, fastening, strap drop and carrying capacity before acceptance. Colour placement can vary with yarn and agreed customisation."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "cactus-crossbody",
+    "name": "Cactus crossbody",
+    "category": "Bags & accessories",
+    "description": "A cactus-shaped crochet bag with raised bobble texture, a long crochet strap and little golden hanging details. A playful statement with a practical purpose.",
+    "image": "/assets/cactus-crossbody-styled.webp",
+    "details": "Confirm usable capacity, opening, lining and strap length. The shaped silhouette does not imply a standard phone fit. Custom colours and final construction are agreed with your quote."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "marigold-gajra",
+    "name": "Marigold gajra",
+    "category": "Occasion pieces",
+    "description": "A ruffled crochet marigold with a soft white floral band. A keepsake wrist piece for Mayun, Mehndi or a celebration that calls for something handmade.",
+    "image": "/assets/marigold-gajra-styled.webp",
+    "details": "Choose a single piece, a pair or a group quantity. Share wrist circumference and your event date. Fit, fastening, exact materials, palette and making capacity are confirmed before acceptance. Quantity means individual gajray, not pairs."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "rose-gajra",
+    "name": "Rose & jasmine gajra",
+    "category": "Occasion pieces",
+    "description": "Crochet roses among soft white puffed blossoms. A floral wrist accessory to coordinate with your outfit, request as a pair, or share across a celebration.",
+    "image": "/assets/rose-gajra-styled.webp",
+    "details": "The photo shows a pair for styling; the order quantity counts individual gajray. Select 2 for a pair. Wrist fit, fastening, materials, colours and event timing are confirmed by quote."
+},
+  {
+    "price": null,
+    "availability": "Enquire",
+    "leadTime": "Confirmed with your quote",
+    "published": true,
+    "styled": true,
+    "id": "personalised-bunting",
+    "name": "Personalised crochet bunting",
+    "category": "Occasion pieces",
+    "description": "Personalised crochet flags for birthdays and celebrations. Shown as a letter detail; we’ll agree your wording, colours and full banner length.",
+    "image": "/assets/bunting-styled.webp",
+    "details": "Photo shows a lettered-flag detail, not the complete finished banner. Quote depends on wording, flag count, flag size, hanging length and colours. These are agreed before making. Keep cords and hanging decor away from young children."
 }
 ];
 export const settingsSchema = z.object({ whatsapp: z.string().regex(/^$|^[1-9][0-9]{7,14}$/), accepting: z.boolean(), notice: z.string().max(250), shipping: z.string().min(10).max(1500), returns: z.string().min(10).max(1500) });
