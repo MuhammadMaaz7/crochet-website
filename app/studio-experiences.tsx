@@ -2,43 +2,134 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Product } from "../lib/catalog";
+import type { Colourway } from "../lib/customisation";
 export function Flower({ className = "" }: {
     className?: string;
-}) { return <svg className={className} viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 34C28-5 4 27 33 45-9 49 8 85 40 64c-8 42 33 42 24 0 34 22 51-15 10-19C103 26 76-5 56 34Z" fill="currentColor"/><circle cx="51" cy="49" r="10" fill="var(--oat)"/></svg>; }
-export function StudioHero({ products, onCustom }: {
-    products: Product[];
-    onCustom: () => void;
 }) {
-    const ids = ["spring-tissue", "golden-fan-bag", "penguin", "tulip-cream"];
-    const featured = ids.map(id => products.find(p => p.id === id)).filter((p): p is Product => Boolean(p));
-    const [active, setActive] = useState(0);
-    const current = featured[active] || featured[0];
-    if (!current)
-        return null;
-    return <section className="studio-hero"><div className="hero-writing"><p className="eyebrow"><span className="live-dot"/> A SMALL CROCHET STUDIO IN ISLAMABAD</p><h1>A little yarn.<br />A lot of <span className="joy-word">joy.<svg viewBox="0 0 240 22" aria-hidden="true"><path d="M4 14Q112-8 235 11M10 20Q120 4 224 17"/></svg></span></h1><p>For your favourite people.<br />For your everyday little rituals.<br />Handmade to feel like <i>you.</i></p><div className="hero-actions"><a href="#collection" className="button">Find your happy thing <span>↗</span></a><button className="text-button" onClick={onCustom}>Have an idea? Let’s make it.</button></div><div className="hero-picker"><span>Pull a little thread ↓</span><div role="group" aria-label="Explore featured pieces">{featured.map((p, i) => <button key={p.id} aria-label={"Feature " + p.name} aria-pressed={active === i} className={active === i ? "selected" : ""} onClick={() => setActive(i)}><img src={p.image} alt="" width="52" height="52"/></button>)}</div></div></div><div className={"hero-scrapbook mood-" + active}><svg className="yarn-trail" viewBox="0 0 650 650" fill="none" aria-hidden="true"><path d="M7 556C98 606 171 566 101 498S3 391 99 373 275 473 285 348 555 73 617 157 523 278 524 205 630 103 651 62"/></svg><div className="hero-stamp">A small thing.<br /><b>A lovely feeling.</b><Flower /></div><Link href={"/shop/" + current.id} className="hero-main-photo" key={current.id}><img src={current.image} alt={current.name} width="950" height="950" fetchPriority="high"/><span><small>MEET THIS PIECE</small><b>{current.name}</b><i>↗</i></span></Link>{featured.length > 1 && <button className="hero-mini-photo" aria-label={"Feature " + featured[(active + 1) % featured.length].name} onClick={() => setActive((active + 1) % featured.length)}><img src={featured[(active + 1) % featured.length].image} alt={featured[(active + 1) % featured.length].name} width="220" height="220"/><span>A little more lovely ↗</span></button>}<span className="handwritten hero-note">Made one stitch<br />at a time.<svg viewBox="0 0 100 65" aria-hidden="true"><path d="M5 3Q8 59 86 45m-14-12 18 12-16 13"/></svg></span></div></section>;
+    return <svg className={className} viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M50 34C28-5 4 27 33 45-9 49 8 85 40 64c-8 42 33 42 24 0 34 22 51-15 10-19C103 26 76-5 56 34Z" fill="currentColor"/><circle cx="51" cy="49" r="10" fill="var(--oat)"/></svg>;
 }
-const interests = [{ name: "A book lover", note: "For their next chapter", ids: ["tulip-bookmark", "tulip-cream", "forever-bouquet"], icon: "01" }, { name: "A homebody", note: "For their favourite corner", ids: ["spring-tissue", "chai-table", "owl-wall"], icon: "02" }, { name: "A little character", note: "For someone full of personality", ids: ["penguin", "whale-keyring", "tooth-keepsake", "berry-keyring"], icon: "03" }, { name: "Out & about", note: "For their everyday adventures", ids: ["golden-fan-bag", "tulip-pink", "berry-keyring"], icon: "04" }];
-export function GiftFinder({ products, onPick }: {
+export function StudioHero({ products }: {
     products: Product[];
-    onPick: (id: string) => void;
+}) {
+    const main = products.find(p => p.id === "spring-tissue") || products[0];
+    const secondary = products.find(p => p.id === "golden-fan-bag");
+    if (!main)
+        return null;
+    return <section className="studio-hero">
+    <div className="hero-writing">
+      <p className="eyebrow">HANDMADE IN ISLAMABAD</p>
+      <h1>Little things.<br /><em>Made personal.</em></h1>
+      <p className="hero-description">Crochet gifts & home pieces,<br className="desktop-break"/> made for you.</p>
+    </div>
+    <div className="hero-scrapbook">
+      <Link href={"/shop/" + main.id} className="hero-main-photo">
+        <img src={main.image} alt={main.name} width="900" height="900" fetchPriority="high"/>
+        <span>{main.name}<b aria-hidden="true">↗</b></span>
+      </Link>
+      {secondary && <Link href={"/shop/" + secondary.id} className="hero-mini-photo">
+        <img src={secondary.image} alt={secondary.name} width="280" height="280"/>
+        <span>{secondary.name} ↗</span>
+      </Link>}
+      <Flower className="hero-flower"/>
+    </div>
+    <div className="hero-actions"><a href="#collection" className="button">Explore the collection <span aria-hidden="true">↗</span></a><p>Handmade · Custom colours welcome</p></div>
+  </section>;
+}
+const interests = [
+    { name: "Book lovers", ids: ["tulip-bookmark", "tulip-cream", "forever-bouquet"] },
+    { name: "Home lovers", ids: ["spring-tissue", "chai-table", "owl-wall"] },
+    { name: "Little surprises", ids: ["whale-keyring", "tooth-keepsake", "forever-bouquet"] },
+    { name: "Everyday bags", ids: ["golden-fan-bag", "tulip-cream", "tulip-pink"] }
+];
+export function GiftFinder({ products }: {
+    products: Product[];
 }) {
     const [interest, setInterest] = useState(0);
-    const suggestions = interests[interest].ids.map(id => products.find(p => p.id === id)).filter((p): p is Product => Boolean(p) && p?.availability !== "Unavailable").slice(0, 3);
-    return <section className="gift-finder wrap" id="gift-finder"><div className="finder-intro"><p className="eyebrow">THOUGHTFUL, WITHOUT THE OVERTHINKING</p><h2>What’s their<br /><em>kind of lovely?</em></h2><p>Start with a little thing they love.<br />We’ll find a few pieces to match.</p><Flower className="finder-flower"/></div><div className="finder-body"><div className="interest-tabs" role="group" aria-label="Find a gift by interest">{interests.map((x, i) => <button key={x.name} aria-pressed={interest === i} className={interest === i ? "active" : ""} onClick={() => setInterest(i)}><span>{x.icon}</span>{x.name}<i>↗</i></button>)}</div><p className="finder-note" aria-live="polite">{interests[interest].note} · {suggestions.length} studio ideas</p><div className="finder-results">{suggestions.map(p => <article key={p.id}><Link href={"/shop/" + p.id}><img src={p.image} alt={p.name} width="350" height="420" loading="lazy"/><h3>{p.name}</h3></Link><button className="text-button" onClick={() => onPick(p.id)}>Add to my picks ＋</button></article>)}</div></div></section>;
+    const suggestions = interests[interest].ids.map(id => products.find(p => p.id === id)).filter((p): p is Product => !!p && p.availability !== "Unavailable");
+    return <section className="gift-finder wrap" id="gift-finder">
+    <div className="section-heading"><div><p className="eyebrow">A LITTLE HELP CHOOSING</p><h2>A gift for <em>their kind of day.</em></h2></div></div>
+    <div className="interest-tabs" role="group" aria-label="Find gifts by interest">
+      {interests.map((x, i) => <button key={x.name} aria-pressed={interest === i} className={interest === i ? "active" : ""} onClick={() => setInterest(i)}>{x.name}</button>)}
+    </div>
+    <div className="finder-results" aria-live="polite">
+      {suggestions.map(p => <Link key={p.id} href={"/shop/" + p.id} className="gift-product"><img src={p.image} alt={p.name} width="350" height="350" loading="lazy"/><div><h3>{p.name}</h3><span>View product ↗</span></div></Link>)}
+    </div>
+  </section>;
 }
-const palettes = [{ name: "Chai & sunshine", colours: ["#b88527", "#7b873c", "#f3e2b3"] }, { name: "Rose garden", colours: ["#ae596d", "#5c775c", "#f5d6d3"] }, { name: "Coastal morning", colours: ["#397e83", "#a6cdca", "#f0e5c9"] }, { name: "Your own colours", colours: ["#b68a52", "#e3cba6", "#ede6da"] }];
-export function TableStudio({ onPlan }: {
-    onPlan: (idea: string, colours: string, id?: string) => void;
+function ColourPicker({ colourways, selected, onSelect }: {
+    colourways: Colourway[];
+    selected: number;
+    onSelect: (index: number) => void;
 }) {
-    const [palette, setPalette] = useState(0), [seats, setSeats] = useState(4), [runner, setRunner] = useState(true), [coasters, setCoasters] = useState(true);
-    const p = palettes[palette];
-    return <section className="table-studio" id="colour-studio"><div className="table-stage"><div className="table-stage-label"><span>THE COLOUR WORKTABLE</span><span>Try a combination ↙</span></div><div className="table-preview"><svg viewBox="0 0 640 430" role="img" aria-label={"Illustrative table plan: " + seats + " mats" + (runner ? ", one runner" : "") + (coasters ? ", " + seats + " coasters" : "") + " in " + p.name}><defs><pattern id="stitches" width="9" height="9" patternUnits="userSpaceOnUse"><path d="m1 1 3 5 3-5" stroke="#ffffff" opacity=".23" strokeWidth="1.2" fill="none"/></pattern><pattern id="table-stripes" width="90" height="60" patternUnits="userSpaceOnUse"><path d="M0 0h90v20H0Z" fill={p.colours[0]}/><path d="M0 20h90v20H0Z" fill={p.colours[1]}/><path d="M0 40h90v20H0Z" fill={p.colours[2]}/></pattern></defs><rect x="35" y="35" width="570" height="360" rx="110" fill="#d6ae7e"/><rect x="48" y="48" width="544" height="334" rx="99" fill="#e0bb8b"/>{runner && <g><rect x="85" y="170" width="470" height="90" rx="6" fill="url(#table-stripes)"/><rect x="85" y="170" width="470" height="90" fill="url(#stitches)"/></g>}{Array.from({ length: seats }, (_, i) => { const side = i % 2; const column = Math.floor(i / 2); const x = seats === 2 ? 275 : seats === 4 ? 180 + column * 185 : 110 + column * 160; const y = side ? 280 : 68; return <g key={i}><rect x={x - 35} y={y - 12} width="124" height="88" rx="9" fill={p.colours[side]}/><rect x={x - 35} y={y - 12} width="124" height="88" rx="9" fill="url(#stitches)"/><circle cx={x + 26} cy={y + 31} r="29" fill="#fff9ed"/><circle cx={x + 26} cy={y + 31} r="22" fill="none" stroke="#e2d9c4"/>{coasters && <g><circle cx={x + 76} cy={side ? y + 82 : y - 18} r="16" fill={p.colours[0]}/><circle cx={x + 76} cy={side ? y + 82 : y - 18} r="10" fill="#fff7de"/><circle cx={x + 76} cy={side ? y + 82 : y - 18} r="6" fill="#a26840"/></g>}</g>; })}</svg></div><p className="handwritten">Make room for a little handmade.</p><p className="caption">Illustrative colour plan · see the actual crochet below</p><Link href="/shop/chai-table" className="actual-stitches"><img src="/assets/dining-detail-original.webp" alt="Actual olive, mustard and cream crochet table-set stitches" width="100" height="100" loading="lazy"/><span>Real yarn. Real stitches.<br /><b>Explore the table collection ↗</b></span></Link></div><div className="table-options"><p className="eyebrow">LET’S SET YOUR TABLE</p><h2>A little more<br /><em>your cup of tea.</em></h2><p>Play with a palette. Set a few places.<br />Send us the combination you have in mind.</p><fieldset><legend>01 / Choose a colour story</legend><div className="palette-list">{palettes.map((x, i) => <button key={x.name} aria-pressed={palette === i} className={palette === i ? "active" : ""} onClick={() => setPalette(i)}><span className="yarn-swatches">{x.colours.map(c => <i key={c} style={{ background: c }}/>)}</span><span>{x.name}</span>{palette === i && <b>✓</b>}</button>)}</div></fieldset><fieldset><legend>02 / Make it a set</legend><div className="set-controls"><div><span>Place mats</span><div role="group" aria-label="Number of place mats">{[2, 4, 6].map(n => <button key={n} aria-pressed={seats === n} className={seats === n ? "active" : ""} onClick={() => setSeats(n)}>{n}</button>)}</div></div><label><input type="checkbox" checked={runner} onChange={e => setRunner(e.target.checked)}/> Add a runner</label><label><input type="checkbox" checked={coasters} onChange={e => setCoasters(e.target.checked)}/> Add matching coasters</label></div></fieldset><button className="button" onClick={() => onPlan("I'd love a coordinated table set: " + seats + " place mats" + (runner ? ", 1 runner" : "") + (coasters ? ", " + seats + " coasters" : "") + ". Palette: " + p.name + ". Please confirm sizes, yarn, price and making time.", p.name, "chai-table")}>Send my table idea <span>↗</span></button><p className="caption">Yarn colours, dimensions and price are confirmed together.</p></div></section>;
+    const current = colourways[selected] || colourways[0];
+    return <fieldset className="colour-picker"><legend>Try a colour <small>on this product</small></legend>
+    <div className="colour-options">{colourways.map((c, i) => <button type="button" key={c.name} className={selected === i ? "selected" : ""} aria-pressed={selected === i} onClick={() => onSelect(i)}>
+      <span className="yarn-swatches" aria-hidden="true">{c.swatches.map(colour => <i key={colour} style={{ backgroundColor: colour }}/>)}</span><span>{c.name}</span><b aria-hidden="true">{selected === i ? "✓" : ""}</b>
+    </button>)}</div>
+    <p className="preview-note" role="status">{current.approximate ? "Photo colour preview · approximate yarn colours" : "Original colour combination"}</p>
+  </fieldset>;
 }
-export function ProductGallery({ product }: {
+export function ProductCustomizer({ product, colourways, selected, onSelect, onRequest, accepting }: {
     product: Product;
+    colourways: Colourway[];
+    selected: number;
+    onSelect: (index: number) => void;
+    onRequest: (idea: string, colours: string, id: string) => void;
+    accepting: boolean;
 }) {
-    const images = [{ image: product.image, label: product.styled ? "Styled presentation" : "Studio photograph" }, ...(product.reference ? [{ image: product.reference, label: "Original photograph" }] : []), ...(product.gallery || [])];
-    const [index, setIndex] = useState(0), [zoom, setZoom] = useState(false);
-    const selected = images[index] || images[0];
-    return <div className="product-gallery"><button className={"detail-image gallery-image " + (zoom ? "zoomed" : "")} onClick={() => setZoom(!zoom)} aria-label={zoom ? "Zoom out of product photo" : "Zoom in to inspect stitches"} aria-pressed={zoom}><img src={selected.image} alt={product.name + " — " + selected.label} width="1254" height="1254"/><span>{zoom ? "− Zoom out" : "＋ Inspect stitches"}</span></button><div className="gallery-thumbs" role="group" aria-label="Product photographs">{images.map((im, i) => <button key={im.image} onClick={() => { setIndex(i); setZoom(false); }} className={index === i ? "active" : ""} aria-pressed={index === i}><img src={im.image} alt="" width="75" height="75"/><span>{im.label}</span></button>)}</div><p className="caption" aria-live="polite">{selected.label}{product.styled ? " · Styled photographs use AI-assisted backgrounds and lighting. Check originals for construction and colour." : " · Photographed by the studio."}</p></div>;
+    const [mats, setMats] = useState(4), [coasters, setCoasters] = useState(4), [runner, setRunner] = useState(true), [error, setError] = useState("");
+    const table = product.id === "chai-table";
+    const current = colourways[selected] || colourways[0];
+    const request = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (table && !mats && !coasters && !runner) {
+            setError("Choose at least one piece for your set.");
+            return;
+        }
+        const parts = table ? [mats ? `${mats} place mats` : "", coasters ? `${coasters} coasters` : "", runner ? "1 runner" : ""].filter(Boolean).join(", ") : product.name;
+        onRequest(`Please quote ${parts}. Colour choice: ${current.name}. Please confirm yarn, dimensions and making time.`, current.name, product.id);
+    };
+    return <form className="product-customizer" id="product-customizer" onSubmit={request}>
+    <div className="desktop-colour-picker"><ColourPicker colourways={colourways} selected={selected} onSelect={onSelect}/></div>
+    {table && <fieldset className="set-options"><legend>Choose your set</legend>
+      <div className="form-grid">
+        <label>Place mats<select aria-label="Place mats" value={mats} onChange={e => { setMats(Number(e.target.value)); setError(""); }}>{[0, 2, 4, 6].map(n => <option key={n} value={n}>{n === 0 ? "None" : n}</option>)}</select></label>
+        <label>Coasters<select aria-label="Coasters" value={coasters} onChange={e => { setCoasters(Number(e.target.value)); setError(""); }}>{[0, 2, 4, 6].map(n => <option key={n} value={n}>{n === 0 ? "None" : n}</option>)}</select></label>
+      </div>
+      <label className="check-label"><input type="checkbox" checked={runner} onChange={e => { setRunner(e.target.checked); setError(""); }}/> Include a table runner</label>
+    </fieldset>}
+    {error && <p className="error" role="alert">{error}</p>}
+    <button className="button inline-product-request" disabled={!accepting}>Request this design <span aria-hidden="true">↗</span></button>
+    <p className="preview-note">We confirm the yarn and final price with you.</p>
+  </form>;
+}
+function InspectPhoto({ image, alt }: {
+    image: string;
+    alt: string;
+}) {
+    const [zoom, setZoom] = useState(false);
+    return <button className={"gallery-image " + (zoom ? "zoomed" : "")} onClick={() => setZoom(!zoom)} aria-label={zoom ? "Zoom out of product photo" : "Zoom in to inspect stitches"} aria-pressed={zoom}>
+    <img src={image} alt={alt} width="1254" height="1254"/>
+    <span aria-hidden="true">{zoom ? "− Zoom out" : "＋ Zoom"}</span>
+  </button>;
+}
+export function ProductGallery({ product, colourway, onClearColourway, colourways, selectedColour, onSelectColour }: {
+    product: Product;
+    colourway?: Colourway;
+    onClearColourway: () => void;
+    colourways: Colourway[];
+    selectedColour: number;
+    onSelectColour: (index: number) => void;
+}) {
+    const images = [{ image: product.image, label: product.styled ? "Styled photo" : "Studio photo" }, ...(product.reference ? [{ image: product.reference, label: "Original photo" }] : []), ...(product.gallery || [])];
+    const [index, setIndex] = useState(0);
+    const selected = colourway ? { image: colourway.image, label: colourway.name + " · colour preview" } : images[index] || images[0];
+    return <div className="product-gallery">
+    <div className="gallery-photo-wrap"><InspectPhoto key={selected.image} image={selected.image} alt={product.name + " — " + selected.label}/>{colourway && <span className="colour-preview-badge">Colour preview</span>}</div>
+    {colourways.length > 0 && <div className="mobile-colour-picker"><ColourPicker colourways={colourways} selected={selectedColour} onSelect={onSelectColour}/></div>}
+    <div className="gallery-thumbs" role="group" aria-label="Product photographs">
+      {images.map((im, i) => <button key={im.image} onClick={() => { setIndex(i); onClearColourway(); }} className={!colourway && index === i ? "active" : ""} aria-pressed={!colourway && index === i}><img src={im.image} alt="" width="75" height="75"/><span>{im.label}</span></button>)}
+    </div>
+    {colourway ? <p className="preview-note" aria-live="polite">{colourway.name} · AI-assisted colour concept. Final yarn may vary.</p> : product.styled && <details className="photo-info"><summary>About these photos</summary><p>Styled photos use AI-assisted lighting and backgrounds. Original studio photos are included for comparison.</p></details>}
+  </div>;
 }

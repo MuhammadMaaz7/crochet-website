@@ -30,10 +30,12 @@ Legacy code remains on the original repository's development branch. The new sho
 The seven product/reference image assets are intentionally excluded from this public branch pending explicit permission to publish them on GitHub. They are present in the owner-private Site deployment. To run with your own assets, place properly licensed photos at the paths listed in lib/catalog.ts or replace those paths and descriptions. The source branch does not include private research reports, customer records, runtime secrets or account information.
 
 
-## Expanded studio storefront
+## Mobile storefront and product colour previews
 
-The collection now includes thirteen studio designs. Featured-piece selection, an interest-based gift finder, original/styled photo galleries with stitch zoom, and an illustrative table-set planner lead into the durable enquiry flow. Planner colours and set contents are carried into editable enquiry fields. It does not invent prices, stock, dispatch dates, reviews or product angles.
+The published collection contains twelve designs; the penguin is an unpublished draft. Every product card opens its product page, with decorative numbering and quick-add controls removed. Phones use a compact header and menu, shorter image-led hero, two-column collection, photo-adjacent colour swatches and a persistent request button. The dining-set configurator lives only on its product page.
 
-Eight additional product images received individual background/lighting treatments. The studio's original photographs remain available for comparison; dining and whale galleries include actual extra source views. All product/reference assets continue to be omitted from this public source mirror.
+The dining set and floral tissue cover offer prepared photo colour concepts of their actual designs. These are labelled approximate AI-assisted visualisations, not manufactured colour stock, arbitrary live recolouring or camera AR. Original studio photographs remain available. Product-specific choices survive browsing and carry into one saved enquiry. Replacement primary photos disable stale preview packs.
 
-Validation: TypeScript, production build and catalogue/schema checks pass. Browser QA covered feature selection, gift matching, gallery source selection, zoom, a narrow 390px viewport without horizontal overflow, and a configured table enquiry saved to D1 with its chosen palette and pieces. Full owner-authenticated studio QA remains outstanding. Before customer launch, confirm current product information, WhatsApp contact, timing and policies.
+The public source mirror excludes all product/reference/colour-preview images, private research, customer records and runtime credentials. Image paths are defined in lib/catalog.ts and lib/customisation.ts; authorised private assets are required for a complete visual build.
+
+Validation: TypeScript, production build, safe catalogue paths, unique IDs, unpublished penguin and stale-preview guards. Browser QA reviewed three narrow iframe layouts without horizontal overflow, menu and product navigation, direct-tap/keyboard photo colour selection, gallery originals, sticky request action and multi-product requests. A request with separate dining-set and tissue-cover colour choices persisted to D1. Physical-phone/Safari-device and owner-authenticated admin browser checks remain outstanding.
