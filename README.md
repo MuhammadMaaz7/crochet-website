@@ -28,3 +28,12 @@ Legacy code remains on the original repository's development branch. The new sho
 
 ## Image assets omitted from public source
 The seven product/reference image assets are intentionally excluded from this public branch pending explicit permission to publish them on GitHub. They are present in the owner-private Site deployment. To run with your own assets, place properly licensed photos at the paths listed in lib/catalog.ts or replace those paths and descriptions. The source branch does not include private research reports, customer records, runtime secrets or account information.
+
+
+## Expanded studio storefront
+
+The collection now includes thirteen studio designs. Featured-piece selection, an interest-based gift finder, original/styled photo galleries with stitch zoom, and an illustrative table-set planner lead into the durable enquiry flow. Planner colours and set contents are carried into editable enquiry fields. It does not invent prices, stock, dispatch dates, reviews or product angles.
+
+Eight additional product images received individual background/lighting treatments. The studio's original photographs remain available for comparison; dining and whale galleries include actual extra source views. All product/reference assets continue to be omitted from this public source mirror.
+
+Validation: TypeScript, production build and catalogue/schema checks pass. Browser QA covered feature selection, gift matching, gallery source selection, zoom, a narrow 390px viewport without horizontal overflow, and a configured table enquiry saved to D1 with its chosen palette and pieces. Full owner-authenticated studio QA remains outstanding. Before customer launch, confirm current product information, WhatsApp contact, timing and policies.

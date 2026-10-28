@@ -1,5 +1,7 @@
-import assert from "node:assert/strict";import {defaults,enquirySchema,productSchema,settingsSchema} from "../lib/catalog.ts";
-for(const p of defaults)assert.equal(productSchema.safeParse(p).success,true);
+import assert from "node:assert/strict";import {existsSync} from "node:fs";import {defaults,enquirySchema,productSchema,settingsSchema} from "../lib/catalog.ts";
+const verifyAssets=existsSync(new URL("../public/assets",import.meta.url));\nif(!verifyAssets)console.log("Private product assets are omitted from this source mirror; asset-existence checks are skipped.");\nfor(const p of defaults){assert.equal(productSchema.safeParse(p).success,true,p.id);if(verifyAssets)for(const image of [p.image,p.reference,...(p.gallery||[]).map(g=>g.image)].filter(Boolean))assert.ok(existsSync(new URL("../public"+image,import.meta.url)),"Missing catalogue image: "+image);}
+assert.equal(new Set(defaults.map(p=>p.id)).size,defaults.length);
+assert.equal(productSchema.safeParse({...defaults[0],gallery:[{image:"https://external.invalid/photo",label:"Bad path"}]}).success,false);
 assert.equal(productSchema.safeParse({...defaults[0],price:-1}).success,false);
 assert.equal(productSchema.safeParse({...defaults[0],image:"javascript:alert(1)"}).success,false);
 assert.equal(productSchema.safeParse({...defaults[0],image:"https://external.invalid/photo"}).success,false);
