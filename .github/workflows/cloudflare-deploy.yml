@@ -1,0 +1,39 @@
+name: Deploy PhotoCraftSquare
+on:
+  push:
+    branches: [main, feat/independent-cloudflare]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: photocraftsquare-staging
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.event.repository.private && vars.CF_AUTODEPLOY == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PCS_D1_ID: ${{ vars.PCS_D1_ID }}
+      PCS_SITE_ORIGIN: ${{ vars.PCS_SITE_ORIGIN }}
+      PCS_ACCESS_TEAM: ${{ vars.PCS_ACCESS_TEAM }}
+      PCS_ACCESS_AUD: ${{ vars.PCS_ACCESS_AUD }}
+      PCS_OWNER_EMAIL: ${{ secrets.PCS_OWNER_EMAIL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Enable pinned package manager
+        run: npm install --global corepack@0.36.0
+      - name: Install locked dependencies
+        run: corepack pnpm install --frozen-lockfile
+      - name: Write ignored account configuration
+        run: node scripts/cloudflare-ci-config.mjs
+      - name: Check source, assets and authentication
+        run: corepack pnpm check
+      - name: Build and deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: corepack pnpm cf:deploy
