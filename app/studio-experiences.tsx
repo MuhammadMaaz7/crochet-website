@@ -27,8 +27,8 @@ export function StudioHero({ products }: {
         <ProductPhoto src={mainImage||main.image} alt={main.name} width="900" height="900" sizes="(max-width: 699px) calc(100vw - 40px), 480px" fetchPriority="high"/>
         <span>{main.name}</span>
       </a>
-      {secondary && <a href={"/shop/" + secondary.id} className={"hero-mini-photo"+(secondary.id==="forever-bouquet"?" hero-bouquet":"")}>
-        <ProductPhoto src={secondary.image} alt={secondary.name} width="280" height="280" sizes="160px" fetchPriority="low"/>
+      {secondary && <a href={"/shop/" + secondary.id} className="hero-mini-photo">
+        <ProductPhoto src={secondary.image} alt={secondary.name} width="280" height="280" sizes="(max-width: 699px) 56px, 180px" loading="lazy"/>
         <span>{secondary.name}</span>
       </a>}
       <Flower className="hero-flower"/>

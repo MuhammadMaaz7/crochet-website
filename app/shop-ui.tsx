@@ -1,5 +1,6 @@
 "use client";
 import ProductPhoto from "./product-photo";
+import {usePhotoCache} from "./use-photo-cache";
 import {useCallback,useEffect,useRef,useState} from "react";
 import type {Product,Settings} from "../lib/catalog";
 import {StudioHero,GiftFinder,ProductCustomizer,ProductGallery,Flower} from "./studio-experiences";
@@ -13,6 +14,7 @@ function persistPicks(ids:string[]){try{localStorage.setItem("pcs-picks",JSON.st
 function Mark() { return <svg viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6c6-9 13 0 9 7 9-4 16 5 8 11 10 5 3 15-5 12 2 10-10 14-13 5-6 8-16 1-12-7-10 1-13-11-3-14-7-7 2-16 9-11 0-7 5-9 7-3Z" fill="none" stroke="currentColor" strokeWidth="1.5"/><circle cx="26" cy="25" r="6" fill="currentColor"/></svg>; }
 
 export default function Shop({products,settings,initialProduct,initialCustom=false,initialColour}:{products:Product[];settings:Settings;initialProduct?:string;initialCustom?:boolean;initialColour?:string}) {
+  usePhotoCache();
   const [filter,setFilter]=useState("All pieces"),[search,setSearch]=useState(""),[picks,setPicks]=useState<string[]>([]);
   const [drawer,setDrawer]=useState(false),[custom,setCustom]=useState(initialCustom),[menu,setMenu]=useState(false),[colourIndex,setColourIndex]=useState(()=>{const p=products.find(p=>p.id===initialProduct);return p?Math.max(0,productColourways(p).findIndex(c=>c.name===initialColour)):0;});
   const [quantities,setQuantities]=useState<Record<string,number>>({});
@@ -22,9 +24,9 @@ export default function Shop({products,settings,initialProduct,initialCustom=fal
   useEffect(()=>{
     if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
     const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){(entry.target as HTMLElement).dataset.reveal="visible";observer.unobserve(entry.target);}}},{rootMargin:"0px 0px 40px 0px",threshold:.08});
-    document.querySelectorAll<HTMLElement>(".custom-invite,.gift-finder,.maker").forEach(el=>{if(el.getBoundingClientRect().top>window.innerHeight){el.dataset.reveal="waiting";observer.observe(el);}});
+    document.querySelectorAll<HTMLElement>(".product-card,.custom-invite,.gift-finder,.maker,.related-pieces").forEach(el=>{if(el.getBoundingClientRect().top>window.innerHeight){el.dataset.reveal="waiting";observer.observe(el);}});
     return()=>{observer.disconnect();document.querySelectorAll<HTMLElement>('[data-reveal="waiting"]').forEach(el=>{el.dataset.reveal="visible";});};
-  },[]);
+  },[filter,search]);
   const product=products.find(p=>p.id===initialProduct);
   const colourways=product?productColourways(product):[];
   const closeOrder=useCallback(()=>{setDrawer(false);setCustom(false);setSelectionWarning("")},[]);

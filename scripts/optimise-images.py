@@ -21,7 +21,7 @@ for name in names:
         url=f'/assets/pcs-{digest}-{width}.webp'
         (root/'public'/url.lstrip('/')).write_bytes(data)
         variants.append({'src':url,'width':width,'bytes':len(data)})
-    manifest[f'/assets/{name}.webp']={'width':im.width,'height':im.height,'variants':variants}
+    manifest[f'/assets/{name}.webp']={'width':im.width,'height':im.height,'variants':variants,'background': '#%02x%02x%02x' % im.crop((im.width-max(1,im.width//12),0,im.width,max(1,im.height//12))).resize((1,1)).getpixel((0,0))}
 (root/'lib/image-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(f'Optimised {len(manifest)} photos into {sum(len(x["variants"]) for x in manifest.values())} responsive variants.')
 for name in ['green-cover-styled','owl-styled']:

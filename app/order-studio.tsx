@@ -3,17 +3,13 @@ import ProductPhoto from "./product-photo";
 import {useEffect,useRef,useState} from "react";
 import type {Product,Settings} from "../lib/catalog";
 import {Flower} from "./studio-experiences";
+import {BUNTING_LAYOUT_IMAGE} from "../lib/product-presentation";
+import {customStartingPoints} from "../lib/custom-starting-points";
 import {productColourways} from "../lib/customisation";
 
 type DesignNotes=Record<string,{idea:string;colours:string}>;
 type Mode="product"|"custom";
 type Fields={idea:string;colours:string;budget:string;deadline:string;name:string;contact:string;city:string;country:string;consent:boolean;website:string};
-const kinds=[
-  {name:"A thoughtful gift",hint:"For someone special",image:"/assets/bouquet-styled.webp"},
-  {name:"Something for home",hint:"A little everyday joy",image:"/assets/green-cover-styled.webp"},
-  {name:"A bag or pouch",hint:"Made for their everyday",image:"/assets/tulip-cream.webp"},
-  {name:"My own idea",hint:"Let’s talk about it",image:"/assets/bookmark-styled.webp"}
-];
 const archiveIdeas:Record<string,string[]>={"A thoughtful gift":["Celebration gajray","Personalised bunting","Tulip bouquet"],"Something for home":["Tissue cover","Dining set","Wall hanging"],"A bag or pouch":["Bow shoulder tote","Colour-block shoulder bag","Cactus crossbody"],"My own idea":["Crochet gajray","Personalised wall hanging"]};
 const palettes=[{name:"Soft pastels",swatches:["#d8b3cc","#b6c9b6","#f1dcc1"]},{name:"Earthy tones",swatches:["#ac784f","#718265","#dfcfa9"]},{name:"Bright & happy",swatches:["#c9506a","#e7b644","#4c9697"]}];
 function newToken(){const b=crypto.getRandomValues(new Uint8Array(16));b[6]=(b[6]&15)|64;b[8]=(b[8]&63)|128;const h=Array.from(b).map(x=>x.toString(16).padStart(2,"0")).join("");return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;}
@@ -29,9 +25,10 @@ export default function OrderStudio({mode,products,selectedIds,notes,settings,qu
   const [busy,setBusy]=useState(false),[error,setError]=useState(""),[sent,setSent]=useState(""),[copied,setCopied]=useState(false);
   const busyRef=useRef(false);
   const dialog=useRef<HTMLElement>(null),heading=useRef<HTMLHeadingElement>(null),requestToken=useRef(""),requestSummary=useRef("");
+  const kinds=customStartingPoints(products);
   const custom=mode==="custom";
   const selected=selectedIds.map(id=>products.find(p=>p.id===id)).filter((p):p is Product=>!!p);
-  const available=products.filter(p=>p.availability!=="Unavailable");
+  const available=products.filter(p=>p.published&&p.availability!=="Unavailable");
   const occasionOrder=!custom&&selected.some(p=>p.category==="Occasion pieces");
   const inspiration=kinds.find(k=>k.name===kind)||kinds[0];
   const photoFor=(p:Product)=>productColourways(p).find(c=>c.name===notes[p.id]?.colours)?.image||p.image;
@@ -113,17 +110,17 @@ export default function OrderStudio({mode,products,selectedIds,notes,settings,qu
       </div>:<div className="order-layout">
         <aside className="order-moodboard" aria-label={custom?"Your inspiration board":"Your order summary"}>
           <div className="order-moodboard-heading"><p className="eyebrow">{custom?"DREAM IT. WE’LL STITCH IT.":"CHOSEN WITH A LITTLE LOVE"}</p><h2>{custom?<>Your idea.<br/><em>Our little hook.</em></>:<>Little things.<br/><em>All yours.</em></>}</h2></div>
-          <div className="order-board-photo"><ProductPhoto src={mainPhoto} alt={custom?"Crochet inspiration for "+(kind||"a custom piece"):selected[0]?.name||"Crochet pieces from the studio"} width="600" height="600" sizes="360px" loading="lazy"/><span>{custom?"INSPIRATION":selected[0]?.name||"YOUR NEXT FAVOURITE"}</span></div>
+          <div className="order-board-photo"><ProductPhoto key={mainPhoto} src={mainPhoto} alt={custom?"Crochet inspiration for "+(kind||"a custom piece"):selected[0]?.name||"Crochet pieces from the studio"} width="600" height="600" sizes="360px"/><span>{custom?(mainPhoto===BUNTING_LAYOUT_IMAGE?"EXAMPLE LAYOUT":"INSPIRATION"):selected[0]?.name||"YOUR NEXT FAVOURITE"}</span></div>
           <div className="order-board-caption">{custom?<><b>{kind||"Made around your idea"}</b><span>{step>0?occasion:"Pick a starting point. Make it personal."}</span>{fields.colours&&<span className="board-preference">{fields.colours}</span>}</>:<><b>{count?`${count} ${count===1?"item":"items"} in your request`:"Choose something lovely"}</b><span>A personal quote. No payment now.</span>{selected.length>1&&<div className="board-miniatures">{selected.slice(1,4).map(p=><ProductPhoto key={p.id} src={photoFor(p)} alt={p.name} width="56" height="56" sizes="56px"/>)}</div>}</>}</div>
         </aside>
         <div className="order-panel">
           <ol className="order-progress" aria-label="Order request steps">{steps.map((label,i)=><li key={label} className={i===step?"current":i<step?"complete":""} aria-current={i===step?"step":undefined}><span>{i<step?"✓":i+1}</span><b>{label}</b></li>)}</ol>
-          <form className="order-form" onSubmit={submit}>
-            <fieldset className="order-step-body" disabled={busy}>
+          <form className="order-form" aria-busy={busy} onSubmit={submit}>
+            <fieldset key={step} className="order-step-body" disabled={busy} aria-busy={busy}>
               <p className="eyebrow">{custom?"CUSTOM PIECE":"ORDER REQUEST"} · STEP {step+1} OF 3</p>
               <h2 id="order-title" tabIndex={-1} ref={heading}>{titles[step]}</h2><p className="order-step-intro">{descriptions[step]}</p>{step===0&&selectionWarning&&<p className="error" role="alert">{selectionWarning}</p>}
               {!settings.accepting&&<p className="error">The studio is currently pausing new requests.</p>}
-              {step===0&&(custom?<div className="custom-kind-grid" role="group" aria-label="Type of custom piece">{kinds.map(k=><button type="button" key={k.name} aria-pressed={kind===k.name} className={kind===k.name?"selected":""} onClick={()=>{setKind(k.name);setError("")}}><div><ProductPhoto src={k.image} alt="" width="240" height="190" sizes="(max-width: 699px) 42vw, 240px"/>{kind===k.name&&<i aria-hidden="true">✓</i>}</div><b>{k.name}</b><span>{k.hint}</span></button>)}</div>:<>
+              {step===0&&(custom?<div className="custom-kind-grid" role="group" aria-label="Type of custom piece">{kinds.map(k=><button type="button" key={k.name} aria-pressed={kind===k.name} className={kind===k.name?"selected":""} onClick={()=>{setKind(k.name);setError("")}}><div><ProductPhoto src={k.image} alt="" width="240" height="190" sizes="(max-width: 699px) 42vw, 240px"/>{k.image===BUNTING_LAYOUT_IMAGE&&<span className="custom-example-label">Example layout</span>}{kind===k.name&&<i aria-hidden="true">✓</i>}</div><b>{k.name}</b><span>{k.hint}</span></button>)}</div>:<>
                 {!selected.length&&<p className="order-inline-help">Tap a piece to add it to your order request.</p>}
                 <div className="selected-order-pieces">{selected.map(p=><article className="selected-order-piece" key={p.id}><ProductPhoto src={photoFor(p)} alt={p.name} width="100" height="100" sizes="100px"/><div><h3>{p.name}</h3>{notes[p.id]?.colours&&<span className="design-tag">{notes[p.id].colours}</span>}<p>{p.price===null?"Price confirmed with your quote":"PKR "+p.price.toLocaleString("en-PK")}</p>{notes[p.id]?.idea&&<details className="order-piece-preferences"><summary>Your preferences</summary><p>{notes[p.id].idea}</p></details>}<div className="order-quantity"><button type="button" aria-label={"Decrease quantity for "+p.name} disabled={(quantities[p.id]||1)<=1} onClick={()=>adjust(p.id,-1)}>−</button><span aria-live="polite">{quantities[p.id]||1} {unit(p,quantities[p.id]||1)}</span><button type="button" aria-label={"Increase quantity for "+p.name} disabled={(quantities[p.id]||1)>=50} onClick={()=>adjust(p.id,1)}>＋</button></div></div><button className="remove-order-piece" type="button" aria-label={"Remove "+p.name} onClick={()=>onRemove(p.id)}>×</button></article>)}</div>
                 {!!selected.length&&<button type="button" className="order-add-another" aria-expanded={showPieces} onClick={()=>setShowPieces(!showPieces)}>{showPieces?"Hide collection":"＋ Add another piece"}</button>}
@@ -156,7 +153,8 @@ export default function OrderStudio({mode,products,selectedIds,notes,settings,qu
               </>}
               {error&&<p className="error" role="alert">{error}</p>}
             </fieldset>
-            <footer className="order-actions"><div>{step>0?<button type="button" className="order-back" disabled={busy} onClick={()=>{setError("");setStep(s=>s-1)}}>← Back</button>:<span className="order-no-payment">A quote first.<br/>No payment now.</span>}</div><button className="button" disabled={busy||(step===2&&!settings.accepting)}>{busy?"Saving…":step<2?"Continue":custom?"Send custom request":"Send order request"}</button></footer>
+            {busy&&<p className="saving-request" role="status"><span aria-hidden="true"/>Keeping your pieces and notes together…</p>}
+            <footer className="order-actions"><div>{step>0?<button type="button" className="order-back" disabled={busy} onClick={()=>{setError("");setStep(s=>s-1)}}>← Back</button>:<span className="order-no-payment">A quote first.<br/>No payment now.</span>}</div><button className="button" disabled={busy||(step===2&&!settings.accepting)}>{busy?"Saving your request…":step<2?"Continue":custom?"Send custom request":"Send order request"}</button></footer>
           </form>
         </div>
       </div>}

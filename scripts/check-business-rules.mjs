@@ -53,12 +53,18 @@ console.log('Occasion catalogue: six photographed additions, required bunting wo
 const {heroSelection}=await import('../lib/hero-selection.ts');
 const {presentationLabel}=await import('../lib/product-presentation.ts');
 const hero=heroSelection(defaults);
-assert.equal(hero.main.id,'golden-fan-bag');assert.equal(hero.secondary.id,'forever-bouquet');
+assert.equal(hero.main.id,'mocha-bow-tote');assert.equal(hero.secondary.id,'rose-gajra');
 assert.equal(heroSelection([]).main,undefined);
-assert.notEqual(heroSelection(defaults.map(p=>p.id==='golden-fan-bag'?{...p,published:false}:p)).main?.id,'golden-fan-bag');
-assert.notEqual(heroSelection(defaults.map(p=>p.id==='golden-fan-bag'?{...p,availability:'Unavailable'}:p)).main?.id,'golden-fan-bag');
-assert.equal(heroSelection(defaults.map(p=>p.id==='golden-fan-bag'?{...p,image:'/media/new-photo'}:p)).mainImage,'/media/new-photo');
+assert.notEqual(heroSelection(defaults.map(p=>p.id==='mocha-bow-tote'?{...p,published:false}:p)).main?.id,'mocha-bow-tote');
+assert.notEqual(heroSelection(defaults.map(p=>p.id==='mocha-bow-tote'?{...p,availability:'Unavailable'}:p)).main?.id,'mocha-bow-tote');
+assert.equal(heroSelection(defaults.map(p=>p.id==='mocha-bow-tote'?{...p,image:'/media/new-photo'}:p)).mainImage,'/media/new-photo');
 const bunting=defaults.find(p=>p.id==='personalised-bunting');
 assert.equal(presentationLabel(bunting),'Example layout');assert.equal(presentationLabel({...bunting,image:'/media/new-photo'}),null);
 if(verifyAssets)assert.ok(existsSync(new URL('../public'+hero.mainImage,import.meta.url)));
 console.log('Editorial hero fallback and bunting layout disclosure passed.');
+
+const {customStartingPoints}=await import('../lib/custom-starting-points.ts');
+assert.equal(customStartingPoints(defaults)[0].image,defaults.find(p=>p.id==='rose-gajra').image);
+assert.equal(customStartingPoints(defaults.map(p=>p.id==='mocha-bow-tote'?{...p,image:'/media/owner-tote'}:p))[2].image,'/media/owner-tote');
+assert.notEqual(customStartingPoints(defaults.map(p=>p.id==='rose-gajra'?{...p,published:false}:p))[0].image,defaults.find(p=>p.id==='rose-gajra').image);
+console.log('Custom starting points follow current published product imagery.');

@@ -28,7 +28,8 @@
         "width": 1120,
         "bytes": 105514
       }
-    ]
+    ],
+    "background": "#d6a19d"
   },
   "/assets/dining-set-styled.webp": {
     "width": 1122,
@@ -59,7 +60,8 @@
         "width": 1120,
         "bytes": 158890
       }
-    ]
+    ],
+    "background": "#926e4f"
   },
   "/assets/fan-bag-styled.webp": {
     "width": 1254,
@@ -90,7 +92,8 @@
         "width": 1120,
         "bytes": 80594
       }
-    ]
+    ],
+    "background": "#b2a1bf"
   },
   "/assets/bouquet-styled.webp": {
     "width": 1086,
@@ -116,7 +119,8 @@
         "width": 768,
         "bytes": 63372
       }
-    ]
+    ],
+    "background": "#485b3b"
   },
   "/assets/tulip-cream.webp": {
     "width": 1254,
@@ -147,7 +151,8 @@
         "width": 1120,
         "bytes": 62706
       }
-    ]
+    ],
+    "background": "#709798"
   },
   "/assets/tulip-pink.webp": {
     "width": 1254,
@@ -178,7 +183,8 @@
         "width": 1120,
         "bytes": 91752
       }
-    ]
+    ],
+    "background": "#e2d7c8"
   },
   "/assets/bookmark-styled.webp": {
     "width": 1254,
@@ -209,7 +215,8 @@
         "width": 1120,
         "bytes": 45312
       }
-    ]
+    ],
+    "background": "#dd8475"
   },
   "/assets/owl-styled.webp": {
     "width": 1254,
@@ -240,7 +247,8 @@
         "width": 1120,
         "bytes": 177324
       }
-    ]
+    ],
+    "background": "#86943e"
   },
   "/assets/tissue-styled.webp": {
     "width": 1400,
@@ -271,7 +279,8 @@
         "width": 1120,
         "bytes": 82498
       }
-    ]
+    ],
+    "background": "#e0cbb5"
   },
   "/assets/whale-styled.webp": {
     "width": 1254,
@@ -302,7 +311,8 @@
         "width": 1120,
         "bytes": 37818
       }
-    ]
+    ],
+    "background": "#fdccb1"
   },
   "/assets/tooth-styled.webp": {
     "width": 1050,
@@ -328,7 +338,8 @@
         "width": 768,
         "bytes": 31990
       }
-    ]
+    ],
+    "background": "#5d8c92"
   },
   "/assets/table-rose-preview.webp": {
     "width": 1040,
@@ -354,7 +365,8 @@
         "width": 768,
         "bytes": 84868
       }
-    ]
+    ],
+    "background": "#926e51"
   },
   "/assets/table-coastal-preview.webp": {
     "width": 1040,
@@ -380,7 +392,8 @@
         "width": 768,
         "bytes": 82950
       }
-    ]
+    ],
+    "background": "#946c4f"
   },
   "/assets/cover-lilac-preview.webp": {
     "width": 1100,
@@ -406,7 +419,8 @@
         "width": 768,
         "bytes": 59030
       }
-    ]
+    ],
+    "background": "#d19b97"
   },
   "/assets/cover-oat-preview.webp": {
     "width": 1100,
@@ -432,7 +446,8 @@
         "width": 768,
         "bytes": 53768
       }
-    ]
+    ],
+    "background": "#d19b99"
   },
   "/assets/phone-crossbody-styled.webp": {
     "width": 1254,
@@ -463,7 +478,8 @@
         "width": 1120,
         "bytes": 253748
       }
-    ]
+    ],
+    "background": "#ebe1cf"
   },
   "/assets/bow-keyring-styled.webp": {
     "width": 1254,
@@ -494,7 +510,8 @@
         "width": 1120,
         "bytes": 48342
       }
-    ]
+    ],
+    "background": "#cfd6c6"
   },
   "/assets/earth-tone-shoulder-styled.webp": {
     "width": 1086,
@@ -520,7 +537,8 @@
         "width": 768,
         "bytes": 60456
       }
-    ]
+    ],
+    "background": "#d4a7a2"
   },
   "/assets/cactus-crossbody-styled.webp": {
     "width": 1254,
@@ -551,7 +569,8 @@
         "width": 1120,
         "bytes": 62204
       }
-    ]
+    ],
+    "background": "#fad3b9"
   },
   "/assets/bunting-styled.webp": {
     "width": 1254,
@@ -582,7 +601,8 @@
         "width": 1120,
         "bytes": 191440
       }
-    ]
+    ],
+    "background": "#e8d1d1"
   },
   "/assets/marigold-gajra-styled.webp": {
     "width": 1254,
@@ -613,7 +633,8 @@
         "width": 1120,
         "bytes": 70840
       }
-    ]
+    ],
+    "background": "#ccb7a7"
   },
   "/assets/rose-gajra-styled.webp": {
     "width": 1254,
@@ -644,7 +665,8 @@
         "width": 1120,
         "bytes": 75494
       }
-    ]
+    ],
+    "background": "#eee3d1"
   },
   "/assets/two-flower-tissue-v2.webp": {
     "width": 1254,
@@ -675,7 +697,8 @@
         "width": 1120,
         "bytes": 77226
       }
-    ]
+    ],
+    "background": "#fcf6ed"
   },
   "/assets/phone-sage-preview.webp": {
     "width": 1254,
@@ -706,7 +729,8 @@
         "width": 1120,
         "bytes": 222096
       }
-    ]
+    ],
+    "background": "#ece0ce"
   },
   "/assets/earth-pastel-preview.webp": {
     "width": 1086,
@@ -732,7 +756,8 @@
         "width": 768,
         "bytes": 57614
       }
-    ]
+    ],
+    "background": "#d3a5a1"
   },
   "/assets/cactus-teal-preview.webp": {
     "width": 1254,
@@ -763,7 +788,8 @@
         "width": 1120,
         "bytes": 45604
       }
-    ]
+    ],
+    "background": "#fbd1b9"
   },
   "/assets/marigold-blush-preview.webp": {
     "width": 1254,
@@ -794,7 +820,8 @@
         "width": 1120,
         "bytes": 70846
       }
-    ]
+    ],
+    "background": "#cab3a3"
   },
   "/assets/rose-lilac-preview.webp": {
     "width": 1254,
@@ -825,7 +852,8 @@
         "width": 1120,
         "bytes": 72330
       }
-    ]
+    ],
+    "background": "#f0e3d1"
   },
   "/assets/two-flower-oat-preview.webp": {
     "width": 1254,
@@ -856,7 +884,8 @@
         "width": 1120,
         "bytes": 72262
       }
-    ]
+    ],
+    "background": "#fcf7ee"
   },
   "/assets/mocha-bow-tote-product-v2.webp": {
     "width": 1254,
@@ -887,7 +916,8 @@
         "width": 1120,
         "bytes": 121958
       }
-    ]
+    ],
+    "background": "#fdf5ea"
   },
   "/assets/tote-sage-product-v2.webp": {
     "width": 1254,
@@ -918,7 +948,8 @@
         "width": 1120,
         "bytes": 104614
       }
-    ]
+    ],
+    "background": "#fcf6ec"
   },
   "/assets/fan-bag-hero-v2.webp": {
     "width": 1448,
@@ -949,7 +980,8 @@
         "width": 1120,
         "bytes": 62046
       }
-    ]
+    ],
+    "background": "#bda9d2"
   },
   "/assets/bunting-full-layout.webp": {
     "width": 1448,
@@ -980,6 +1012,7 @@
         "width": 1120,
         "bytes": 67454
       }
-    ]
+    ],
+    "background": "#eee8e1"
   }
 }
