@@ -1,0 +1,1 @@
+export default function NotFound(){return <main className="activation"><a href="/">PhotoCraftSquare</a><h1>This piece isn’t here.</h1><p>It may have moved or is no longer listed.</p><a href="/#collection" className="button">Explore the collection</a></main>}

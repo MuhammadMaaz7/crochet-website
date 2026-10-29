@@ -1,0 +1,1 @@
+import {getChatGPTUser} from "../../chatgpt-auth";import {admin,json} from "../../../lib/store";export async function GET(){const u=await getChatGPTUser();return json({userId:u?.userId||null,isAdmin:await admin()});}

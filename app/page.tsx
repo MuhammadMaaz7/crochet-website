@@ -1,0 +1,1 @@
+import Shop from "./shop-ui";import {catalog,shopSettings} from "../lib/store";export const dynamic="force-dynamic";export default async function Page(){const [products,settings]=await Promise.all([catalog(),shopSettings()]);return <Shop products={products} settings={settings}/>}

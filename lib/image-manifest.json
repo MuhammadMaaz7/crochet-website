@@ -1,0 +1,1018 @@
+{
+  "/assets/green-cover-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-5a1d15dff66f2085-160.webp",
+        "width": 160,
+        "bytes": 4666
+      },
+      {
+        "src": "/assets/pcs-b3dfa3a8b7451ded-320.webp",
+        "width": 320,
+        "bytes": 15060
+      },
+      {
+        "src": "/assets/pcs-3c11869f711d201c-480.webp",
+        "width": 480,
+        "bytes": 29646
+      },
+      {
+        "src": "/assets/pcs-2dc9311979df84c3-768.webp",
+        "width": 768,
+        "bytes": 63722
+      },
+      {
+        "src": "/assets/pcs-2bb9d9e4214e8bb4-1120.webp",
+        "width": 1120,
+        "bytes": 105514
+      }
+    ],
+    "background": "#d6a19d"
+  },
+  "/assets/dining-set-styled.webp": {
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "src": "/assets/pcs-d0ff482d73b393c9-160.webp",
+        "width": 160,
+        "bytes": 7246
+      },
+      {
+        "src": "/assets/pcs-a1e469bde3e002c4-320.webp",
+        "width": 320,
+        "bytes": 23756
+      },
+      {
+        "src": "/assets/pcs-745ad7643122044f-480.webp",
+        "width": 480,
+        "bytes": 47450
+      },
+      {
+        "src": "/assets/pcs-0e8b2b4fc306e05a-768.webp",
+        "width": 768,
+        "bytes": 98016
+      },
+      {
+        "src": "/assets/pcs-702a59a2e7d3733e-1120.webp",
+        "width": 1120,
+        "bytes": 158890
+      }
+    ],
+    "background": "#926e4f"
+  },
+  "/assets/fan-bag-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-dd8c2100054a8f58-160.webp",
+        "width": 160,
+        "bytes": 4320
+      },
+      {
+        "src": "/assets/pcs-3326ee45de6b2f9a-320.webp",
+        "width": 320,
+        "bytes": 13328
+      },
+      {
+        "src": "/assets/pcs-74706b271048ace0-480.webp",
+        "width": 480,
+        "bytes": 24992
+      },
+      {
+        "src": "/assets/pcs-a593d47fb21d3214-768.webp",
+        "width": 768,
+        "bytes": 49640
+      },
+      {
+        "src": "/assets/pcs-87972ca17c8fa088-1120.webp",
+        "width": 1120,
+        "bytes": 80594
+      }
+    ],
+    "background": "#b2a1bf"
+  },
+  "/assets/bouquet-styled.webp": {
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "src": "/assets/pcs-d97f2c4b200e4d11-160.webp",
+        "width": 160,
+        "bytes": 4718
+      },
+      {
+        "src": "/assets/pcs-aa9c0f189e425d56-320.webp",
+        "width": 320,
+        "bytes": 13742
+      },
+      {
+        "src": "/assets/pcs-1ec433b8d9603e8b-480.webp",
+        "width": 480,
+        "bytes": 27020
+      },
+      {
+        "src": "/assets/pcs-cdf986f08081726e-768.webp",
+        "width": 768,
+        "bytes": 63372
+      }
+    ],
+    "background": "#485b3b"
+  },
+  "/assets/tulip-cream.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-9e22c6da8aed9e06-160.webp",
+        "width": 160,
+        "bytes": 2874
+      },
+      {
+        "src": "/assets/pcs-fd526d2cd689ee1d-320.webp",
+        "width": 320,
+        "bytes": 8468
+      },
+      {
+        "src": "/assets/pcs-1e64e8e884f993e8-480.webp",
+        "width": 480,
+        "bytes": 16220
+      },
+      {
+        "src": "/assets/pcs-cbf00c88cf289eb7-768.webp",
+        "width": 768,
+        "bytes": 34398
+      },
+      {
+        "src": "/assets/pcs-6a6813beaf53d20f-1120.webp",
+        "width": 1120,
+        "bytes": 62706
+      }
+    ],
+    "background": "#709798"
+  },
+  "/assets/tulip-pink.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-52d8be1ba341c5fd-160.webp",
+        "width": 160,
+        "bytes": 3622
+      },
+      {
+        "src": "/assets/pcs-d4df83c0bc9c2f10-320.webp",
+        "width": 320,
+        "bytes": 11128
+      },
+      {
+        "src": "/assets/pcs-7cd83c9d309d1f02-480.webp",
+        "width": 480,
+        "bytes": 22808
+      },
+      {
+        "src": "/assets/pcs-9462924caf9de12b-768.webp",
+        "width": 768,
+        "bytes": 50350
+      },
+      {
+        "src": "/assets/pcs-8d9f764ae5789ce2-1120.webp",
+        "width": 1120,
+        "bytes": 91752
+      }
+    ],
+    "background": "#e2d7c8"
+  },
+  "/assets/bookmark-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-b333a1a1978e6b04-160.webp",
+        "width": 160,
+        "bytes": 1816
+      },
+      {
+        "src": "/assets/pcs-bf4128911ad225aa-320.webp",
+        "width": 320,
+        "bytes": 4744
+      },
+      {
+        "src": "/assets/pcs-ec19a60d51edc4be-480.webp",
+        "width": 480,
+        "bytes": 9426
+      },
+      {
+        "src": "/assets/pcs-f5c63c4dd529c16f-768.webp",
+        "width": 768,
+        "bytes": 22604
+      },
+      {
+        "src": "/assets/pcs-875e6bb8573e36da-1120.webp",
+        "width": 1120,
+        "bytes": 45312
+      }
+    ],
+    "background": "#dd8475"
+  },
+  "/assets/owl-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-fa65556a970869a5-160.webp",
+        "width": 160,
+        "bytes": 7020
+      },
+      {
+        "src": "/assets/pcs-0207535bd3acad69-320.webp",
+        "width": 320,
+        "bytes": 23118
+      },
+      {
+        "src": "/assets/pcs-20191ce5859f65a6-480.webp",
+        "width": 480,
+        "bytes": 45642
+      },
+      {
+        "src": "/assets/pcs-27f397480ceae476-768.webp",
+        "width": 768,
+        "bytes": 102758
+      },
+      {
+        "src": "/assets/pcs-3d0a296da1afd316-1120.webp",
+        "width": 1120,
+        "bytes": 177324
+      }
+    ],
+    "background": "#86943e"
+  },
+  "/assets/tissue-styled.webp": {
+    "width": 1400,
+    "height": 1050,
+    "variants": [
+      {
+        "src": "/assets/pcs-491eef8763473fa3-160.webp",
+        "width": 160,
+        "bytes": 3848
+      },
+      {
+        "src": "/assets/pcs-7cb01c683a719d78-320.webp",
+        "width": 320,
+        "bytes": 11342
+      },
+      {
+        "src": "/assets/pcs-4d04cd6a18dac04a-480.webp",
+        "width": 480,
+        "bytes": 21598
+      },
+      {
+        "src": "/assets/pcs-0bd5030fa1d37022-768.webp",
+        "width": 768,
+        "bytes": 46724
+      },
+      {
+        "src": "/assets/pcs-7196b444b9139ea8-1120.webp",
+        "width": 1120,
+        "bytes": 82498
+      }
+    ],
+    "background": "#e0cbb5"
+  },
+  "/assets/whale-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-3743e553cf3fabde-160.webp",
+        "width": 160,
+        "bytes": 1918
+      },
+      {
+        "src": "/assets/pcs-4ea7d80a637f75b4-320.webp",
+        "width": 320,
+        "bytes": 5392
+      },
+      {
+        "src": "/assets/pcs-af0e840077d1870d-480.webp",
+        "width": 480,
+        "bytes": 9956
+      },
+      {
+        "src": "/assets/pcs-ecd2bf2ac610f4b5-768.webp",
+        "width": 768,
+        "bytes": 21038
+      },
+      {
+        "src": "/assets/pcs-b0c6d25a70d98800-1120.webp",
+        "width": 1120,
+        "bytes": 37818
+      }
+    ],
+    "background": "#fdccb1"
+  },
+  "/assets/tooth-styled.webp": {
+    "width": 1050,
+    "height": 1400,
+    "variants": [
+      {
+        "src": "/assets/pcs-a5a88bfcc6fe424d-160.webp",
+        "width": 160,
+        "bytes": 3014
+      },
+      {
+        "src": "/assets/pcs-248584becedb2dc2-320.webp",
+        "width": 320,
+        "bytes": 8626
+      },
+      {
+        "src": "/assets/pcs-9b8190f2219e55fc-480.webp",
+        "width": 480,
+        "bytes": 15784
+      },
+      {
+        "src": "/assets/pcs-9ca0ea30cc5c3bbe-768.webp",
+        "width": 768,
+        "bytes": 31990
+      }
+    ],
+    "background": "#5d8c92"
+  },
+  "/assets/table-rose-preview.webp": {
+    "width": 1040,
+    "height": 1300,
+    "variants": [
+      {
+        "src": "/assets/pcs-47c2df54bc4d7fea-160.webp",
+        "width": 160,
+        "bytes": 6968
+      },
+      {
+        "src": "/assets/pcs-9febf6fa02317205-320.webp",
+        "width": 320,
+        "bytes": 22276
+      },
+      {
+        "src": "/assets/pcs-baf5c582b70dee20-480.webp",
+        "width": 480,
+        "bytes": 43352
+      },
+      {
+        "src": "/assets/pcs-5e5ab96631f5fc55-768.webp",
+        "width": 768,
+        "bytes": 84868
+      }
+    ],
+    "background": "#926e51"
+  },
+  "/assets/table-coastal-preview.webp": {
+    "width": 1040,
+    "height": 1300,
+    "variants": [
+      {
+        "src": "/assets/pcs-cb856ab8962cd536-160.webp",
+        "width": 160,
+        "bytes": 7218
+      },
+      {
+        "src": "/assets/pcs-c6a0565ec5128807-320.webp",
+        "width": 320,
+        "bytes": 22378
+      },
+      {
+        "src": "/assets/pcs-2e393b239ccc787f-480.webp",
+        "width": 480,
+        "bytes": 42514
+      },
+      {
+        "src": "/assets/pcs-fd6edf8c81667659-768.webp",
+        "width": 768,
+        "bytes": 82950
+      }
+    ],
+    "background": "#946c4f"
+  },
+  "/assets/cover-lilac-preview.webp": {
+    "width": 1100,
+    "height": 1100,
+    "variants": [
+      {
+        "src": "/assets/pcs-ea2d1ed37c5eb8e8-160.webp",
+        "width": 160,
+        "bytes": 4664
+      },
+      {
+        "src": "/assets/pcs-eab1d713e582bcb0-320.webp",
+        "width": 320,
+        "bytes": 14900
+      },
+      {
+        "src": "/assets/pcs-69610e744b55e1cc-480.webp",
+        "width": 480,
+        "bytes": 29058
+      },
+      {
+        "src": "/assets/pcs-22bd7704aca0f43a-768.webp",
+        "width": 768,
+        "bytes": 59030
+      }
+    ],
+    "background": "#d19b97"
+  },
+  "/assets/cover-oat-preview.webp": {
+    "width": 1100,
+    "height": 1100,
+    "variants": [
+      {
+        "src": "/assets/pcs-e1fb65645f7c3f06-160.webp",
+        "width": 160,
+        "bytes": 4518
+      },
+      {
+        "src": "/assets/pcs-b6d49b1c5ed0a51b-320.webp",
+        "width": 320,
+        "bytes": 13962
+      },
+      {
+        "src": "/assets/pcs-45f572d00b4b4e58-480.webp",
+        "width": 480,
+        "bytes": 27086
+      },
+      {
+        "src": "/assets/pcs-0407620b3409dc4e-768.webp",
+        "width": 768,
+        "bytes": 53768
+      }
+    ],
+    "background": "#d19b99"
+  },
+  "/assets/phone-crossbody-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-a51225b5d3d72734-160.webp",
+        "width": 160,
+        "bytes": 4796
+      },
+      {
+        "src": "/assets/pcs-043004ecd2c6478e-320.webp",
+        "width": 320,
+        "bytes": 18644
+      },
+      {
+        "src": "/assets/pcs-3ad5eb104a3c045a-480.webp",
+        "width": 480,
+        "bytes": 52986
+      },
+      {
+        "src": "/assets/pcs-e4679049dbc2a410-768.webp",
+        "width": 768,
+        "bytes": 144948
+      },
+      {
+        "src": "/assets/pcs-278b9786dbf3bcb9-1120.webp",
+        "width": 1120,
+        "bytes": 253748
+      }
+    ],
+    "background": "#ebe1cf"
+  },
+  "/assets/bow-keyring-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-e114555cbf25a141-160.webp",
+        "width": 160,
+        "bytes": 2102
+      },
+      {
+        "src": "/assets/pcs-51103e201b928241-320.webp",
+        "width": 320,
+        "bytes": 6912
+      },
+      {
+        "src": "/assets/pcs-678bb6b094ebaca5-480.webp",
+        "width": 480,
+        "bytes": 13480
+      },
+      {
+        "src": "/assets/pcs-d143db1a78ceedb2-768.webp",
+        "width": 768,
+        "bytes": 28526
+      },
+      {
+        "src": "/assets/pcs-2ce311fc49f3b46d-1120.webp",
+        "width": 1120,
+        "bytes": 48342
+      }
+    ],
+    "background": "#cfd6c6"
+  },
+  "/assets/earth-tone-shoulder-styled.webp": {
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "src": "/assets/pcs-9752c575e381db1f-160.webp",
+        "width": 160,
+        "bytes": 4804
+      },
+      {
+        "src": "/assets/pcs-cdc53f8e93a1bd9c-320.webp",
+        "width": 320,
+        "bytes": 15236
+      },
+      {
+        "src": "/assets/pcs-d16c768e68604f2c-480.webp",
+        "width": 480,
+        "bytes": 29798
+      },
+      {
+        "src": "/assets/pcs-f7e23b1e98b1c424-768.webp",
+        "width": 768,
+        "bytes": 60456
+      }
+    ],
+    "background": "#d4a7a2"
+  },
+  "/assets/cactus-crossbody-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-3e2b0cab50616271-160.webp",
+        "width": 160,
+        "bytes": 2062
+      },
+      {
+        "src": "/assets/pcs-b3974a0ff9637ceb-320.webp",
+        "width": 320,
+        "bytes": 7096
+      },
+      {
+        "src": "/assets/pcs-1c1b3a5e3f9217f7-480.webp",
+        "width": 480,
+        "bytes": 14206
+      },
+      {
+        "src": "/assets/pcs-58783f19877b3b2b-768.webp",
+        "width": 768,
+        "bytes": 32292
+      },
+      {
+        "src": "/assets/pcs-91947ad2fbc611f6-1120.webp",
+        "width": 1120,
+        "bytes": 62204
+      }
+    ],
+    "background": "#fad3b9"
+  },
+  "/assets/bunting-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-fc4ddd038fc77437-160.webp",
+        "width": 160,
+        "bytes": 5202
+      },
+      {
+        "src": "/assets/pcs-1ffcaa324e4d0edd-320.webp",
+        "width": 320,
+        "bytes": 22198
+      },
+      {
+        "src": "/assets/pcs-dc4b2ac3dcac3ed4-480.webp",
+        "width": 480,
+        "bytes": 53614
+      },
+      {
+        "src": "/assets/pcs-21c923a7554456c8-768.webp",
+        "width": 768,
+        "bytes": 117538
+      },
+      {
+        "src": "/assets/pcs-71be527c4f7615e0-1120.webp",
+        "width": 1120,
+        "bytes": 191440
+      }
+    ],
+    "background": "#e8d1d1"
+  },
+  "/assets/marigold-gajra-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-f6f775e6affa5f77-160.webp",
+        "width": 160,
+        "bytes": 2874
+      },
+      {
+        "src": "/assets/pcs-79858cf6212bd59a-320.webp",
+        "width": 320,
+        "bytes": 8732
+      },
+      {
+        "src": "/assets/pcs-74be2b131d967e5c-480.webp",
+        "width": 480,
+        "bytes": 17986
+      },
+      {
+        "src": "/assets/pcs-2b2fe97af6330c42-768.webp",
+        "width": 768,
+        "bytes": 39394
+      },
+      {
+        "src": "/assets/pcs-6e908d15efbb8c10-1120.webp",
+        "width": 1120,
+        "bytes": 70840
+      }
+    ],
+    "background": "#ccb7a7"
+  },
+  "/assets/rose-gajra-styled.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-4c7c49ec5eaac641-160.webp",
+        "width": 160,
+        "bytes": 3740
+      },
+      {
+        "src": "/assets/pcs-d353f3380003bd8e-320.webp",
+        "width": 320,
+        "bytes": 10670
+      },
+      {
+        "src": "/assets/pcs-096b7a332223e0dc-480.webp",
+        "width": 480,
+        "bytes": 19940
+      },
+      {
+        "src": "/assets/pcs-ab745d4564e8dba5-768.webp",
+        "width": 768,
+        "bytes": 42698
+      },
+      {
+        "src": "/assets/pcs-761e4ac2e17a7d9b-1120.webp",
+        "width": 1120,
+        "bytes": 75494
+      }
+    ],
+    "background": "#eee3d1"
+  },
+  "/assets/two-flower-tissue-v2.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-776cf9abc5b376eb-160.webp",
+        "width": 160,
+        "bytes": 3494
+      },
+      {
+        "src": "/assets/pcs-68c65bd4a90efc3f-320.webp",
+        "width": 320,
+        "bytes": 11424
+      },
+      {
+        "src": "/assets/pcs-0751ee6f9d4f8d74-480.webp",
+        "width": 480,
+        "bytes": 22284
+      },
+      {
+        "src": "/assets/pcs-7aceb65ce5ce1bd5-768.webp",
+        "width": 768,
+        "bytes": 47172
+      },
+      {
+        "src": "/assets/pcs-b8b87854209bd88d-1120.webp",
+        "width": 1120,
+        "bytes": 77226
+      }
+    ],
+    "background": "#fcf6ed"
+  },
+  "/assets/phone-sage-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-b06252a473cd67d3-160.webp",
+        "width": 160,
+        "bytes": 4702
+      },
+      {
+        "src": "/assets/pcs-af5bdacc5b408d37-320.webp",
+        "width": 320,
+        "bytes": 18618
+      },
+      {
+        "src": "/assets/pcs-3d74e434f6cc7526-480.webp",
+        "width": 480,
+        "bytes": 47950
+      },
+      {
+        "src": "/assets/pcs-a01ae1ebb87c5b55-768.webp",
+        "width": 768,
+        "bytes": 128438
+      },
+      {
+        "src": "/assets/pcs-f59f058be15b5724-1120.webp",
+        "width": 1120,
+        "bytes": 222096
+      }
+    ],
+    "background": "#ece0ce"
+  },
+  "/assets/earth-pastel-preview.webp": {
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "src": "/assets/pcs-18bf2debbd6573cf-160.webp",
+        "width": 160,
+        "bytes": 4544
+      },
+      {
+        "src": "/assets/pcs-d58b86bf5503ec0e-320.webp",
+        "width": 320,
+        "bytes": 14780
+      },
+      {
+        "src": "/assets/pcs-c191d366ad79ac98-480.webp",
+        "width": 480,
+        "bytes": 29038
+      },
+      {
+        "src": "/assets/pcs-faa638411e3ead5a-768.webp",
+        "width": 768,
+        "bytes": 57614
+      }
+    ],
+    "background": "#d3a5a1"
+  },
+  "/assets/cactus-teal-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-e1bcf7557feb20e0-160.webp",
+        "width": 160,
+        "bytes": 1914
+      },
+      {
+        "src": "/assets/pcs-4ccdb2c7bd5c5e35-320.webp",
+        "width": 320,
+        "bytes": 6424
+      },
+      {
+        "src": "/assets/pcs-0b793b8a4f63dc40-480.webp",
+        "width": 480,
+        "bytes": 12412
+      },
+      {
+        "src": "/assets/pcs-d32816581005c5bf-768.webp",
+        "width": 768,
+        "bytes": 26532
+      },
+      {
+        "src": "/assets/pcs-8a9b8723c39a80b9-1120.webp",
+        "width": 1120,
+        "bytes": 45604
+      }
+    ],
+    "background": "#fbd1b9"
+  },
+  "/assets/marigold-blush-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-8821a292e585074e-160.webp",
+        "width": 160,
+        "bytes": 3042
+      },
+      {
+        "src": "/assets/pcs-991828dc0c54045b-320.webp",
+        "width": 320,
+        "bytes": 9314
+      },
+      {
+        "src": "/assets/pcs-afee92d07c709810-480.webp",
+        "width": 480,
+        "bytes": 19084
+      },
+      {
+        "src": "/assets/pcs-b80688385be8d51a-768.webp",
+        "width": 768,
+        "bytes": 41620
+      },
+      {
+        "src": "/assets/pcs-47380075f92d0c0b-1120.webp",
+        "width": 1120,
+        "bytes": 70846
+      }
+    ],
+    "background": "#cab3a3"
+  },
+  "/assets/rose-lilac-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-10108f069e7c1047-160.webp",
+        "width": 160,
+        "bytes": 3788
+      },
+      {
+        "src": "/assets/pcs-d1a9434b97c63338-320.webp",
+        "width": 320,
+        "bytes": 11142
+      },
+      {
+        "src": "/assets/pcs-2560930f1375cfa0-480.webp",
+        "width": 480,
+        "bytes": 20800
+      },
+      {
+        "src": "/assets/pcs-071662e7363f3674-768.webp",
+        "width": 768,
+        "bytes": 42912
+      },
+      {
+        "src": "/assets/pcs-b225940279224740-1120.webp",
+        "width": 1120,
+        "bytes": 72330
+      }
+    ],
+    "background": "#f0e3d1"
+  },
+  "/assets/two-flower-oat-preview.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-ef5f48b9c497686d-160.webp",
+        "width": 160,
+        "bytes": 3322
+      },
+      {
+        "src": "/assets/pcs-eb80b1c08262ef2e-320.webp",
+        "width": 320,
+        "bytes": 11078
+      },
+      {
+        "src": "/assets/pcs-fec6fac78d90c6ec-480.webp",
+        "width": 480,
+        "bytes": 21758
+      },
+      {
+        "src": "/assets/pcs-c1269435e172d35a-768.webp",
+        "width": 768,
+        "bytes": 45058
+      },
+      {
+        "src": "/assets/pcs-8a16bc9a74cb0318-1120.webp",
+        "width": 1120,
+        "bytes": 72262
+      }
+    ],
+    "background": "#fcf7ee"
+  },
+  "/assets/mocha-bow-tote-product-v2.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-d00dfc584dc0eac4-160.webp",
+        "width": 160,
+        "bytes": 4024
+      },
+      {
+        "src": "/assets/pcs-4de5ccd569b3c591-320.webp",
+        "width": 320,
+        "bytes": 14408
+      },
+      {
+        "src": "/assets/pcs-d56b4474ce5ce278-480.webp",
+        "width": 480,
+        "bytes": 29898
+      },
+      {
+        "src": "/assets/pcs-2a7f761b3c834ca6-768.webp",
+        "width": 768,
+        "bytes": 67792
+      },
+      {
+        "src": "/assets/pcs-6a1160ff4fb7095b-1120.webp",
+        "width": 1120,
+        "bytes": 121958
+      }
+    ],
+    "background": "#fdf5ea"
+  },
+  "/assets/tote-sage-product-v2.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "src": "/assets/pcs-da39a04f73f803c4-160.webp",
+        "width": 160,
+        "bytes": 3798
+      },
+      {
+        "src": "/assets/pcs-aa824de01e6f4b6e-320.webp",
+        "width": 320,
+        "bytes": 13520
+      },
+      {
+        "src": "/assets/pcs-c3fccac5ff95b1b8-480.webp",
+        "width": 480,
+        "bytes": 27850
+      },
+      {
+        "src": "/assets/pcs-d49c213f06c3135c-768.webp",
+        "width": 768,
+        "bytes": 61614
+      },
+      {
+        "src": "/assets/pcs-8ae999ab19d6d234-1120.webp",
+        "width": 1120,
+        "bytes": 104614
+      }
+    ],
+    "background": "#fcf6ec"
+  },
+  "/assets/fan-bag-hero-v2.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/pcs-3fcce2a92d5b3de2-160.webp",
+        "width": 160,
+        "bytes": 2736
+      },
+      {
+        "src": "/assets/pcs-edbbbb0a8aaef09a-320.webp",
+        "width": 320,
+        "bytes": 8786
+      },
+      {
+        "src": "/assets/pcs-f194877c72b5c4ed-480.webp",
+        "width": 480,
+        "bytes": 17022
+      },
+      {
+        "src": "/assets/pcs-45f940e7bd5903a3-768.webp",
+        "width": 768,
+        "bytes": 35954
+      },
+      {
+        "src": "/assets/pcs-cd65c05e2ec07a0a-1120.webp",
+        "width": 1120,
+        "bytes": 62046
+      }
+    ],
+    "background": "#bda9d2"
+  },
+  "/assets/bunting-full-layout.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/pcs-364467e19cd763cc-160.webp",
+        "width": 160,
+        "bytes": 2274
+      },
+      {
+        "src": "/assets/pcs-d90f967e539ec845-320.webp",
+        "width": 320,
+        "bytes": 7334
+      },
+      {
+        "src": "/assets/pcs-be2de8b0ae9b1d42-480.webp",
+        "width": 480,
+        "bytes": 15980
+      },
+      {
+        "src": "/assets/pcs-6c2022f7796ce983-768.webp",
+        "width": 768,
+        "bytes": 37200
+      },
+      {
+        "src": "/assets/pcs-f04d05ac4da3f9ca-1120.webp",
+        "width": 1120,
+        "bytes": 67454
+      }
+    ],
+    "background": "#eee8e1"
+  }
+}
