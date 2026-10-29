@@ -30,7 +30,7 @@ console.log("Order requests: product selection, custom briefs, reply-method and 
 assert.equal(defaults.find(p=>p.id==="berry-keyring").published,false);
 
 const phone=defaults.find(p=>p.id==='phone-crossbody');
-assert.ok(phone&&phone.published&&phone.price===null);
+assert.ok(phone&&phone.published&&phone.price===1500);
 assert.match(fitQuestion(phone).label,/phone model/);
 assert.match(fitQuestion(defaults.find(p=>p.id==='two-flower-tissue')).label,/tissue-box/);
 assert.equal(fitQuestion(defaults.find(p=>p.id==='bow-keyring')),null);
@@ -43,7 +43,7 @@ assert.ok(!suggestions.some(p=>p.id===phone.id||!p.published));
 assert.ok(!relatedPieces(phone,defaults.filter(p=>p.published).map(p=>({...p,availability:'Unavailable'}))).length);
 console.log('Catalogue extension: new product, fit guidance, preference brief and available related pieces passed.');
 
-for(const id of ['mocha-bow-tote','earth-tone-shoulder','cactus-crossbody','marigold-gajra','rose-gajra','personalised-bunting']){const p=defaults.find(p=>p.id===id);assert.ok(p?.published&&p.price===null,id);}
+for(const id of ['mocha-bow-tote','earth-tone-shoulder','cactus-crossbody','marigold-gajra','rose-gajra','personalised-bunting']){const p=defaults.find(p=>p.id===id);assert.ok(p?.published&&(p.price===null||p.price>0),id);}
 assert.equal(defaults.filter(p=>p.published).length,20);
 assert.equal(fitQuestion(defaults.find(p=>p.id==='personalised-bunting')).required,true);
 assert.match(fitQuestion(defaults.find(p=>p.id==='marigold-gajra')).label,/Wrist/);
@@ -68,3 +68,11 @@ assert.equal(customStartingPoints(defaults)[0].image,defaults.find(p=>p.id==='ro
 assert.equal(customStartingPoints(defaults.map(p=>p.id==='mocha-bow-tote'?{...p,image:'/media/owner-tote'}:p))[2].image,'/media/owner-tote');
 assert.notEqual(customStartingPoints(defaults.map(p=>p.id==='rose-gajra'?{...p,published:false}:p))[0].image,defaults.find(p=>p.id==='rose-gajra').image);
 console.log('Custom starting points follow current published product imagery.');
+
+const {priceLabel}=await import('../lib/pricing.ts');
+assert.equal(priceLabel({id:'rose-gajra',price:750}),'From PKR 750 / gajra');
+assert.equal(priceLabel({id:'mocha-bow-tote',price:3500}),'From PKR 3,500');
+assert.equal(priceLabel({id:'chai-table',price:null}),'Price by quote');
+for(const id of ['chai-table','personalised-bunting','forever-bouquet'])assert.equal(defaults.find(p=>p.id===id).price,null);
+assert.equal(defaults.filter(p=>p.published&&p.price!==null).length,17);
+console.log('Starting prices: PKR format, per-gajra unit and variable-scope quotes passed.');

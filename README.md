@@ -28,7 +28,7 @@ The public collection currently has twenty designs; berry and penguin are unpubl
 - `node scripts/check-image-delivery.mjs`
 - Build using the supported Sites build helper.
 
-Browser QA covers product navigation, colour previews, custom requests, validation, preference persistence and narrow layouts. Owner-authenticated admin browser testing, real phone/slow-network performance and operational fulfilment testing remain launch tasks. Motion honours reduced-motion preferences. No unsupported reviews, prices, stock or product safety claims are invented.
+Browser QA covers product navigation, colour previews, custom requests, validation, preference persistence and narrow layouts. Owner-authenticated admin browser testing, real phone/slow-network performance and operational fulfilment testing remain launch tasks. Motion honours reduced-motion preferences. Reviews, stock and safety claims require verification; published starting prices are explicitly market-based estimates.
 
 See `docs/launch-plan.md` for catalogue, hosting, domain, analytics and advertising decisions.
 
@@ -37,10 +37,10 @@ Three photographed designs have been added: purple phone crossbody, blush bow ke
 
 Product pages without prepared photo colourways have a colour-request choice, relevant fit question and optional maker note. The phone bag asks for model/dimensions including its case; tissue covers ask for box dimensions. These choices persist with selected-design notes and reach the stored request. A custom colour request does not digitally recolour that photo. Related products respect public catalogue data and unavailable status. Product routes have individual titles, descriptions and share-image metadata. Request-scoped catalogue memoisation avoids duplicate metadata/page reads.
 
-Requests support at most 12 distinct designs. Additional selection shows an explanation and the picker disables extra designs until a selected one is removed. Quantities remain separately editable. No current price, stock, material or dimensions are invented.
+Requests support at most 12 distinct designs. Additional selection shows an explanation and the picker disables extra designs until a selected one is removed. Quantities remain separately editable. Stock, materials and dimensions require maker confirmation; see the current starting-price policy below.
 
 ## Occasion and larger-piece merchandising
-Six further quote-only listings: bow shoulder tote, colour-block shoulder bag, cactus crossbody, marigold gajra, rose/jasmine gajra and personalised bunting. The homepage leads with larger bags and celebration pieces; keyrings remain smaller gifts further down. An Occasion category is shared between the catalogue schema, storefront and owner editor.
+Six further listings: bow shoulder tote, colour-block shoulder bag, cactus crossbody, marigold gajra, rose/jasmine gajra and personalised bunting. The homepage leads with larger bags and celebration pieces; keyrings remain smaller gifts further down. An Occasion category is shared between the catalogue schema, storefront and owner editor.
 
 Nine designs have product-specific photo palette packs. Collection-card swatches change the actual photo, link to the selected palette and restore it on the detail page; share-image metadata also follows a recognised palette. Unknown palette query values fall back to the base product. Replacing a primary photo still disables its stale pack. Free-text colour requests do not claim live recolouring. Fit questions remain available on palette-enabled products.
 
@@ -55,3 +55,9 @@ Hero photography now leads with the mocha bow tote and rose-and-jasmine gajray, 
 Public hashed WebP images have a bounded browser Cache Storage cache (180 variants maximum). The service worker only intercepts same-origin GET requests matching `/assets/pcs-<hash>-<width>.webp`, without query strings. Pages, APIs, owner uploads and customer details are excluded. Registration is deferred until window load; browsers without service workers retain normal network delivery. Photo edits generate new hashes automatically. Local worker tests cover repeat hits, eviction and exclusions. The current host returns edge HIT but browser `max-age=0, must-revalidate`; `_headers` does not override that platform response, hence the additional browser photo cache. This is not an offline ordering application.
 
 Photo regions reserve space, show a matching background while downloading, fade on decode and expose useful alt text if a download fails. Route loading uses a static catalogue skeleton, never a spinner. Product cards and sections reveal once on scroll; custom request steps have brief entry transitions and saving has an inline progress cue. All motion obeys reduced-motion preferences. Custom starting-point images resolve from published catalogue products, including owner replacements.
+
+
+## Starting prices and personal WhatsApp
+Seventeen published designs now show market-based starting prices in PKR; variable dining sets, bouquets and personalised bunting remain by quote. Every public price surface uses lib/pricing.ts, including individual-gajra units. Starting prices are per piece, never a checkout total; final custom scope and delivery are quoted. Admin > Pieces can update or clear prices. See docs/pricing-strategy.md for the initial figures and research limitations.
+
+Admin > Shop settings supports a regular WhatsApp number in international digits-only format. When configured, the footer exposes Message on WhatsApp as well as the existing saved-request continuation. This is a public click-to-chat link, not API access, chat reading or an automatic notification service. A public number has not yet been supplied.
