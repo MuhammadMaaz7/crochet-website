@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {validateConfig} from './cloudflare-config.mjs';
+const template=JSON.parse(readFileSync('deployment/wrangler.example.json','utf8'));
+assert.ok(validateConfig(template).length>0);
+const valid={...template,d1_databases:[{binding:'DB',database_name:'photocraftsquare-staging',database_id:'11111111-1111-4111-8111-111111111111'}],vars:{SITE_ORIGIN:'https://shop.example',ADMIN_OWNER_EMAIL:'owner@example.invalid',CF_ACCESS_TEAM_DOMAIN:'https://pcs-test.cloudflareaccess.com',CF_ACCESS_AUD:'aud-test'}};
+assert.deepEqual(validateConfig(valid),[]);
+assert.ok(validateConfig({...valid,d1_databases:[{binding:'DB',database_id:'00000000-0000-4000-8000-000000000000'}]}).length>0);
+assert.ok(validateConfig({...valid,vars:{...valid.vars,CF_ACCESS_AUD:''}}).length>0);
+assert.deepEqual(validateConfig({...valid,vars:{...valid.vars,SITE_ORIGIN:'',CF_ACCESS_AUD:'',CF_ACCESS_TEAM_DOMAIN:''}},{locked:true}),[]);
+assert.ok(validateConfig({...valid,vars:{...valid.vars,SITE_ORIGIN:'https://shop.example/path'}}).length>0);
+console.log('Deployment configuration checks passed: template refusal, real D1 ID, exact origin, required Access settings and locked bootstrap.');

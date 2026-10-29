@@ -2,7 +2,7 @@ import {cache} from "react";import {env} from "cloudflare:workers";import {defau
 export function db(){if(!env.DB)throw new Error("Storage unavailable");return env.DB;}
 export const catalog=cache(async(all=false):Promise<Product[]>=>{const rows=await db().prepare("SELECT data FROM products").all<{data:string}>();const map=new Map(defaults.map(p=>[p.id,p]));for(const row of rows.results){const p=JSON.parse(row.data);map.set(p.id,p);}return [...map.values()].filter(p=>all||p.published);});
 export async function shopSettings():Promise<Settings>{const r=await db().prepare("SELECT data FROM settings WHERE id='shop'").first<{data:string}>();return r?JSON.parse(r.data):defaultSettings;}
-export async function admin(){const u=await getChatGPTUser();return !!u&&((!!env.ADMIN_USER_ID&&u.userId===env.ADMIN_USER_ID)||(!!env.ADMIN_OWNER_EMAIL&&u.email.toLowerCase()===env.ADMIN_OWNER_EMAIL.toLowerCase()));}
+export async function admin(){return !!await getChatGPTUser();}
 export function originOkay(r:Request){return r.headers.get("origin")===(env.SITE_ORIGIN||new URL(r.url).origin);}
 export function json(data:unknown,status=200){return Response.json(data,{status,headers:{"Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});}
 export async function body(r:Request,max=12000){if(Number(r.headers.get("content-length"))>max)throw Error("Large");const t=await r.text();if(t.length>max)throw Error("Large");return JSON.parse(t);}
