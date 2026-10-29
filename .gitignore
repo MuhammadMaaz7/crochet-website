@@ -43,3 +43,7 @@ yarn-error.log*
 
 # OS metadata
 .DS_Store
+
+# Owner-specific independent-host configuration
+/wrangler.json
+/deployment-state/

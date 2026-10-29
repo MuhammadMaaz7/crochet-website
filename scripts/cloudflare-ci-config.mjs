@@ -1,0 +1,11 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {validateConfig} from './cloudflare-config.mjs';
+const required=['CLOUDFLARE_ACCOUNT_ID','PCS_D1_ID','PCS_SITE_ORIGIN','PCS_ACCESS_TEAM','PCS_ACCESS_AUD','PCS_OWNER_EMAIL'];
+for(const name of required)if(!process.env[name]?.trim())throw Error(`Missing CI setting: ${name}`);
+const c=JSON.parse(readFileSync('deployment/wrangler.example.json','utf8'));
+c.account_id=process.env.CLOUDFLARE_ACCOUNT_ID.trim();
+c.d1_databases[0].database_id=process.env.PCS_D1_ID.trim();
+c.vars={SITE_ORIGIN:process.env.PCS_SITE_ORIGIN.trim(),ADMIN_OWNER_EMAIL:process.env.PCS_OWNER_EMAIL.trim(),CF_ACCESS_TEAM_DOMAIN:process.env.PCS_ACCESS_TEAM.trim(),CF_ACCESS_AUD:process.env.PCS_ACCESS_AUD.trim()};
+const errors=validateConfig(c);if(errors.length)throw Error(errors.join('\n'));
+writeFileSync('wrangler.json',JSON.stringify(c,null,2)+'\n',{mode:0o600});
+console.log('CI configuration validated; credentials were not printed.');
